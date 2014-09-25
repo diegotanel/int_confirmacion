@@ -2,7 +2,11 @@
 <div class="center hero-unit">
   <h1>Bienvenido INT</h1>
 
-  <%= link_to "Registrarse!", signup_path, class: "btn btn-large btn-primary" %>
+  <% if signed_in? %>
+  	<h3>Que tenga un lindo dia!</h3>
+  <% else %>
+  	<%= link_to "Registrarse!", signup_path, class: "btn btn-large btn-primary" %>
+	<% end %>
 </div>
 
 

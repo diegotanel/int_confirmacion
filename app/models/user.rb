@@ -1,6 +1,7 @@
-require 'digest/md5'
 class User < ActiveRecord::Base
-	
+
+	attr_accessor :password_confirmation
+
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
 	validates :name, presence: true, length: {maximum: 50}
@@ -8,7 +9,13 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, 
 	uniqueness: { case_sensitive: false }
 	validates :password, length: {minimum: 6}
+	validate :password_and_password_confirmation_equal
 
+	def password_and_password_confirmation_equal
+		if self.password != self.password_confirmation
+			errors.add(:password_confirmation, "has to be the same as password")
+		end
+	end
 
 	def User.new_remember_token
     	SecureRandom.urlsafe_base64
