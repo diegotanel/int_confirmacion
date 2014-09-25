@@ -15,7 +15,8 @@ describe UserMailer do
     end
 
     it "renders the body" do
-      mail.body.encoded.should match("Hi")
+      mensaje = "\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n  <head>\r\n    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />\r\n  </head>\r\n  <body>\r\n    <h1>Bienvenido al sistema de recuperacion de contraseña, Michael Hartl</h1>\r\n    <p>\r\n      Su contraseña es: foobar.<br>\r\n    </p>\r\n    <p>Si usted no realizo la accion de recuperar contraseña, por favor ignore este mail. Buenos dias!</p>\r\n  </body>\r\n</html>"
+      mail.body.encoded.should match(mensaje)
     end
   end
 

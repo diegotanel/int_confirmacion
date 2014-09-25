@@ -1,3 +1,4 @@
+#encoding: utf-8
 def sign_in(user, options={})
   if options[:no_capybara]
     # Sign in when not using Capybara.
@@ -7,7 +8,7 @@ def sign_in(user, options={})
   else
     visit signin_path
     fill_in "Email",    with: user.email
-    fill_in "Password", with: user.password
+    fill_in "Contraseña", with: user.password
     click_button "Iniciar Sesion"
   end
 end

@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 <% provide(:title, "Recuperar Contraseña") %>
 <h1>Recuperar Contraseña</h1>
 
@@ -5,8 +7,8 @@
   <div class="span6 offset3">
 		<%= form_for(:password_recover, url: password_recovers_path) do |f| %>
 
-  		<%= f.label :email %>
-      <%= f.text_field :email %>
+  		<%= f.label :email, "Email" %>
+      	<%= f.text_field :email %>
 
   		<%= f.submit "Recuperar Contraseña", class: "btn btn-large btn-primary" %>
 		<% end %>

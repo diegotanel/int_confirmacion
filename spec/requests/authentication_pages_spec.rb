@@ -35,7 +35,7 @@ describe "Authentication" do
       let(:user) { FactoryGirl.create(:user) }
       before do
         fill_in "Email",    with: user.email.upcase
-        fill_in "Password", with: user.password
+        fill_in "Contraseña", with: user.password
         click_button "Iniciar Sesion"
       end
 

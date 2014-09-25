@@ -1,3 +1,4 @@
+#encoding: utf-8
 class User < ActiveRecord::Base
 
 	attr_accessor :password_confirmation
@@ -13,8 +14,12 @@ class User < ActiveRecord::Base
 
 	def password_and_password_confirmation_equal
 		if self.password != self.password_confirmation
-			errors.add(:password_confirmation, "has to be the same as password")
+			errors.add(:password_confirmation, "tiene que ser igual que Contraseña")
 		end
+	end
+
+	def authenticate(password)
+		password == self.password
 	end
 
 	def User.new_remember_token

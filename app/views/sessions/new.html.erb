@@ -1,3 +1,4 @@
+#encoding: utf-8
 <% provide(:title, "Iniciar Sesion") %>
 <h1>Iniciar Sesion</h1>
 
@@ -5,10 +6,10 @@
   <div class="span6 offset3">
     <%= form_for(:session, url: sessions_path) do |f| %>
 
-      <%= f.label :email %>
+      <%= f.label :email, "Email" %>
       <%= f.text_field :email %>
 
-      <%= f.label :password %>
+      <%= f.label :password, "Contraseña" %>
       <%= f.password_field :password %>
 
       <%= f.submit "Iniciar Sesion", class: "btn btn-large btn-primary" %>

@@ -1,3 +1,4 @@
+#encoding: utf-8
 <% provide(:title, 'Registrarse') %>
 <h1>Registrarse</h1>
 
@@ -6,16 +7,16 @@
   	<%= render 'shared/error_messages' %>
     <%= form_for(@user) do |f| %>
 
-      <%= f.label :name %>
+      <%= f.label :name, "Nombre" %>
       <%= f.text_field :name %>
 
-      <%= f.label :email %>
+      <%= f.label :email, "Email" %>
       <%= f.text_field :email %>
 
-      <%= f.label :password %>
+      <%= f.label :password, "Contraseña" %>
       <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "Confirmar Contraseña" %>
       <%= f.password_field :password_confirmation %>
 
       <%= f.submit "Registrarse", class: "btn btn-large btn-primary" %>
