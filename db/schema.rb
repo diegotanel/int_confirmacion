@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922152422) do
+ActiveRecord::Schema.define(version: 20140929174509) do
+
+  create_table "formularios", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "formularios", ["user_id", "created_at"], name: "index_formularios_on_user_id_and_created_at"
+
+  create_table "principals", force: true do |t|
+    t.integer  "provincia_id"
+    t.integer  "localidad_id"
+    t.integer  "grupo_id"
+    t.integer  "nombre_id"
+    t.integer  "condicion_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "principals", ["condicion_id"], name: "index_principals_on_condicion_id"
+  add_index "principals", ["grupo_id"], name: "index_principals_on_grupo_id"
+  add_index "principals", ["localidad_id"], name: "index_principals_on_localidad_id"
+  add_index "principals", ["nombre_id"], name: "index_principals_on_nombre_id"
+  add_index "principals", ["provincia_id"], name: "index_principals_on_provincia_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

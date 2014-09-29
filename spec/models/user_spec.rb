@@ -14,6 +14,7 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
+  it { should respond_to(:formularios) }
 
 
   it {should be_valid}
@@ -109,6 +110,21 @@ describe User do
     describe "with invalid password" do
       let(:user_for_invalid_password) { found_user.authenticate("invalid") }
       specify { expect(user_for_invalid_password).to be_false }
+    end
+  end
+
+  describe "formulario associations" do
+
+    before { @user.save }
+    let!(:older_formulario) do
+      FactoryGirl.create(:formulario, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_formulario) do
+      FactoryGirl.create(:formulario, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right formulario in the right order" do
+      expect(@user.formularios.to_a).to eq [newer_micropost, older_micropost]
     end
   end
 end
