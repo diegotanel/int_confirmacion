@@ -1,6 +1,6 @@
 class Provincia < ActiveRecord::Base
 	belongs_to :principal
-	has_many :regiones
+	belongs_to :region
 	attr_accessible :detalle
 
 	validates :detalle, :presence => true

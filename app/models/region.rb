@@ -1,5 +1,5 @@
 class Region < ActiveRecord::Base
-	belongs_to :provincia
+	has_many :provincias
 	attr_accessible :detalle
 
 
