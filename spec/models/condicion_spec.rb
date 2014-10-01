@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Grupo do
-	before do
-		@grupo = Grupo.new(detalle: "Grupo")
+describe Condicion do
+  before do
+		@condicion = Condicion.new(detalle: "A")
 	end
 
-	subject { @grupo }
+	subject { @condicion }
 
 	it { should respond_to(:detalle) }
 
@@ -13,7 +13,7 @@ describe Grupo do
 
 	describe "validations" do
 
-		before {@grupo.detalle = ' '}
+		before {@condicion.detalle = ' '}
 		it {should_not be_valid}
 	end
 end
