@@ -1,0 +1,38 @@
+#encoding: utf-8
+<%= form_for(@principal) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+
+  <div class="field">
+    <%= f.label :provincia, "Provincia" %><br />
+    <%= f.collection_select("provincia_id", @provincias, "id", "detalle", :include_blank => "Seleccione una provincia...") %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :region, "Region" %><br />
+    <%= text_field_tag :region, nil, disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :localidad, "Localidad" %><br />
+    <%= f.collection_select("localidad_id", @localidades, "id", "detalle", :include_blank => "Seleccione una localidad...") %>
+  </div>
+
+  <div class="field">
+    <%= f.label :grupo, "Grupo o espectaculo concertado" %><br />
+    <%= f.collection_select("grupo_id", @grupos, "id", "detalle", :include_blank => "Seleccione un si es grupo o espectaculo concertado...") %>
+  </div>
+
+  <div class="field">
+    <%= f.label :registro, "Usted esta registrado en el INT?" %><br />
+    <%= f.collection_select("registro_id", @registros, "id", "detalle", :include_blank => "Seleccione una opcion...") %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nombre, "Nombre y Apellido" %><br />
+    <%= f.text_field :nombre %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Cargar Datos", class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

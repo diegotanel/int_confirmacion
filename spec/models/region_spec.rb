@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'spec_helper'
 
 describe Region do
@@ -18,7 +19,7 @@ describe Region do
 		it {should_not be_valid}
 
 		describe "when detalle is too long" do
-    	before { @region.detalle = "a" * 70 }
+    	before { @region.detalle = "a" * 71 }
     	it { should_not be_valid }
   	end
 	end

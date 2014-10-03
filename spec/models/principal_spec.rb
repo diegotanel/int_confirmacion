@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'spec_helper'
 
 describe Principal do
@@ -6,7 +7,7 @@ describe Principal do
 		@provincia = Provincia.new(region_id: @region.id, detalle: "Buenos Aires")
 		@localidad = Localidad.new(detalle: "Capital Federal")
 		@grupo = Grupo.new(detalle: "Grupo")
-		@condicion = condicion.new(detalle: "A")
+		@condicion = Condicion.new(detalle: "A")
 		@principal = Principal.new(provincia_id: @provincia.id, localidad_id: @localidad.id, grupo_id: @grupo.id, 
 		condicion_id: @condicion.id, detalle: "Principal", nombre: "Los gauchitos")
 	end
@@ -29,23 +30,19 @@ describe Principal do
 		it {should_not be_valid}
 
 		it "should have the right associated provincia" do
-			@Principal.provincia_id.should == @provincia.id
-			@Principal.provincia.should == @provincia
+			@principal.provincia_id.should == @provincia.id
 		end
 
 		it "should have the right associated localidad" do
-			@Principal.localidad_id.should == @localidad.id
-			@Principal.localidad.should == @localidad
+			@principal.localidad_id.should == @localidad.id
 		end
 
 		it "should have the right associated grupo" do
-			@Principal.grupo_id.should == @grupo.id
-			@Principal.grupo.should == @grupo
+			@principal.grupo_id.should == @grupo.id
 		end
 
 		it "should have the right associated condicion" do
-			@Provincia.condicion_id.should == @condicion.id
-			@Provincia.condicion.should == @condicion
+			@principal.condicion_id.should == @condicion.id
 		end
 
 		describe "when provincia_id is not present" do

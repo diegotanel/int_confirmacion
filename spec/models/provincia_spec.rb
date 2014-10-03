@@ -1,10 +1,11 @@
+#encoding: utf-8
 require 'spec_helper'
 
 describe Provincia do
   
   before do
-		@region = Region.new(detalle: "Cuyo")
-		@provincia = Provincia.new(region_id: @region.id, detalle: "Buenos Aires")
+		@region = Region.create(detalle: "Cuyo")
+		@provincia = @region.provincias.build(detalle: "Buenos Aires")
 	end
 
 	subject { @provincia }
@@ -16,12 +17,11 @@ describe Provincia do
 
 	describe "validations" do
 
-		before {@provincia.detalle = ' '}
+		before {@provincia.detalle = " "}
 		it {should_not be_valid}
 
 		it "should have the right associated region" do
-			@Provincia.region_id.should == @region.id
-			@Provincia.region.should == @region
+			@provincia.region_id.should == @region.id
 		end
 
 		describe "when region_id is not present" do
@@ -39,7 +39,7 @@ describe Provincia do
   	end
 
   	describe "when detalle is too long" do
-    	before { @provincia.detalle = "a" * 70 }
+    	before { @provincia.detalle = "a" * 71 }
     	it { should_not be_valid }
   	end
 	end

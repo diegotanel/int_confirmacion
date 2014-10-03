@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140929183151) do
+ActiveRecord::Schema.define(version: 20141001153141) do
 
   create_table "condiciones", force: true do |t|
     t.string   "detalle"
@@ -20,12 +20,14 @@ ActiveRecord::Schema.define(version: 20140929183151) do
   end
 
   create_table "formularios", force: true do |t|
+    t.integer  "principal_id"
     t.string   "content"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "formularios", ["principal_id"], name: "index_formularios_on_principal_id"
   add_index "formularios", ["user_id", "created_at"], name: "index_formularios_on_user_id_and_created_at"
 
   create_table "grupos", force: true do |t|
@@ -40,18 +42,14 @@ ActiveRecord::Schema.define(version: 20140929183151) do
     t.datetime "updated_at"
   end
 
-  create_table "nombres", force: true do |t|
-    t.string   "detalle"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "principals", force: true do |t|
     t.integer  "provincia_id"
     t.integer  "localidad_id"
     t.integer  "grupo_id"
-    t.integer  "nombre_id"
     t.integer  "condicion_id"
+    t.string   "nombre"
+    t.string   "detalle"
+    t.integer  "registro_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,8 +57,8 @@ ActiveRecord::Schema.define(version: 20140929183151) do
   add_index "principals", ["condicion_id"], name: "index_principals_on_condicion_id"
   add_index "principals", ["grupo_id"], name: "index_principals_on_grupo_id"
   add_index "principals", ["localidad_id"], name: "index_principals_on_localidad_id"
-  add_index "principals", ["nombre_id"], name: "index_principals_on_nombre_id"
   add_index "principals", ["provincia_id"], name: "index_principals_on_provincia_id"
+  add_index "principals", ["registro_id"], name: "index_principals_on_registro_id"
 
   create_table "provincias", force: true do |t|
     t.string   "detalle"
@@ -72,6 +70,12 @@ ActiveRecord::Schema.define(version: 20140929183151) do
   add_index "provincias", ["region_id"], name: "index_provincias_on_region_id"
 
   create_table "regiones", force: true do |t|
+    t.string   "detalle"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "registros", force: true do |t|
     t.string   "detalle"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -15,6 +15,9 @@
                 <li><%= link_to "Configuracion", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
+                  <%= link_to "Inscripcion al INT", new_principal_path %>
+                </li>
+                <li>
                   <%= link_to "Cerrar Sesion", signout_path, method: "delete" %>
                 </li>
               </ul>

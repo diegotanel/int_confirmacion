@@ -21,6 +21,13 @@ describe "UserPages" do
     it { should have_title(('Registrarse')) }
   end
 
+  describe "formulario page" do
+    before { visit formulario_path }
+
+    it { should have_content('Formulario') }
+    it { should have_title(('Formulario de Inscripcion')) }
+  end
+
   describe "signup" do
 
     before { visit signup_path }

@@ -17,4 +17,11 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'error', 'errores'
+	inflect.irregular 'formulario', 'formularios'
+	inflect.irregular 'provincia', 'provincias'
+	inflect.irregular 'region', 'regiones'
+	inflect.irregular 'localidad', 'localidades'
+	inflect.irregular 'grupo', 'grupos'
+	inflect.irregular 'condicion', 'condiciones'
+	inflect.irregular 'registro', 'registros'
 end

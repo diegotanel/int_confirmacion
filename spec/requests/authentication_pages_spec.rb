@@ -42,6 +42,7 @@ describe "Authentication" do
       it { should have_title(user.name) }
       it { should have_link('Perfil',     href: user_path(user)) }
       it { should have_link('Configuracion',    href: edit_user_path(user)) }
+      it { should have_link('Inscripcion al INT',     href: new_principal_path) }
       it { should have_link('Cerrar Sesion',    href: signout_path) }
       it { should_not have_link('Iniciar Sesion', href: signin_path) }
 

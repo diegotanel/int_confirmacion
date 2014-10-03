@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'spec_helper'
 
 describe Localidad do
@@ -14,13 +15,13 @@ describe Localidad do
 
 	describe "validations" do
 
-		before {@localidad.detalle = ' '}
-		it {should_not be_valid}
+    before {@localidad.detalle = ' '}
+    it {should_not be_valid}
 
-		describe "when detalle is too long" do
-    	before { @localidad.detalle = "a" * 70 }
-    	it { should_not be_valid }
-  	end
-	end
+    describe "when detalle is too long" do
+      before { @localidad.detalle = "a" * 71 }
+      it { should_not be_valid }
+    end
+  end
 end
 

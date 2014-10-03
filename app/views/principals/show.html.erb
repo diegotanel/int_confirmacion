@@ -1,0 +1,41 @@
+<% provide(:title, 'Sus datos principales') %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <p>
+				<b>Provincia:</b>
+				<%= @principal.provincia.detalle %>
+			</p>
+
+			<p>
+				<b>Region:</b>
+				<%= @principal.region.detalle %>
+			</p>
+
+			<p>
+				<b>Localidad:</b>
+				<%= @principal.localidad.detalle %>
+			</p>
+
+			<p>
+				<b>Grupo o Espectaculo Concertado:</b>
+				<%= @principal.grupo.detalle %>
+			</p>
+
+			<p>
+				<b>Registro INT:</b>
+				<%= @principal.registro.detalle %>
+			</p>
+
+			<p>
+				<b>Nombre del espectaculo:</b>
+				<%= @principal.nombre %>
+			</p>
+
+			<p>
+				<b>Condicion por la que llena el formulario:</b>
+				<%= @principal.condicion.detalle %>
+			</p>
+    </section>
+  </aside>
+</div>

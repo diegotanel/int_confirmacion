@@ -112,19 +112,4 @@ describe User do
       specify { expect(user_for_invalid_password).to be_false }
     end
   end
-
-  describe "formulario associations" do
-
-    before { @user.save }
-    let!(:older_formulario) do
-      FactoryGirl.create(:formulario, user: @user, created_at: 1.day.ago)
-    end
-    let!(:newer_formulario) do
-      FactoryGirl.create(:formulario, user: @user, created_at: 1.hour.ago)
-    end
-
-    it "should have the right formulario in the right order" do
-      expect(@user.formularios.to_a).to eq [newer_micropost, older_micropost]
-    end
-  end
 end
