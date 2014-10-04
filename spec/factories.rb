@@ -20,4 +20,16 @@ FactoryGirl.define do
     nombre "Los Chaquenos"
     condicion_id 1
   end
+
+  factory :provincia do
+    id 1
+    detalle "Buenos Aires"
+    region_id 1
+  end
+
+  factory :region do
+    id 1
+    detalle "Centro"
+  end
+
 end

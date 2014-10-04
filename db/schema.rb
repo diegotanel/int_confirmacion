@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20141001153141) do
 
   create_table "provincias", force: true do |t|
     t.string   "detalle"
-    t.integer  "region_id"
+    t.integer  "region_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
