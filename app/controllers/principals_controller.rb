@@ -1,23 +1,23 @@
 class PrincipalsController < ApplicationController
 
-	def new
-		@provincias = Provincia.all
-		@region = Region.all
-		@localidades = Localidad.all
-		@grupos = Grupo.all
-		@registros = Registro.all
-  	@principal = Principal.new
+  def new
+    @provincias = Provincia.all
+    @region = Region.all
+    @localidades = Localidad.all
+    @grupos = Grupo.all
+    @registros = Registro.all
+    @principal = Principal.new
   end
 
   def show
-  	@principal = Principal.find(params[:id])
+    @principal = Principal.find(params[:id])
   end
 
   def create
     @principal = Principal.new(principal_params)
     if @principal.save
-    	sign_in @user
-    	flash[:success] = "Datos principales correctamente creados"
+      sign_in @user
+      flash[:success] = "Datos principales correctamente creados"
       redirect_to @formulario
     else
       render 'new'
@@ -25,11 +25,11 @@ class PrincipalsController < ApplicationController
   end
 
   def edit
-  	@principal = Principal.find(params[:id])
+    @principal = Principal.find(params[:id])
   end
 
   def update
-  	@principal = Principal.find(params[:id])
+    @principal = Principal.find(params[:id])
     if @principal.update_attributes(principal_params)
       flash[:success] = "Datos principales actualizados"
       redirect_to @formulario
@@ -38,11 +38,19 @@ class PrincipalsController < ApplicationController
     end
   end
 
+  def obtener_region
+    @provincia = Provincia.find(params[:provincia_id])
+    @region = @provincia.region
+    respond_to do | format |
+      #format.json { render json: @listado }
+      format.js { render json: @region }
+    end
+  end
 
   private
 
-    def principal_params
-      params.require(:formulario).permit(:provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre,
-       :condicion_id, :detalle)
-    end
+  def principal_params
+    params.require(:formulario).permit(:provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre,
+                                       :condicion_id, :detalle)
+  end
 end

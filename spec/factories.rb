@@ -24,12 +24,17 @@ FactoryGirl.define do
   factory :provincia do
     id 1
     detalle "Buenos Aires"
-    region_id 1
+    region
   end
 
   factory :region do
     id 1
     detalle "Centro"
+  end
+
+  factory :localidad do
+    id 1
+    detalle "Capital Federal"
   end
 
 end

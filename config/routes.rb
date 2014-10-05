@@ -4,6 +4,8 @@ Int::Application.routes.draw do
   resources :password_recovers, only: [:new, :create]
   resources :principals, only: [:new, :create, :edit]
   resources :formularios
+  get "principals/obtener_region", :defaults => {:format => :js}
+
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
