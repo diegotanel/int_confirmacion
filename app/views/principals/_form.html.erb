@@ -18,8 +18,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :grupo, "Grupo o espectaculo concertado" %><br />
-    <%= f.collection_select("grupo_id", @grupos, "id", "detalle", :include_blank => "Seleccione un si es grupo o espectaculo concertado...") %>
+    <%= f.label :grupo, "Grupo o espectáculo concertado" %><br />
+    <%= f.collection_select("grupo_id", @grupos, "id", "detalle", :include_blank => "Seleccione un si es grupo o espectáculo concertado...") %>
   </div>
 
   <div class="field">
@@ -31,6 +31,13 @@
     <%= f.label :nombre, "Nombre del espectáculo" %><br />
     <%= f.text_field :nombre %>
   </div>
+
+  <% @condiciones.each do |condicion| %>
+  <tr>
+    <td><%= check_box_tag "condiciones_ids[]", condicion.id, false, :id => dom_id(condicion) %></td>
+    <%= condicion.detalle %>
+  </tr>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Cargar Datos", class: "btn btn-large btn-primary" %>

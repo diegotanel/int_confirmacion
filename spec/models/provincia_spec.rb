@@ -34,7 +34,7 @@ describe Provincia do
   	describe "when detalle is not present" do
     	before do
       	@provincia = Provincia.new(region_id: @region.id, detalle: " ")
-    	end
+      end
     	it { should_not be_valid }
   	end
 

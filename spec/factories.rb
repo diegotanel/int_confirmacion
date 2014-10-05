@@ -1,3 +1,4 @@
+#encoding: utf-8
 FactoryGirl.define do
   factory :user do
     name     "Michael Hartl"
@@ -7,18 +8,19 @@ FactoryGirl.define do
   end
 
   factory :formulario do
-  	content "hola pepito"
-  	user
+    id 1
+    content "hola pepito"
+    user
   end
 
   factory :principal do
-    provincia_id 2
-    region_id 1
-    localidad_id 2
-    grupo_id 1
-    registro_id 3
+    provincia
+    localidad
+    grupo
+    registro
     nombre "Los Chaquenos"
-    condicion_id 1
+    formulario
+    detalle "fruta"
   end
 
   factory :provincia do
@@ -37,4 +39,18 @@ FactoryGirl.define do
     detalle "Capital Federal"
   end
 
+  factory :grupo do
+    id 1
+    detalle "Grupo"
+  end
+
+  factory :condicion do
+    codigo "ic2014"
+    detalle "Espectáculo Integrante Catálogo 2014"
+  end
+
+  factory :registro do
+    numero 0011
+    detalle "Ya registrado"
+  end
 end

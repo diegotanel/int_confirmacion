@@ -57,5 +57,6 @@ class PrincipalsController < ApplicationController
     @localidades = Localidad.all
     @grupos = Grupo.all
     @registros = Registro.all
+    @condiciones = Condicion.all
   end
 end

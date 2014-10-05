@@ -34,30 +34,47 @@ describe "Principal" do
 
     it {
       #should have_selector("select#principal_grupo_id") do |n|
-      #  n.should have_selector('option[value=""]', :content => "Seleccione grupo o...")
-      #  n.should have_selector('option[value="1"]', :content => "Grupo")
+      FactoryGirl.create(:grupo)
+      visit new_principal_path
+      should have_selector('option[value=""]', :text => "Seleccione un si es grupo o espectáculo concertado...")
+      should have_selector('option[value="1"]', :text => "Grupo")
       #end
     }
 
     it {
-      should have_selector("select#principal_registro_id") do |n|
-        n.should have_selector('option[value=""]', :content => "Seleccione una opcion...")
-        n.should have_selector('option[value="1"]', :content => "Ya registrado")
-      end
+      #should have_selector("select#principal_registro_id") do |n|
+      FactoryGirl.create(:registro)
+      visit new_principal_path
+      should have_selector('option[value=""]', :text => "Seleccione una opcion...")
+      should have_selector('option[value="1"]', :text => "Ya registrado")
+      #end
+    }
+
+      let(:condicion1) { FactoryGirl.create(:condicion) }
+      let(:condicion2) { FactoryGirl.create(:condicion, codigo: "B", detalle: "fruta") }
+
+    it {
+      visit new_principal_path
+      check "condicion_#{condicion1.id}"
+      opcion1 = find("#condicion_#{condicion1.id}")
+      opcion1.should_not be_checked
+      opcion2 = find("#condicion_#{condicion2.id}")
+      opcion2.should be_checked
     }
 
     describe "Principal exitoso" do
       it {
         FactoryGirl.create(:provincia)
         FactoryGirl.create(:localidad)
-
+        FactoryGirl.create(:registro)
+        FactoryGirl.create(:grupo)
         visit new_principal_path
         select "Buenos Aires", :from => :principal_provincia_id
         select "Capital Federal", :from => :principal_localidad_id
         select "Grupo", :from => :principal_grupo_id
-        select "Sin registro", :from => :principal_registro_id
+        select "Ya registrado", :from => :principal_registro_id
         fill_in :principal_nombre, :with => "Los Chaqueños"
-        select "A", :from => :principal_condicion_id
+        select "ic2014", :from => :principal_condicion_id
         click_button
       }
     end
@@ -75,7 +92,7 @@ describe "Principal" do
     end
 
     describe "Condiciones por la que llena el formulario" do
-      
+
     end
 
   end

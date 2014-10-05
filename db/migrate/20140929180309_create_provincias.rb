@@ -1,7 +1,7 @@
 class CreateProvincias < ActiveRecord::Migration
   def change
     create_table :provincias do |t|
-      t.string :detalle
+      t.string :detalle, :null => false
       t.references :region, :null => false
       t.timestamps
     end

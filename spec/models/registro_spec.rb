@@ -3,12 +3,13 @@ require 'spec_helper'
 
 describe Registro do
   before do
-		@registro = Registro.new(detalle: "Si")
+		@registro = Registro.new(numero: "00323", detalle: "Si")
 	end
 
 	subject { @registro }
 
-	it { should respond_to(:detalle) }
+	it { should respond_to(:numero) }
+  it { should respond_to(:detalle) }
 
 	it {should be_valid}
 
@@ -19,7 +20,7 @@ describe Registro do
 	end
 
 	describe "when detalle is too long" do
-    	before { @registro.detalle = "a" * 11 }
+    	before { @registro.numero = "a" * 11 }
     	it { should_not be_valid }
   	end
 end
