@@ -1,11 +1,8 @@
 class PrincipalsController < ApplicationController
+  before_action :inicializar_variables, only: [:new, :edit]
+
 
   def new
-    @provincias = Provincia.all
-    @region = Region.all
-    @localidades = Localidad.all
-    @grupos = Grupo.all
-    @registros = Registro.all
     @principal = Principal.new
   end
 
@@ -52,5 +49,13 @@ class PrincipalsController < ApplicationController
   def principal_params
     params.require(:formulario).permit(:provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre,
                                        :condicion_id, :detalle)
+  end
+
+  def inicializar_variables
+    @provincias = Provincia.all
+    @region = Region.all
+    @localidades = Localidad.all
+    @grupos = Grupo.all
+    @registros = Registro.all
   end
 end

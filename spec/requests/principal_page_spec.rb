@@ -74,5 +74,9 @@ describe "Principal" do
       end
     end
 
+    describe "Condiciones por la que llena el formulario" do
+      
+    end
+
   end
 end
