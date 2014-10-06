@@ -47,8 +47,8 @@ class PrincipalsController < ApplicationController
   private
 
   def principal_params
-    params.require(:formulario).permit(:provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre,
-                                       :condicion_id, :detalle)
+    params.require(:principal).permit(:provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre,
+                                       :condicion_id, :detalle, :condicion_ids => [])
   end
 
   def inicializar_variables

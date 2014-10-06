@@ -50,12 +50,12 @@ describe "Principal" do
       #end
     }
 
-      let(:condicion1) { FactoryGirl.create(:condicion) }
-      let(:condicion2) { FactoryGirl.create(:condicion, codigo: "B", detalle: "fruta") }
-
     it {
+      condicion1 = FactoryGirl.create(:condicion)
+      condicion2 = FactoryGirl.create(:condicion, codigo: "B", detalle: "fruta")
+
       visit new_principal_path
-      check "condicion_#{condicion1.id}"
+      check "condicion_#{condicion2.id}"
       opcion1 = find("#condicion_#{condicion1.id}")
       opcion1.should_not be_checked
       opcion2 = find("#condicion_#{condicion2.id}")
@@ -68,13 +68,14 @@ describe "Principal" do
         FactoryGirl.create(:localidad)
         FactoryGirl.create(:registro)
         FactoryGirl.create(:grupo)
+        FactoryGirl.create(:condicion)
         visit new_principal_path
         select "Buenos Aires", :from => :principal_provincia_id
         select "Capital Federal", :from => :principal_localidad_id
         select "Grupo", :from => :principal_grupo_id
         select "Ya registrado", :from => :principal_registro_id
         fill_in :principal_nombre, :with => "Los Chaqueños"
-        select "ic2014", :from => :principal_condicion_id
+        check "condicion_1"
         click_button
       }
     end
