@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20141005141025) do
   create_table "formularios", force: true do |t|
     t.string   "content"
     t.integer  "user_id"
+    t.integer  "estado"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,8 +83,8 @@ ActiveRecord::Schema.define(version: 20141005141025) do
   end
 
   create_table "registros", force: true do |t|
-    t.string   "numero",     null: false
-    t.string   "detalle",    null: false
+    t.string   "numero_de_registro", null: false
+    t.string   "detalle",            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

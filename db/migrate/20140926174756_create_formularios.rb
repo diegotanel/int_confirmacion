@@ -3,6 +3,7 @@ class CreateFormularios < ActiveRecord::Migration
     create_table :formularios do |t|
       t.string :content
       t.integer :user_id
+      t.integer :estado
 
       t.timestamps
     end

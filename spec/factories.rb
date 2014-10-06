@@ -11,6 +11,7 @@ FactoryGirl.define do
     id 1
     content "hola pepito"
     user
+    estado 2
   end
 
   factory :principal do
@@ -50,7 +51,7 @@ FactoryGirl.define do
   end
 
   factory :registro do
-    numero 0011
+    numero_de_registro "1234567890"
     detalle "Ya registrado"
   end
 end

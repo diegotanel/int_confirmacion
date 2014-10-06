@@ -5,9 +5,8 @@ class FormulariosController < ApplicationController
   end
 
   def create
-    @formulario = Formulario.new(formulario_params)
-    if @formulario.save
-    	sign_in @user
+    #@formulario = Formulario.new(formulario_params)
+    if @user.formularios.create!(formulario_params) #@formulario.save
     	flash[:success] = "Formulario correctamente creado"
       redirect_to @user
     else
