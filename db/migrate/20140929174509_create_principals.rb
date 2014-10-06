@@ -6,7 +6,6 @@ class CreatePrincipals < ActiveRecord::Migration
       t.references :localidad, :null => false
       t.references :grupo, :null => false
       t.string :nombre, :null => false
-      t.string :detalle
       t.references :registro, :null => false
 
       t.timestamps

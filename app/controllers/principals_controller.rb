@@ -1,22 +1,28 @@
 class PrincipalsController < ApplicationController
   before_action :inicializar_variables, only: [:new, :edit]
+  #before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
 
 
   def new
+    @formulario = Formulario.find_by_id(params[:formulario_id])
     @principal = Principal.new
   end
 
   def show
+    @formulario = Formulario.find_by_id(params[:formulario_id])
     @principal = Principal.find(params[:id])
   end
 
   def create
-    @principal = Principal.new(principal_params)
+  	@formulario = Formulario.find_by_id(params[:formulario_id])
+  	@principal = @formulario.build_principal(principal_params)
+  	@cond = Condicion.first #esto hay que arreglarlo
+  	@principal.condiciones << @cond
     if @principal.save
-      sign_in @user
       flash[:success] = "Datos principales correctamente creados"
-      redirect_to @formulario
+      redirect_to @formulario #aca hay algo mal
     else
+    	inicializar_variables
       render 'new'
     end
   end
@@ -47,8 +53,8 @@ class PrincipalsController < ApplicationController
   private
 
   def principal_params
-    params.require(:principal).permit(:provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre,
-                                       :condicion_id, :detalle, :condicion_ids => [])
+    params.require(:principal).permit(:formulario_id, :provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre,
+                                       :condicion_id, :detalle)
   end
 
   def inicializar_variables

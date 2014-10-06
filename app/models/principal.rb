@@ -10,7 +10,6 @@ class Principal < ActiveRecord::Base
 	validates :grupo, presence: true
 	validates :localidad, presence: true
 	validates :condiciones, presence: true
-	validates :detalle, presence: true, length: {maximum: 70}
 	validates :nombre, presence: true, length: {maximum: 70}
 	validates :registro, presence: true
 	validates :formulario, presence: true

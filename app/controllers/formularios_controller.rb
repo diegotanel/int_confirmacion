@@ -1,14 +1,22 @@
 class FormulariosController < ApplicationController
+	before_action :signed_in_user, only: [:new, :create, :edit, :update]
 
 	def new
   	@formulario = Formulario.new
   end
 
+  def show
+    @formulario = Formulario.find(params[:id])
+  end
+
+  def index
+  	@formularios = current_user.formularios
+  end
+
   def create
-    #@formulario = Formulario.new(formulario_params)
-    if @user.formularios.create!(formulario_params) #@formulario.save
+    if @formulario = current_user.formularios.create!()
     	flash[:success] = "Formulario correctamente creado"
-      redirect_to @user
+      redirect_to @formulario
     else
       render 'new'
     end

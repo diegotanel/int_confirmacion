@@ -1,7 +1,6 @@
 class CreateFormularios < ActiveRecord::Migration
 	def change
     create_table :formularios do |t|
-      t.string :content
       t.integer :user_id
       t.integer :estado
 

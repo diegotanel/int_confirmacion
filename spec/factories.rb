@@ -9,7 +9,6 @@ FactoryGirl.define do
 
   factory :formulario do
     id 1
-    content "hola pepito"
     user
     estado 2
   end

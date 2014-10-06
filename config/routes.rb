@@ -2,8 +2,9 @@ Int::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_recovers, only: [:new, :create]
-  resources :principals, only: [:new, :create, :edit]
-  resources :formularios
+  resources :formularios do
+    resources :principals, only: [:new, :create, :show, :edit]
+  end
   get "principals/obtener_region", :defaults => {:format => :js}
 
   root  'static_pages#home'

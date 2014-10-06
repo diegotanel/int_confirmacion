@@ -7,4 +7,9 @@ class Formulario < ActiveRecord::Base
 	validates :estado, presence: true
 
 	ESTADOS = {:final => 1, :borrador => 2 }
+
+	private
+		after_initialize do
+			self.estado ||= Formulario::ESTADOS[:borrador]
+		end
 end
