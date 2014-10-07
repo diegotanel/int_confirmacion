@@ -12,13 +12,12 @@ describe Principal do
 
   before do
     @principal = formulario.build_principal(provincia: provincia, localidad: localidad, grupo: grupo,
-                                            detalle: "Principal", nombre: "Los gauchitos", registro: registro)
+                                            nombre: "Los gauchitos", registro: registro)
     @principal.condiciones << condicion
   end
 
   subject { @principal }
 
-  it { should respond_to(:detalle) }
   it { should respond_to(:nombre) }
   it { should respond_to(:provincia) }
   it { should respond_to(:localidad) }
@@ -26,9 +25,6 @@ describe Principal do
   it { should respond_to(:registro) }
 
   describe "validations" do
-
-    before {@principal.detalle = ' '}
-    it {should_not be_valid}
 
     before {@principal.nombre = ' '}
     it {should_not be_valid}
@@ -75,26 +71,17 @@ describe Principal do
       it { should_not be_valid }
     end
 
-    describe "when detalle is not present" do
-      before do
-        @principal = Principal.new(formulario_id: 1, provincia: provincia, localidad: localidad, grupo: grupo,
-                                   detalle: " ", nombre: "Los gauchitos", registro: registro)
-        @principal.condiciones << condicion
-      end
-      it { should_not be_valid }
-    end
-
     describe "when nombre is not present" do
       before do
         @principal = Principal.new(formulario_id: 1, provincia: provincia, localidad: localidad, grupo: grupo,
-                                   detalle: "Principal", nombre: " ", registro: registro)
+                                   nombre: " ", registro: registro)
         @principal.condiciones << condicion
       end
       it { should_not be_valid }
     end
 
     describe "when nombre is too long" do
-      before { @principal.nombre = "a" * 70 }
+      before { @principal.nombre = "a" * 71 }
       it { should_not be_valid }
     end
   end

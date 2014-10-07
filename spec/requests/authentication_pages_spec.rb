@@ -16,22 +16,23 @@ describe "Authentication" do
 
   describe "signin" do
 
-  	before { visit signin_path }
+    before { visit signin_path }
 
-  	describe "with invalid information" do
+    describe "with invalid information" do
 
-  		before {click_button "Iniciar Sesion"}
+      before {click_button "Iniciar Sesion"}
 
-  		it {should have_selector ('div.alert.alert-error')}
-  		it {should have_title("Iniciar Sesion")}
+      it {should have_selector ('div.alert.alert-error')}
+      it {should have_title("Iniciar Sesion")}
 
-  		describe "after visiting another page" do
+      describe "after visiting another page" do
         before { click_link "Home" }
         it { should_not have_selector('div.alert.alert-error') }
       end
-  	end
+    end
 
-  	describe "with valid information" do
+    describe "with valid information" do
+
       let(:user) { FactoryGirl.create(:user) }
       before do
         fill_in "Email",    with: user.email.upcase
@@ -42,7 +43,7 @@ describe "Authentication" do
       it { should have_title(user.name) }
       it { should have_link('Perfil',     href: user_path(user)) }
       it { should have_link('Configuracion',    href: edit_user_path(user)) }
-      it { should have_link('Inscripcion al INT',     href: new_principal_path) }
+      it { should have_link('Inscripcion al INT',     href: formularios_path) }
       it { should have_link('Cerrar Sesion',    href: signout_path) }
       it { should_not have_link('Iniciar Sesion', href: signin_path) }
 
@@ -50,7 +51,7 @@ describe "Authentication" do
         before { click_link "Cerrar Sesion" }
         it { should have_link('Iniciar Sesion') }
       end
-  	end
+    end
   end
 
   describe "authorization" do
@@ -59,7 +60,6 @@ describe "Authentication" do
       let(:user) { FactoryGirl.create(:user) }
 
       describe "in the Users controller" do
-
         describe "visiting the edit page" do
           before { visit edit_user_path(user) }
           it { should have_title('Iniciar Sesion') }

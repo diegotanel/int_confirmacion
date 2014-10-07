@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20141005141025) do
   add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id"
 
   create_table "formularios", force: true do |t|
-    t.string   "content"
     t.integer  "user_id"
     t.integer  "estado"
     t.datetime "created_at"
@@ -55,7 +54,6 @@ ActiveRecord::Schema.define(version: 20141005141025) do
     t.integer  "localidad_id",  null: false
     t.integer  "grupo_id",      null: false
     t.string   "nombre",        null: false
-    t.string   "detalle"
     t.integer  "registro_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -8,7 +8,10 @@ describe "UserPages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    before { visit user_path(user) }
+    before { 
+      sign_in user
+      visit user_path(user) 
+    }
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
@@ -19,13 +22,6 @@ describe "UserPages" do
 
     it { should have_content('Registrarse') }
     it { should have_title(('Registrarse')) }
-  end
-
-  describe "formulario page" do
-    before { visit formulario_path }
-
-    it { should have_content('Formulario') }
-    it { should have_title(('Formulario de Inscripcion')) }
   end
 
   describe "signup" do
@@ -60,7 +56,9 @@ describe "UserPages" do
       end
 
       describe "after saving the user" do
-        before { click_button submit }
+        before { 
+          click_button submit 
+        }
         let(:user) { User.find_by(email: 'user@example.com') }
 
         it { should have_link('Cerrar Sesion') }

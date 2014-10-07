@@ -20,7 +20,6 @@ FactoryGirl.define do
     registro
     nombre "Los Chaquenos"
     formulario
-    detalle "fruta"
   end
 
   factory :provincia do

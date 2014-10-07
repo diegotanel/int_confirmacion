@@ -1,5 +1,5 @@
 class FormulariosController < ApplicationController
-	before_action :signed_in_user, only: [:new, :create, :edit, :update]
+	#before_action :signed_in_user, only: [:new, :create, :edit, :update]
 
 	def new
   	@formulario = Formulario.new
@@ -10,7 +10,7 @@ class FormulariosController < ApplicationController
   end
 
   def index
-  	@formularios = current_user.formularios
+  	@formularios = current_user.formularios ? current_user.formularios : []
   end
 
   def create
