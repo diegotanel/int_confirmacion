@@ -42,7 +42,6 @@ describe Principal do
     end
 
 
-
     describe "when provincia_id is not present" do
       before do
         @principal.provincia = nil

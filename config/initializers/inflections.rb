@@ -24,4 +24,9 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'grupo', 'grupos'
 	inflect.irregular 'condicion', 'condiciones'
 	inflect.irregular 'registro', 'registros'
+	inflect.irregular 'actor', 'actores'
+	inflect.irregular 'director', 'directores'
+	inflect.irregular 'tecnico', 'tecnicos'
+
+
 end

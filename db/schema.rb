@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005141025) do
+ActiveRecord::Schema.define(version: 20141007152654) do
+
+  create_table "actores", force: true do |t|
+    t.string   "nombre_actor",        null: false
+    t.string   "apellido_actor",      null: false
+    t.string   "num_de_cuil_cuit",    null: false
+    t.date     "fecha_de_nacimiento", null: false
+    t.string   "calle",               null: false
+    t.string   "altura_calle",        null: false
+    t.string   "piso"
+    t.string   "depto"
+    t.string   "actor_provincia",     null: false
+    t.string   "actor_localidad",     null: false
+    t.string   "codigo_postal",       null: false
+    t.string   "tel_particular"
+    t.string   "tel_celular"
+    t.string   "email",               null: false
+    t.integer  "elencos_en_gira_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "actores", ["elencos_en_gira_id"], name: "index_actores_on_elencos_en_gira_id"
 
   create_table "condiciones", force: true do |t|
     t.string   "codigo",     null: false
@@ -26,6 +48,36 @@ ActiveRecord::Schema.define(version: 20141005141025) do
   end
 
   add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id"
+
+  create_table "directores", force: true do |t|
+    t.string   "nombre_director",     null: false
+    t.string   "apellido_director",   null: false
+    t.string   "num_de_cuil_cuit",    null: false
+    t.date     "fecha_de_nacimiento", null: false
+    t.string   "calle",               null: false
+    t.string   "altura_calle",        null: false
+    t.string   "piso"
+    t.string   "depto"
+    t.string   "director_localidad",  null: false
+    t.string   "director_provincia",  null: false
+    t.string   "codigo_postal",       null: false
+    t.string   "tel_particular"
+    t.string   "tel_celular"
+    t.string   "email",               null: false
+    t.integer  "elencos_en_gira_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "directores", ["elencos_en_gira_id"], name: "index_directores_on_elencos_en_gira_id"
+
+  create_table "elencos_en_giras", force: true do |t|
+    t.integer  "formulario_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "elencos_en_giras", ["formulario_id"], name: "index_elencos_en_giras_on_formulario_id"
 
   create_table "formularios", force: true do |t|
     t.integer  "user_id"
@@ -86,6 +138,28 @@ ActiveRecord::Schema.define(version: 20141005141025) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tecnicos", force: true do |t|
+    t.string   "nombre_tecnico",      null: false
+    t.string   "apellido_tecnico",    null: false
+    t.string   "num_de_cuil_cuit",    null: false
+    t.date     "fecha_de_nacimiento", null: false
+    t.string   "calle",               null: false
+    t.string   "altura_calle",        null: false
+    t.string   "piso"
+    t.string   "depto"
+    t.string   "tecnico_localidad",   null: false
+    t.string   "tecnico_provincia",   null: false
+    t.string   "codigo_postal",       null: false
+    t.string   "tel_particular"
+    t.string   "tel_celular"
+    t.string   "email",               null: false
+    t.integer  "elencos_en_gira_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tecnicos", ["elencos_en_gira_id"], name: "index_tecnicos_on_elencos_en_gira_id"
 
   create_table "users", force: true do |t|
     t.string   "name",           null: false
