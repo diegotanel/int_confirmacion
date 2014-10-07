@@ -1,5 +1,5 @@
 class FormulariosController < ApplicationController
-	#before_action :signed_in_user, only: [:new, :create, :edit, :update]
+	before_action :signed_in_user, only: [:new, :create, :edit, :update]
 
 	def new
   	@formulario = Formulario.new

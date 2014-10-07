@@ -1,6 +1,6 @@
 class PrincipalsController < ApplicationController
   before_action :inicializar_variables, only: [:new, :edit]
-  #before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
+  before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
 
 
   def new

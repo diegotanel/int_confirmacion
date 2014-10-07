@@ -8,6 +8,10 @@ describe "Principal" do
   describe "deben inicializarse todos los combobox del formulario en blanco" do
 
     let(:formulario) { FactoryGirl.create(:formulario) }
+    before {
+      sign_in formulario.user
+    }
+
     it {
       FactoryGirl.create(:provincia)
       visit new_formulario_principal_path(formulario)
