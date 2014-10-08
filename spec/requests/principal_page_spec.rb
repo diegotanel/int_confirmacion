@@ -65,24 +65,6 @@ describe "Principal" do
       opcion2.should be_checked
     }
 
-    describe "Principal exitoso" do
-      it {
-        FactoryGirl.create(:provincia)
-        FactoryGirl.create(:localidad)
-        FactoryGirl.create(:registro)
-        FactoryGirl.create(:grupo)
-        FactoryGirl.create(:condicion)
-        visit new_formulario_principal_path(formulario)
-        select "Buenos Aires", :from => :principal_provincia_id
-        select "Capital Federal", :from => :principal_localidad_id
-        select "Grupo", :from => :principal_grupo_id
-        select "Ya registrado", :from => :principal_registro_id
-        fill_in :principal_nombre, :with => "Los Chaqueños"
-        check "condicion_1"
-        click_button
-      }
-    end
-
     describe "provinicia region" do
       before {
         FactoryGirl.create(:provincia)
@@ -100,4 +82,38 @@ describe "Principal" do
     end
 
   end
+
+  describe "Principal exitoso" do
+    let(:formulario) { FactoryGirl.create(:formulario) }
+
+    before {
+      sign_in formulario.user
+    }
+
+    it {
+      visit new_formulario_principal_path(formulario)
+      click_button "Guardar Datos"
+      should have_selector("div.alert.alert-error")
+    }
+
+    it {
+      FactoryGirl.create(:provincia)
+      FactoryGirl.create(:localidad)
+      FactoryGirl.create(:grupo)
+      FactoryGirl.create(:registro)
+      FactoryGirl.create(:condicion)
+      visit new_formulario_principal_path(formulario)
+      select "Buenos Aires", :from => :principal_provincia_id
+      select "Capital Federal", :from => :principal_localidad_id
+      select "Grupo", :from => :principal_grupo_id
+      select "Ya registrado", :from => :principal_registro_id
+      fill_in :principal_nombre, :with => "Los Chaqueños"
+      check "condicion_1"
+      click_button "Guardar Datos"
+      should have_selector("div.alert.alert-success")
+      should have_content('Formulario')
+      should have_title('Formularios de Inscripcion del usuario')
+    }
+  end
+
 end

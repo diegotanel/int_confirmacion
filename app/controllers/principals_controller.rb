@@ -16,11 +16,9 @@ class PrincipalsController < ApplicationController
   def create
   	@formulario = Formulario.find_by_id(params[:formulario_id])
   	@principal = @formulario.build_principal(principal_params)
-  	@cond = Condicion.first #esto hay que arreglarlo
-  	@principal.condiciones << @cond
     if @principal.save
       flash[:success] = "Datos principales correctamente creados"
-      redirect_to @formulario #aca hay algo mal
+      redirect_to formularios_path
     else
     	inicializar_variables
       render 'new'
@@ -53,8 +51,7 @@ class PrincipalsController < ApplicationController
   private
 
   def principal_params
-    params.require(:principal).permit(:formulario_id, :provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre,
-                                       :condicion_id, :detalle)
+    params.require(:principal).permit(:provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre, :condicion_ids => [])
   end
 
   def inicializar_variables

@@ -5,24 +5,17 @@
 <table>
   <tr>
 
-  	<th></th>
     <th>Fecha</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th>Grupo</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Grupo / Espectáculo concertado</th>
     <th>Estado</th>
     <th></th>
   </tr>
 
-  <%= content_tag_for(:tr, @formulario) do |formulario| %>
+  <%= content_tag_for(:tr, @formularios) do |formulario| %>
 
-    <td><%= formulario.created_at %></td>
-    <td><%= formulario.principal.nombre %></td>
-    <td><%= formulario.estado %></td>
+    <td><%= I18n.l(formulario.created_at) %></td>
+    <td><%= formulario.principal.nombre if formulario.principal%></td>
+    <td><%= Formulario::ESTADOS.key(formulario.estado) %></td>
 
     <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_path(formulario) %></td>
     

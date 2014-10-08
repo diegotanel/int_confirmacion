@@ -4,10 +4,7 @@ describe ElencosEnGira do
 
 	let(:formulario) { FactoryGirl.create(:formulario) }
 
-  before { 
-    @elencos = formulario.build_elencos_en_gira()
-    #@elencos = Elencos_en_gira.new(formulario: formulario) 
-  }
+  before { @elencos = formulario.build_elencos_en_gira() }
 
   subject { @elencos }
 

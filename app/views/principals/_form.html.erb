@@ -3,40 +3,40 @@
   <%= render 'shared/error_messages', :object => f.object %>
   
   <div class="field">
-    <%= f.label :provincia, "Provincia" %><br />
+    <br/><%= f.label :provincia, "Provincia" %>
     <%= f.collection_select("provincia_id", @provincias, "id", "detalle", :include_blank => "Seleccione una provincia...") %>
   </div>
 
   <div class="field">
-    <%= label_tag :region, "Región" %><br />
+    <br/><%= label_tag :region, "Región" %>
     <%= text_field_tag :region, nil, disabled: true %>
   </div>
 
   <div class="field">
-    <%= f.label :localidad, "Localidad" %><br />
+    <br/><%= f.label :localidad, "Localidad" %>
     <%= f.collection_select("localidad_id", @localidades, "id", "detalle", :include_blank => "Seleccione una localidad...") %>
   </div>
 
   <div class="field">
-    <%= f.label :grupo, "Grupo o espectáculo concertado" %><br />
+    <br/><%= f.label :grupo, "Grupo o espectáculo concertado" %>
     <%= f.collection_select("grupo_id", @grupos, "id", "detalle", :include_blank => "Seleccione un si es grupo o espectáculo concertado...") %>
   </div>
 
   <div class="field">
-    <%= f.label :registro, "Usted esta registrado en el INT?" %><br />
+    <br/><%= f.label :registro, "Usted esta registrado en el INT?" %>
     <%= f.collection_select("registro_id", @registros, "id", "detalle", :include_blank => "Seleccione una opcion...") %>
   </div>
 
   <div class="field">
-    <%= f.label :nombre, "Nombre del espectáculo" %><br />
+    <br/><%= f.label :nombre, "Nombre del espectáculo" %>
     <%= f.text_field :nombre %>
   </div>
 
   <div class="field">
-  <%= label_tag :condicion, "Condición por la que llena el formulario" %><br />
+  <br/><%= label_tag :condicion, "Condición por la que llena el formulario" %>
     <% @condiciones.each do |condicion| %>
     <tr>
-      <br><td><%= check_box_tag "principal[condicion_ids][]", condicion.id, false, :id => dom_id(condicion) %></td>
+      <td><%= check_box_tag "principal[condicion_ids][]", condicion.id, false, :id => dom_id(condicion) %></td>
       <td><%= condicion.detalle %></td>
     </tr>
     <% end %>
