@@ -1,6 +1,7 @@
 class Formulario < ActiveRecord::Base
 	belongs_to :user
 	has_one :principal
+	has_one :elencos_en_gira
 
 	default_scope -> { order('created_at DESC') }
 	validates :user_id, presence: true
