@@ -49,7 +49,6 @@ FactoryGirl.define do
   end
 
   factory :registro do
-    numero_de_registro "1234567890"
     detalle "Ya registrado"
   end
 

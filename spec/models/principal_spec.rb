@@ -3,12 +3,12 @@ require 'spec_helper'
 
 describe Principal do
 
-  let(:provincia) { FactoryGirl.create(:provincia) }
-  let(:localidad) { FactoryGirl.create(:localidad) }
-  let(:grupo) { FactoryGirl.create(:grupo) }
-  let(:condicion) { FactoryGirl.create(:condicion) }
-  let(:registro) { FactoryGirl.create(:registro) }
-  let(:formulario) { FactoryGirl.create(:formulario) }
+  let(:provincia) { FactoryGirl.build(:provincia) }
+  let(:localidad) { FactoryGirl.build(:localidad) }
+  let(:grupo) { FactoryGirl.build(:grupo) }
+  let(:condicion) { FactoryGirl.build(:condicion) }
+  let(:registro) { FactoryGirl.build(:registro) }
+  let(:formulario) { FactoryGirl.build(:formulario) }
 
   before do
     @principal = formulario.build_principal(provincia: provincia, localidad: localidad, grupo: grupo,
@@ -23,6 +23,10 @@ describe Principal do
   it { should respond_to(:localidad) }
   it { should respond_to(:grupo) }
   it { should respond_to(:registro) }
+  it { 
+    formulario.save!
+    should be_valid 
+  }
 
   describe "validations" do
 
@@ -88,17 +92,17 @@ describe Principal do
   describe "relacion con principal" do
     it { should respond_to(:condiciones) }
 
-    let(:condicion) { FactoryGirl.create(:condicion) }
-
     it  {
       @principal.condiciones = []
       @principal.condiciones << condicion
+      formulario.save!
       @principal.condiciones.first.id.should == condicion.id
     }
 
     it  {
       @principal.condiciones = []
       @principal.condiciones << condicion
+      formulario.save!
       @principal.save!
       @principal.reload
       @principal.condiciones.first.principals.first.id.should == @principal.id

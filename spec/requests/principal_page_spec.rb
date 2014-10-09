@@ -83,37 +83,54 @@ describe "Principal" do
 
   end
 
-  describe "Principal exitoso" do
+  describe "Principal" do
     let(:formulario) { FactoryGirl.create(:formulario) }
 
     before {
       sign_in formulario.user
     }
 
-    it {
-      visit new_formulario_principal_path(formulario)
-      click_button "Guardar Datos"
-      should have_selector("div.alert.alert-error")
-    }
+    describe "falla" do
 
-    it {
-      FactoryGirl.create(:provincia)
-      FactoryGirl.create(:localidad)
-      FactoryGirl.create(:grupo)
-      FactoryGirl.create(:registro)
-      FactoryGirl.create(:condicion)
-      visit new_formulario_principal_path(formulario)
-      select "Buenos Aires", :from => :principal_provincia_id
-      select "Capital Federal", :from => :principal_localidad_id
-      select "Grupo", :from => :principal_grupo_id
-      select "Ya registrado", :from => :principal_registro_id
-      fill_in :principal_nombre, :with => "Los Chaqueños"
-      check "condicion_1"
-      click_button "Guardar Datos"
-      should have_selector("div.alert.alert-success")
-      should have_content('Formulario')
-      should have_title('Formularios de Inscripcion del usuario')
-    }
+      it {
+        visit new_formulario_principal_path(formulario)
+        click_button "Guardar Datos"
+        should have_selector("div.alert.alert-error")
+      }
+
+      it "debe estar el campo region lleno", :js => :true do
+        FactoryGirl.create(:provincia)
+        visit new_formulario_principal_path(formulario)
+        select "Buenos Aires", :from => :principal_provincia_id
+        find('#region').value.should eq 'Centro'
+        click_button "Guardar Datos"
+        should have_selector("div.alert.alert-error")
+        find('#region').value.should eq 'Centro'
+      end
+    end
+
+    describe "exitoso" do
+      before do
+        FactoryGirl.create(:provincia)
+        FactoryGirl.create(:localidad)
+        FactoryGirl.create(:grupo)
+        FactoryGirl.create(:registro)
+        FactoryGirl.create(:condicion)
+        visit new_formulario_principal_path(formulario)
+        select "Buenos Aires", :from => :principal_provincia_id
+        select "Capital Federal", :from => :principal_localidad_id
+        select "Grupo", :from => :principal_grupo_id
+        select "Ya registrado", :from => :principal_registro_id
+        fill_in :principal_nombre, :with => "Los Chaqueños"
+        check "condicion_1"
+        click_button "Guardar Datos"
+      end
+
+      it {
+        should have_selector("div.alert.alert-success")
+        should have_content('Formulario')
+        should have_title('Formularios de Inscripcion del usuario')
+      }
+    end
   end
-
 end

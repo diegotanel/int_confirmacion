@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141007152654) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "actores", force: true do |t|
     t.string   "nombre_actor",        null: false
     t.string   "apellido_actor",      null: false
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.datetime "updated_at"
   end
 
-  add_index "actores", ["elencos_en_gira_id"], name: "index_actores_on_elencos_en_gira_id"
+  add_index "actores", ["elencos_en_gira_id"], name: "index_actores_on_elencos_en_gira_id", using: :btree
 
   create_table "condiciones", force: true do |t|
     t.string   "codigo",     null: false
@@ -47,7 +50,7 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.integer "principal_id", null: false
   end
 
-  add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id"
+  add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id", using: :btree
 
   create_table "directores", force: true do |t|
     t.string   "nombre_director",     null: false
@@ -69,7 +72,7 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.datetime "updated_at"
   end
 
-  add_index "directores", ["elencos_en_gira_id"], name: "index_directores_on_elencos_en_gira_id"
+  add_index "directores", ["elencos_en_gira_id"], name: "index_directores_on_elencos_en_gira_id", using: :btree
 
   create_table "elencos_en_giras", force: true do |t|
     t.integer  "formulario_id", null: false
@@ -77,7 +80,7 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.datetime "updated_at"
   end
 
-  add_index "elencos_en_giras", ["formulario_id"], name: "index_elencos_en_giras_on_formulario_id"
+  add_index "elencos_en_giras", ["formulario_id"], name: "index_elencos_en_giras_on_formulario_id", using: :btree
 
   create_table "formularios", force: true do |t|
     t.integer  "user_id"
@@ -86,7 +89,7 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.datetime "updated_at"
   end
 
-  add_index "formularios", ["user_id", "created_at"], name: "index_formularios_on_user_id_and_created_at"
+  add_index "formularios", ["user_id", "created_at"], name: "index_formularios_on_user_id_and_created_at", using: :btree
 
   create_table "grupos", force: true do |t|
     t.string   "detalle",    null: false
@@ -111,11 +114,11 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.datetime "updated_at"
   end
 
-  add_index "principals", ["formulario_id"], name: "index_principals_on_formulario_id"
-  add_index "principals", ["grupo_id"], name: "index_principals_on_grupo_id"
-  add_index "principals", ["localidad_id"], name: "index_principals_on_localidad_id"
-  add_index "principals", ["provincia_id"], name: "index_principals_on_provincia_id"
-  add_index "principals", ["registro_id"], name: "index_principals_on_registro_id"
+  add_index "principals", ["formulario_id"], name: "index_principals_on_formulario_id", using: :btree
+  add_index "principals", ["grupo_id"], name: "index_principals_on_grupo_id", using: :btree
+  add_index "principals", ["localidad_id"], name: "index_principals_on_localidad_id", using: :btree
+  add_index "principals", ["provincia_id"], name: "index_principals_on_provincia_id", using: :btree
+  add_index "principals", ["registro_id"], name: "index_principals_on_registro_id", using: :btree
 
   create_table "provincias", force: true do |t|
     t.string   "detalle",    null: false
@@ -124,7 +127,7 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.datetime "updated_at"
   end
 
-  add_index "provincias", ["region_id"], name: "index_provincias_on_region_id"
+  add_index "provincias", ["region_id"], name: "index_provincias_on_region_id", using: :btree
 
   create_table "regiones", force: true do |t|
     t.string   "detalle",    null: false
@@ -133,8 +136,7 @@ ActiveRecord::Schema.define(version: 20141007152654) do
   end
 
   create_table "registros", force: true do |t|
-    t.string   "numero_de_registro", null: false
-    t.string   "detalle",            null: false
+    t.string   "detalle",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -159,7 +161,7 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.datetime "updated_at"
   end
 
-  add_index "tecnicos", ["elencos_en_gira_id"], name: "index_tecnicos_on_elencos_en_gira_id"
+  add_index "tecnicos", ["elencos_en_gira_id"], name: "index_tecnicos_on_elencos_en_gira_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",           null: false
@@ -170,7 +172,7 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.string   "remember_token"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
 end
