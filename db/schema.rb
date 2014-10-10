@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009144514) do
+ActiveRecord::Schema.define(version: 20141010143304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20141009144514) do
   end
 
   add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id", using: :btree
+
+  create_table "datos_grupos", force: true do |t|
+    t.string   "nombre_grupo",  null: false
+    t.string   "historia",      null: false
+    t.integer  "formulario_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "datos_grupos", ["formulario_id"], name: "index_datos_grupos_on_formulario_id", using: :btree
 
   create_table "elencos_en_gira", force: true do |t|
     t.integer  "formulario_id", null: false

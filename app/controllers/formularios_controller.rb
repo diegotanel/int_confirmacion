@@ -30,7 +30,7 @@ class FormulariosController < ApplicationController
   	@formulario = Formulario.find(params[:id])
     if @formulario.update_attributes(formulario_params)
       flash[:success] = "Formulario actualizado"
-      redirect_to @user
+      redirect_to @formulario
     else
       render 'edit'
     end

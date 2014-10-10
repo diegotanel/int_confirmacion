@@ -3,7 +3,9 @@ Int::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_recovers, only: [:new, :create]
   resources :formularios do
-    resources :principals, only: [:new, :create, :show, :edit]
+    resources :principals
+    resources :elencos_en_giras
+    resources :datos_grupos
   end
   get "principals/obtener_region", :defaults => {:format => :js}
 

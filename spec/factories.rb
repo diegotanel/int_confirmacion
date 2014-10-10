@@ -57,4 +57,9 @@ FactoryGirl.define do
     id 1
     formulario
   end
+
+  factory :datos_grupo do
+    nombre_grupo     "Michael Hartl"
+    historia    "asdadfasdfsdfsfdgfagafsdgafdgadfgdfagdafgdfagdfagafdgdfagdfgdfagadsfgdfagdfg"
+  end
 end

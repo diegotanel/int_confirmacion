@@ -30,6 +30,13 @@ describe "Formulario" do
 
       it { should have_selector("td", :text => "Los Chaquenos")}
       it { should have_selector("td", :text => "borrador")}
+
+      describe "Formulario show debe tener" do
+        visit formularios_path#aca falta poner el formulario.
+
+        it { should have_link('Editar Datos principales') }
+        it { should have_link('Cargar Datos del grupo') }
+      end
     end
 
     describe "sin instancia principal creada" do
@@ -42,6 +49,39 @@ describe "Formulario" do
 
       it { should_not have_selector("td", :text => "Los Chaquenos")}
       it { should have_selector("td", :text => "borrador")}
+    end
+
+    describe "con instancia elenco_en_gira creada" do
+      let(:elenco_en_gira) { FactoryGirl.build(:elenco_en_gira) }
+
+      before do
+        elenco_en_gira.save!
+        sign_in elenco_en_gira.formulario.user
+        visit formularios_path
+      end
+
+      it { should_not have_selector("td", :text => "Los Chaquenos")}
+      it { should have_selector("td", :text => "borrador")}
+    end
+
+    describe "con instancia datos_grupo creada" do
+      let(:datos_grupo) { FactoryGirl.build(:datos_grupo) }
+
+      before do
+        datos_grupo.save!
+        sign_in datos_grupo.formulario.user
+        visit formularios_path
+      end
+
+      it { should_not have_selector("td", :text => "Los Chaquenos")}
+      it { should have_selector("td", :text => "borrador")}
+
+      describe "Formulario show debe tener" do
+        visit formularios_path#aca falta poner el formulario
+
+        it { should have_link('Cargar Datos principales') }
+        it { should have_link('Editar Datos del grupo') }
+      end
     end
   end
 end
