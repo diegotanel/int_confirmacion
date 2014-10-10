@@ -27,7 +27,6 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'actor', 'actores'
 	inflect.irregular 'director', 'directores'
 	inflect.irregular 'tecnico', 'tecnicos'
-	inflect.irregular 'elencos_en_gira', 'elencos_en_giras'
-
-
+	inflect.irregular 'elenco_en_gira', 'elencos_en_gira'
+	inflect.irregular 'integrante_de_elenco_en_gira', 'integrantes_de_elenco_en_gira'
 end

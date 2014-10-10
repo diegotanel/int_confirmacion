@@ -11,32 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007152654) do
+ActiveRecord::Schema.define(version: 20141009144514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "actores", force: true do |t|
-    t.string   "nombre_actor",        null: false
-    t.string   "apellido_actor",      null: false
-    t.string   "num_de_cuil_cuit",    null: false
-    t.date     "fecha_de_nacimiento", null: false
-    t.string   "calle",               null: false
-    t.string   "altura_calle",        null: false
-    t.string   "piso"
-    t.string   "depto"
-    t.string   "actor_provincia",     null: false
-    t.string   "actor_localidad",     null: false
-    t.string   "codigo_postal",       null: false
-    t.string   "tel_particular"
-    t.string   "tel_celular"
-    t.string   "email",               null: false
-    t.integer  "elencos_en_gira_id",  null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "actores", ["elencos_en_gira_id"], name: "index_actores_on_elencos_en_gira_id", using: :btree
 
   create_table "condiciones", force: true do |t|
     t.string   "codigo",     null: false
@@ -52,35 +30,13 @@ ActiveRecord::Schema.define(version: 20141007152654) do
 
   add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id", using: :btree
 
-  create_table "directores", force: true do |t|
-    t.string   "nombre_director",     null: false
-    t.string   "apellido_director",   null: false
-    t.string   "num_de_cuil_cuit",    null: false
-    t.date     "fecha_de_nacimiento", null: false
-    t.string   "calle",               null: false
-    t.string   "altura_calle",        null: false
-    t.string   "piso"
-    t.string   "depto"
-    t.string   "director_localidad",  null: false
-    t.string   "director_provincia",  null: false
-    t.string   "codigo_postal",       null: false
-    t.string   "tel_particular"
-    t.string   "tel_celular"
-    t.string   "email",               null: false
-    t.integer  "elencos_en_gira_id",  null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "directores", ["elencos_en_gira_id"], name: "index_directores_on_elencos_en_gira_id", using: :btree
-
-  create_table "elencos_en_giras", force: true do |t|
+  create_table "elencos_en_gira", force: true do |t|
     t.integer  "formulario_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "elencos_en_giras", ["formulario_id"], name: "index_elencos_en_giras_on_formulario_id", using: :btree
+  add_index "elencos_en_gira", ["formulario_id"], name: "index_elencos_en_gira_on_formulario_id", using: :btree
 
   create_table "formularios", force: true do |t|
     t.integer  "user_id"
@@ -96,6 +52,32 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "integrantes_de_elenco_en_gira", force: true do |t|
+    t.string   "type",                null: false
+    t.string   "nombre",              null: false
+    t.string   "apellido",            null: false
+    t.string   "cuil_cuit",           null: false
+    t.datetime "fecha_de_nacimiento", null: false
+    t.string   "calle",               null: false
+    t.string   "altura_calle",        null: false
+    t.string   "piso"
+    t.string   "depto"
+    t.integer  "provincia_id",        null: false
+    t.integer  "localidad_id",        null: false
+    t.string   "codigo_postal",       null: false
+    t.string   "tel_particular"
+    t.string   "tel_celular"
+    t.string   "email",               null: false
+    t.integer  "elenco_en_gira_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "integrantes_de_elenco_en_gira", ["elenco_en_gira_id"], name: "index_integrantes_de_elenco_en_gira_on_elenco_en_gira_id", using: :btree
+  add_index "integrantes_de_elenco_en_gira", ["localidad_id"], name: "index_integrantes_de_elenco_en_gira_on_localidad_id", using: :btree
+  add_index "integrantes_de_elenco_en_gira", ["provincia_id"], name: "index_integrantes_de_elenco_en_gira_on_provincia_id", using: :btree
+  add_index "integrantes_de_elenco_en_gira", ["type"], name: "index_integrantes_de_elenco_en_gira_on_type", using: :btree
 
   create_table "localidades", force: true do |t|
     t.string   "detalle",    null: false
@@ -140,28 +122,6 @@ ActiveRecord::Schema.define(version: 20141007152654) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "tecnicos", force: true do |t|
-    t.string   "nombre_tecnico",      null: false
-    t.string   "apellido_tecnico",    null: false
-    t.string   "num_de_cuil_cuit",    null: false
-    t.date     "fecha_de_nacimiento", null: false
-    t.string   "calle",               null: false
-    t.string   "altura_calle",        null: false
-    t.string   "piso"
-    t.string   "depto"
-    t.string   "tecnico_localidad",   null: false
-    t.string   "tecnico_provincia",   null: false
-    t.string   "codigo_postal",       null: false
-    t.string   "tel_particular"
-    t.string   "tel_celular"
-    t.string   "email",               null: false
-    t.integer  "elencos_en_gira_id",  null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tecnicos", ["elencos_en_gira_id"], name: "index_tecnicos_on_elencos_en_gira_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",           null: false

@@ -49,56 +49,12 @@ FactoryGirl.define do
   end
 
   factory :registro do
+    id 1
     detalle "Ya registrado"
   end
 
-  factory :elencos_en_gira do
+  factory :elenco_en_gira do
     id 1
     formulario
-  end
-
-  factory :actor do
-    id 1
-    elencos_en_gira
-    nombre_actor "Pedro"
-    apellido_actor "Gomez"
-    num_de_cuil_cuit "12345678912"
-    fecha_de_nacimiento 1/1/2000
-    calle "Santa fe"
-    altura_calle "1000"
-    actor_provincia "Buenos Aires"
-    actor_localidad "Capital Federal"
-    codigo_postal "1406"
-    email "pedro.gomez@gmail.com"
-  end
-
-  factory :tecnico do
-    id 1
-    elencos_en_gira
-    nombre_actor "Hernan"
-    apellido_actor "Gomez"
-    num_de_cuil_cuit "12345678912"
-    fecha_de_nacimiento 1/1/1999
-    calle "Santa fe"
-    altura_calle "2000"
-    actor_provincia "Buenos Aires"
-    actor_localidad "Capital Federal"
-    codigo_postal "1406"
-    email "hernan.gomez@gmail.com"
-  end
-
-  factory :director do
-    id 1
-    elencos_en_gira
-    nombre_actor "Juan"
-    apellido_actor "Gomez"
-    num_de_cuil_cuit "12345678912"
-    fecha_de_nacimiento 1/1/1998
-    calle "Santa fe"
-    altura_calle "3000"
-    actor_provincia "Buenos Aires"
-    actor_localidad "Capital Federal"
-    codigo_postal "1406"
-    email "juan.gomez@gmail.com"
   end
 end

@@ -13,6 +13,15 @@ describe "Principal" do
     }
 
     it {
+      #should have_selector("select#principal_registro_id") do |n|
+      FactoryGirl.create(:registro)
+      visit new_formulario_principal_path(formulario)
+      should have_selector('option[value=""]', :text => "Seleccione una opcion...")
+      should have_selector('option[value="1"]', :text => "Ya registrado")
+      #end
+    }
+
+    it {
       FactoryGirl.create(:provincia)
       visit new_formulario_principal_path(formulario)
       #should have_selector("select#principal_provincia_id") do |n|
@@ -41,15 +50,6 @@ describe "Principal" do
       visit new_formulario_principal_path(formulario)
       should have_selector('option[value=""]', :text => "Seleccione un si es grupo o espectáculo concertado...")
       should have_selector('option[value="1"]', :text => "Grupo")
-      #end
-    }
-
-    it {
-      #should have_selector("select#principal_registro_id") do |n|
-      FactoryGirl.create(:registro)
-      visit new_formulario_principal_path(formulario)
-      should have_selector('option[value=""]', :text => "Seleccione una opcion...")
-      should have_selector('option[value="1"]', :text => "Ya registrado")
       #end
     }
 
