@@ -17,14 +17,4 @@ describe Registro do
 		before {@registro.detalle = ' '}
 		it {should_not be_valid}
 	end
-
-  # describe "when numero_de_registro is too short" do
-  #   before { @registro.numero_de_registro = 123}
-  #   it { should_not be_valid }
-  # end
-
-  # describe "when numero_de_registro is too long" do
-  #   before { @registro.numero_de_registro = 123456789123}
-  #   it { should_not be_valid }
-  # end
 end
