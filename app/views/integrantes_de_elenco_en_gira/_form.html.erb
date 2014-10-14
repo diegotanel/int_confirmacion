@@ -1,0 +1,82 @@
+#encoding: utf-8
+  <%= form_for([@formulario, @integrante]) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+    
+    <%= f.hidden_field :type, value: @type %>
+
+    <p>Los campos marcados con * son obligatorios</p>
+
+    <div class="field">
+    <%= f.label :nombre, "Nombre *" %>
+    <%= f.text_field :nombre %>
+    </div>
+
+    <div class="field">
+    <%= f.label :apellido, "Apellido *" %>
+    <%= f.text_field :apellido %>
+    </div>
+
+    <div class="field">
+    <%= f.label :cuil_cuit, "Número de cuil / cuit *" %>
+    <%= f.text_field :cuil_cuit %>
+    </div>
+
+    <div class="field">
+    <%= f.label :fecha_de_nacimiento, "Fecha de nacimiento *" %>
+    <%= f.date_select :fecha_de_nacimiento %>
+    </div>
+
+    <div class="field">
+    <%= f.label :calle, "Calle *" %>
+    <%= f.text_field :calle %>
+    </div>
+
+    <div class="field">
+    <%= f.label :altura_calle, "Altura *" %>
+    <%= f.text_field :altura_calle %>
+    </div>
+
+    <div class="field">
+    <%= f.label :piso, "Piso" %>
+    <%= f.text_field :piso %>
+    </div>
+
+    <div class="field">
+    <%= f.label :depto, "Depto" %>
+    <%= f.text_field :depto %>
+    </div>
+
+    <div class="field">
+        <br/><%= f.label :provincia, "Provincia" %>
+        <%= f.collection_select("provincia_id", @provincias, "id", "detalle", :include_blank => "Seleccione una provincia...") %>
+    </div>
+
+    <div class="field">
+        <br/><%= f.label :localidad, "Localidad" %>
+        <%= f.collection_select("localidad_id", @localidades, "id", "detalle", :include_blank => "Seleccione una localidad...") %>
+    </div>
+
+    <div class="field">
+    <%= f.label :codigo_postal, "Codigo Postal *" %>
+    <%= f.text_field :codigo_postal %>
+    </div>
+
+    <div class="field">
+    <%= f.label :tel_particular, "Telefono Particular" %>
+    <%= f.text_field :tel_particular %>
+    </div>
+
+    <div class="field">
+    <%= f.label :tel_celular, "Telefono Celular" %>
+    <%= f.text_field :tel_celular %>
+    </div>
+
+    <div class="field">
+    <%= f.label :email, "Email *" %>
+    <%= f.text_field :email %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "Guardar Datos", class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

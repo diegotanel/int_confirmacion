@@ -1,4 +1,8 @@
 class IntegranteDeElencoEnGira < ActiveRecord::Base
+  Dir[File.join(File.dirname(__FILE__), "*.rb")].each do |f|
+    self.const_get(File.basename(f, '.rb').classify)
+  end
+
   belongs_to :provincia
   belongs_to :localidad
   belongs_to :elenco_en_gira

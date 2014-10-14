@@ -1,0 +1,76 @@
+#encoding: utf-8
+<% provide(:title, 'Datos del integrante') %>
+<h1>Datos del integrante</h1>
+
+</br>
+<p>
+  <b>Nombre:</b>
+  <%= @integrante.nombre %>
+</p>
+
+<p>
+  <b>Apellido:</b>
+  <%= @integrante.apellido %>
+</p>
+
+<p>
+  <b>CUIL / CUIT:</b>
+  <%= @integrante.cuil_cuit %>
+</p>
+
+<p>
+  <b>Fecha de nacimiento:</b>
+  <%= @integrante.fecha_de_nacimiento %>
+</p>
+
+<p>
+  <b>Calle:</b>
+  <%= @integrante.calle %>
+</p>
+
+<p>
+  <b>Altura calle:</b>
+  <%= @integrante.altura_calle %>
+</p>
+
+<p>
+  <b>Piso:</b>
+  <%= @integrante.piso %>
+</p>
+
+<p>
+  <b>Departamento:</b>
+  <%= @integrante.depto %>
+</p>
+
+<p>
+  <b>Provincia:</b>
+  <%= @integrante.provincia.detalle %>
+</p>
+
+<p>
+  <b>Localidad:</b>
+  <%= @integrante.localidad.detalle %>
+</p>
+
+<p>
+  <b>Código postal:</b>
+  <%= @integrante.codigo_postal %>
+</p>
+
+<p>
+  <b>Teléfono particular:</b>
+  <%= @integrante.tel_particular %>
+</p>
+
+<p>
+  <b>Teléfono celular:</b>
+  <%= @integrante.tel_celular %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @integrante.email %>
+</p>
+
+<%= link_to t('scaffoldi18n.back'), formulario_elencos_en_gira_path %>

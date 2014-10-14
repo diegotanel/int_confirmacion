@@ -19,9 +19,7 @@ describe IntegranteDeElencoEnGira do
   end
 
   before do
-    @actor = Actor.new(nombre: "Pedro", apellido: "Gomez", email: "pedro.gomez@gmail.com", cuil_cuit: "12345678912", fecha_de_nacimiento: date, calle: "Santa Fe", altura_calle: "1000", provincia: provincia, localidad: localidad, codigo_postal: "1406")
-    elenco_en_gira.integrantes_de_elenco_en_gira << @actor
-    @integrante_de_elenco_en_gira = elenco_en_gira.integrantes_de_elenco_en_gira.first
+    @integrante_de_elenco_en_gira = elenco_en_gira.integrantes_de_elenco_en_gira.create(type: 'Actor',nombre: "Pedro", apellido: "Gomez", email: "pedro.gomez@gmail.com", cuil_cuit: "12345678912", fecha_de_nacimiento: date, calle: "Santa Fe", altura_calle: "1000", provincia: provincia, localidad: localidad, codigo_postal: "1406")
   end
 
   subject { @integrante_de_elenco_en_gira }
@@ -38,6 +36,7 @@ describe IntegranteDeElencoEnGira do
   it { should respond_to(:codigo_postal) }
   it { should respond_to(:email) }
   it { should respond_to(:elenco_en_gira_id) }
+  it { should respond_to(:type) }
   it { should be_valid }
 
 
@@ -141,31 +140,22 @@ describe IntegranteDeElencoEnGira do
     end
     it {
       elenco_en_gira.integrantes_de_elenco_en_gira.length.should == 1
-      @director = Director.new(nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "76543218912", fecha_de_nacimiento: date, calle: "Padilla", altura_calle: "1212", provincia: provincia, localidad: localidad, codigo_postal: "1414")
-      elenco_en_gira.integrantes_de_elenco_en_gira << @director
+      elenco_en_gira.integrantes_de_elenco_en_gira.create(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "76543218912", fecha_de_nacimiento: date, calle: "Padilla", altura_calle: "1212", provincia: provincia, localidad: localidad, codigo_postal: "1414")
       elenco_en_gira.integrantes_de_elenco_en_gira.length.should == 2
-      elenco_en_gira.save!
-      elenco_en_gira.integrantes_de_elenco_en_gira.last.id.should == @director.id
     }
 
     it {
-      @director = Director.new(nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "76543218912", fecha_de_nacimiento: date, calle: "Padilla", altura_calle: "1212", provincia: provincia, localidad: localidad, codigo_postal: "1414")
-      elenco_en_gira.integrantes_de_elenco_en_gira << @director
-      elenco_en_gira.save!
+      @director = elenco_en_gira.integrantes_de_elenco_en_gira.create(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "76543218912", fecha_de_nacimiento: date, calle: "Padilla", altura_calle: "1212", provincia: provincia, localidad: localidad, codigo_postal: "1414")
       elenco_en_gira.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should == @director.id
-      elenco_en_gira.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should_not == @actor.id
+      elenco_en_gira.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should_not == @integrante_de_elenco_en_gira.id
     }
 
     let(:formulario2) {FactoryGirl.create(:formulario, id: 2, user: elenco_en_gira.formulario.user)}
     let(:elenco_en_gira2) {FactoryGirl.create(:elenco_en_gira, id: 2, formulario: formulario2)}
 
     it {
-      @director = Director.new(nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "76543218912", fecha_de_nacimiento: date, calle: "Padilla", altura_calle: "1212", provincia: provincia, localidad: localidad, codigo_postal: "1414")
-      elenco_en_gira.integrantes_de_elenco_en_gira << @director
-      elenco_en_gira.save!
-      @director2 = Director.new(nombre: "Lucas", apellido: "Capo", email: "lucas.capo@gmail.com", cuil_cuit: "76543213235", fecha_de_nacimiento: date, calle: "Corrientes", altura_calle: "1553", provincia: provincia, localidad: localidad, codigo_postal: "1414")
-      elenco_en_gira2.integrantes_de_elenco_en_gira << @director2
-      elenco_en_gira2.save!
+      @director = elenco_en_gira.integrantes_de_elenco_en_gira.create(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "76543218912", fecha_de_nacimiento: date, calle: "Padilla", altura_calle: "1212", provincia: provincia, localidad: localidad, codigo_postal: "1414")
+      @director2 = elenco_en_gira2.integrantes_de_elenco_en_gira.create(type: 'Director', nombre: "Lucas", apellido: "Capo", email: "lucas.capo@gmail.com", cuil_cuit: "76543213235", fecha_de_nacimiento: date, calle: "Corrientes", altura_calle: "1553", provincia: provincia, localidad: localidad, codigo_postal: "1414")
       elenco_en_gira.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should == @director.id
       elenco_en_gira2.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should_not == @director.id
       elenco_en_gira2.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should == @director2.id
