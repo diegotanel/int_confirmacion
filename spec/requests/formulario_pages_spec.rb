@@ -17,7 +17,7 @@ describe "Formulario" do
   end
 
   describe "lista de formularios" do
-    let(:formulario) { FactoryGirl.create(:formulario) }
+    #let(:formulario) { FactoryGirl.create(:formulario) }
     describe "con instancia principal creada" do
       let(:principal) { FactoryGirl.build(:principal) }
       let(:condicion) { FactoryGirl.create(:condicion) }
@@ -33,7 +33,9 @@ describe "Formulario" do
       it { should have_selector("td", :text => "borrador")}
 
       describe "Formulario show debe tener" do
-        visit formularios_path(formulario)
+        before do
+          visit formularios_path(principal.formulario)
+        end
 
         it { should have_link('Editar Datos principales') }
         it { should have_link('Cargar Datos del grupo') }
@@ -78,7 +80,9 @@ describe "Formulario" do
       it { should have_selector("td", :text => "borrador")}
 
       describe "Formulario show debe tener" do
-        visit formularios_path(formulario)
+        before do
+          visit formularios_path(datos_grupo.formulario)
+        end
 
         it { should have_link('Cargar Datos principales') }
         it { should have_link('Editar Datos del grupo') }

@@ -3,7 +3,7 @@ Int::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_recovers, only: [:new, :create]
   resources :formularios do
-    resources :principals, only: [:new, :create, :show, :edit]
+    resources :principals, only: [:new, :create, :show, :edit, :update]
     resources :elencos_en_gira, only: [:index]
     resources :integrantes_de_elenco_en_gira, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :actores, controller: 'integrantes_de_elenco_en_gira', type: 'Actor'

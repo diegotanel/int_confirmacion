@@ -61,5 +61,6 @@ FactoryGirl.define do
   factory :datos_grupo do
     nombre_grupo     "Michael Hartl"
     historia    "asdadfasdfsdfsfdgfagafsdgafdgadfgdfagdafgdfagdfagafdgdfagdfgdfagadsfgdfagdfg"
+    formulario
   end
 end
