@@ -18,7 +18,7 @@ class PrincipalsController < ApplicationController
   	@principal = @formulario.build_principal(principal_params)
     if @principal.save
       flash[:success] = "Datos principales correctamente creados"
-      redirect_to formularios_path
+      redirect_to formulario_principal_path(@formulario, @principal)
     else
     	inicializar_variables
       render 'new'
@@ -26,14 +26,16 @@ class PrincipalsController < ApplicationController
   end
 
   def edit
+    @formulario = Formulario.find_by_id(params[:formulario_id])
     @principal = Principal.find(params[:id])
   end
 
   def update
+    @formulario = Formulario.find_by_id(params[:formulario_id])
     @principal = Principal.find(params[:id])
     if @principal.update_attributes(principal_params)
       flash[:success] = "Datos principales actualizados"
-      redirect_to @formulario
+      redirect_to formulario_principal_path(@formulario, @principal)
     else
       render 'edit'
     end

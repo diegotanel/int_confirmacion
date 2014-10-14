@@ -1,0 +1,18 @@
+#encoding: utf-8
+<% provide(:title, 'Editar datos del grupo') %>
+<h1>Editar datos del grupo</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for([@formulario, @datos_grupo]) do |f| %>
+      <%= render 'shared/error_messages', :object => f.object %>
+      <%= f.label :nombre_grupo, "Nombre del grupo" %>
+      <%= f.text_field :nombre_grupo %>
+
+      <%= f.label :historia, "Breve historia del grupo" %>
+      <%= f.text_area :historia %><p>(no mas de 200 caracteres)</p>
+
+      <%= f.submit "Salvar Cambios", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

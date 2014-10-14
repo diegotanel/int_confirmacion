@@ -1,0 +1,11 @@
+<% provide(:title, @datos_grupo.nombre_grupo) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @datos_grupo.nombre_grupo %>
+      </h1></br>
+      <%= link_to "Editar datos del grupo", edit_formulario_datos_grupo_path(@formulario, @datos_grupo) %>
+    </section>
+  </aside>
+</div>

@@ -9,6 +9,7 @@ Int::Application.routes.draw do
     resources :actores, controller: 'integrantes_de_elenco_en_gira', type: 'Actor'
     resources :directores, controller: 'integrantes_de_elenco_en_gira', type: 'Director'
     resources :tecnicos, controller: 'integrantes_de_elenco_en_gira', type: 'Tecnicos'
+    resources :datos_grupos
   end
   get "principals/obtener_region", :defaults => {:format => :js}
 

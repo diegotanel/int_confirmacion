@@ -1,0 +1,18 @@
+#encoding: utf-8
+<% provide(:title, 'Editar formulario') %>
+<h1>Editar Formulario</h1></br>
+
+if (@formulario.principal)
+	<%= link_to "Cargar Datos principales", new_formulario_principal_path(@formulario), class: "btn btn-large btn-primary" %></br>
+else
+	<%= link_to "Editar Datos principales", edit_formulario_principal_path(@formulario, @principal), class: "btn btn-large btn-primary" %></br>
+
+if (@formulario.elenco_en_gira)
+	<%= link_to "Cargar Datos del Elenco", new_formulario_elenco_en_gira_path(@formulario), class: "btn btn-large btn-primary" %></br>
+else
+	<%= link_to "Editar Datos principales", edit_formulario_elenco_en_gira_path(@formulario, @elenco_en_gira), class: "btn btn-large btn-primary" %></br>
+
+if (@formulario.datos_grupo)
+	<%= link_to "Cargar Datos del Grupo", new_formulario_datos_grupo_path(@formulario), class: "btn btn-large btn-primary" %></br>
+else
+	<%= link_to "Editar Datos principales", edit_formulario_datos_grupo_path(@formulario, @datos_grupo), class: "btn btn-large btn-primary" %></br>

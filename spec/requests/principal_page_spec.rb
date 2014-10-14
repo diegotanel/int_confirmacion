@@ -13,21 +13,17 @@ describe "Principal" do
     }
 
     it {
-      #should have_selector("select#principal_registro_id") do |n|
       FactoryGirl.create(:registro)
       visit new_formulario_principal_path(formulario)
       should have_selector('option[value=""]', :text => "Seleccione una opcion...")
       should have_selector('option[value="1"]', :text => "Ya registrado")
-      #end
     }
 
     it {
       FactoryGirl.create(:provincia)
       visit new_formulario_principal_path(formulario)
-      #should have_selector("select#principal_provincia_id") do |n|
       should have_selector('option[value=""]', :text => "Seleccione una provincia...")
       should have_selector('option[value="1"]', :text => "Buenos Aires")
-      #end
     }
 
     it {
@@ -36,12 +32,10 @@ describe "Principal" do
     }
 
     it {
-      #should have_selector("select#principal_localidad_id") do |n|
       FactoryGirl.create(:localidad)
       visit new_formulario_principal_path(formulario)
       should have_selector('option[value=""]', :text => "Seleccione una localidad...")
       should have_selector('option[value="1"]', :text => "Capital Federal")
-      #end
     }
 
     it {
@@ -128,7 +122,7 @@ describe "Principal" do
 
       it {
         should have_selector("div.alert.alert-success")
-        should have_content('Formulario')
+        should have_content('Formulario de Inscripcion')
         should have_title('Formularios de Inscripcion del usuario')
       }
     end
