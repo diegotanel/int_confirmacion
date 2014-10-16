@@ -1,10 +1,7 @@
-class CreateDatosEspectaculos < ActiveRecord::Migration
+class CreateDatosEsps < ActiveRecord::Migration
   def change
-    create_table :datos_espectaculos do |t|
+    create_table :datos_esps do |t|
     	t.references :formulario, :null => false
-    	t.references :generos_espectaculo, :null => false
-    	t.references :publico_por_experiencia, :null => false
-    	t.references :publico_por_edad, :null => false
     	t.date :fecha_de_estreno, :null => false
     	t.string :nombre_autor, :null => false
     	t.string :nacionalidad_autor, :null => false
@@ -23,6 +20,6 @@ class CreateDatosEspectaculos < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :datos_grupos, :formulario_id
+    add_index :datos_esps, :formulario_id
   end
 end

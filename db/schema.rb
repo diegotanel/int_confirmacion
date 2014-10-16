@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010143304) do
+ActiveRecord::Schema.define(version: 20141016175939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,69 @@ ActiveRecord::Schema.define(version: 20141010143304) do
 
   add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id", using: :btree
 
+  create_table "datos_del_responsables", force: true do |t|
+    t.string   "detalle",        null: false
+    t.integer  "formulario_id",  null: false
+    t.integer  "responsable_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "datos_del_responsables", ["formulario_id"], name: "index_datos_del_responsables_on_formulario_id", using: :btree
+  add_index "datos_del_responsables", ["responsable_id"], name: "index_datos_del_responsables_on_responsable_id", using: :btree
+
+  create_table "datos_esps", force: true do |t|
+    t.integer  "formulario_id",          null: false
+    t.date     "fecha_de_estreno",       null: false
+    t.string   "nombre_autor",           null: false
+    t.string   "nacionalidad_autor",     null: false
+    t.string   "duracion_espectaculo",   null: false
+    t.string   "interpretes_escena",     null: false
+    t.string   "directores_espectaculo", null: false
+    t.string   "sinopsis_obra",          null: false
+    t.string   "pagina_web"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "foro"
+    t.string   "blog"
+    t.string   "youtube"
+    t.string   "instagram"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "datos_esps", ["formulario_id"], name: "index_datos_esps_on_formulario_id", using: :btree
+
+  create_table "datos_esps_formatos", id: false, force: true do |t|
+    t.integer "formato_id",   null: false
+    t.integer "datos_esp_id", null: false
+  end
+
+  add_index "datos_esps_formatos", ["formato_id", "datos_esp_id"], name: "index_datos_esps_formatos_on_formato_id_and_datos_esp_id", using: :btree
+
+  create_table "datos_esps_gen_esps", id: false, force: true do |t|
+    t.integer "gen_esp_id",   null: false
+    t.integer "datos_esp_id", null: false
+  end
+
+  add_index "datos_esps_gen_esps", ["gen_esp_id", "datos_esp_id"], name: "index_datos_esps_gen_esps_on_gen_esp_id_and_datos_esp_id", using: :btree
+
+  create_table "datos_esps_publs_edad", id: false, force: true do |t|
+    t.integer "publs_edad_id", null: false
+    t.integer "datos_esp_id",  null: false
+    t.integer "publ_edad_id",  null: false
+  end
+
+  add_index "datos_esps_publs_edad", ["publ_edad_id", "datos_esp_id"], name: "index_datos_esps_publs_edad_on_publ_edad_id_and_datos_esp_id", using: :btree
+
+  create_table "datos_esps_publs_exp", id: false, force: true do |t|
+    t.integer "publs_exp_id", null: false
+    t.integer "datos_esp_id", null: false
+    t.integer "publ_exp_id",  null: false
+  end
+
+  add_index "datos_esps_publs_exp", ["publ_exp_id", "datos_esp_id"], name: "index_datos_esps_publs_exp_on_publ_exp_id_and_datos_esp_id", using: :btree
+
   create_table "datos_grupos", force: true do |t|
     t.string   "nombre_grupo",  null: false
     t.string   "historia",      null: false
@@ -40,6 +103,38 @@ ActiveRecord::Schema.define(version: 20141010143304) do
 
   add_index "datos_grupos", ["formulario_id"], name: "index_datos_grupos_on_formulario_id", using: :btree
 
+  create_table "datos_tecs", force: true do |t|
+    t.string   "duracion_montaje",             null: false
+    t.string   "duracion_desmontaje",          null: false
+    t.string   "ancho",                        null: false
+    t.string   "alto",                         null: false
+    t.string   "profundidad",                  null: false
+    t.string   "listado_artefactos_luminicos", null: false
+    t.string   "listado_sonido",               null: false
+    t.string   "otros_equipamientos",          null: false
+    t.string   "peso_total",                   null: false
+    t.string   "volumen_total",                null: false
+    t.string   "otras_necesidades",            null: false
+    t.integer  "formulario_id",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "datos_tecs", ["formulario_id"], name: "index_datos_tecs_on_formulario_id", using: :btree
+
+  create_table "datos_tecs_esps_esps", id: false, force: true do |t|
+    t.integer "esps_esp_id",  null: false
+    t.integer "datos_tec_id", null: false
+  end
+
+  add_index "datos_tecs_esps_esps", ["esps_esp_id", "datos_tec_id"], name: "index_datos_tecs_esps_esps_on_esps_esp_id_and_datos_tec_id", using: :btree
+
+  create_table "directores_en_gira", force: true do |t|
+    t.string   "detalle",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "elencos_en_gira", force: true do |t|
     t.integer  "formulario_id", null: false
     t.datetime "created_at"
@@ -47,6 +142,27 @@ ActiveRecord::Schema.define(version: 20141010143304) do
   end
 
   add_index "elencos_en_gira", ["formulario_id"], name: "index_elencos_en_gira_on_formulario_id", using: :btree
+
+  create_table "esps_esps", force: true do |t|
+    t.string   "detalle",     null: false
+    t.string   "descripcion", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ficha_artisticas", force: true do |t|
+    t.string   "nombre_artista",   null: false
+    t.string   "apellido_artista", null: false
+    t.string   "rol_artista",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "formatos", force: true do |t|
+    t.string   "detalle",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "formularios", force: true do |t|
     t.integer  "user_id"
@@ -56,6 +172,12 @@ ActiveRecord::Schema.define(version: 20141010143304) do
   end
 
   add_index "formularios", ["user_id", "created_at"], name: "index_formularios_on_user_id_and_created_at", using: :btree
+
+  create_table "gen_esps", force: true do |t|
+    t.string   "detalle",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "grupos", force: true do |t|
     t.string   "detalle",    null: false
@@ -90,6 +212,14 @@ ActiveRecord::Schema.define(version: 20141010143304) do
   add_index "integrantes_de_elenco_en_gira", ["provincia_id"], name: "index_integrantes_de_elenco_en_gira_on_provincia_id", using: :btree
   add_index "integrantes_de_elenco_en_gira", ["type"], name: "index_integrantes_de_elenco_en_gira_on_type", using: :btree
 
+  create_table "integrantes_del_esp", force: true do |t|
+    t.string   "rol",                 null: false
+    t.string   "nombre_integrante",   null: false
+    t.string   "apellido_integrante", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "localidades", force: true do |t|
     t.string   "detalle",      null: false
     t.integer  "provincia_id", null: false
@@ -123,7 +253,30 @@ ActiveRecord::Schema.define(version: 20141010143304) do
 
   add_index "provincias", ["region_id"], name: "index_provincias_on_region_id", using: :btree
 
+  create_table "publs_edad", force: true do |t|
+    t.string   "detalle",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "publs_exp", force: true do |t|
+    t.string   "detalle",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "regiones", force: true do |t|
+    t.string   "detalle",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "responsables", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tecnicos_del_esp", force: true do |t|
     t.string   "detalle",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"

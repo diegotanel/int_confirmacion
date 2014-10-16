@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe EspaciosEspectaculos do
+describe Formato do
   pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -3,6 +3,8 @@ class Formulario < ActiveRecord::Base
 	has_one :principal
 	has_one :elenco_en_gira
 	has_one :datos_grupo
+	has_one :datos_esp
+	has_one :datos_tec
 
 	default_scope -> { order('created_at DESC') }
 	validates :user_id, presence: true

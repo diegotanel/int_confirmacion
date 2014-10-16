@@ -5,7 +5,6 @@ class CreateJoinTableCondicionesPrincipals < ActiveRecord::Migration
       t.belongs_to :principal, :null => false
 
       t.index [:condicion_id, :principal_id]
-      # t.index [:principal_id, :condicion_id]
     end
   end
 end

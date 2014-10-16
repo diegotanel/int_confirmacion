@@ -9,7 +9,10 @@ Int::Application.routes.draw do
     resources :actores, controller: 'integrantes_de_elenco_en_gira', type: 'Actor'
     resources :directores, controller: 'integrantes_de_elenco_en_gira', type: 'Director'
     resources :tecnicos, controller: 'integrantes_de_elenco_en_gira', type: 'Tecnico'
-    resources :datos_grupos
+    resources :datos_grupos, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :datos_esps, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :datos_tecs, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :datos_del_responsables, only: [:new, :create, :show, :edit, :update, :destroy]
   end
   get "principals/obtener_region", :defaults => {:format => :js}
 

@@ -1,6 +1,6 @@
-class CreateEspaciosEspectaculos < ActiveRecord::Migration
+class CreateEspsEsps < ActiveRecord::Migration
   def change
-    create_table :espacios_espectaculos do |t|
+    create_table :esps_esps do |t|
 
     	t.string :detalle, :null => false
     	t.string :descripcion, :null => false

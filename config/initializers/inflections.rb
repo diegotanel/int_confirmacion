@@ -29,4 +29,16 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'tecnico', 'tecnicos'
 	inflect.irregular 'elenco_en_gira', 'elencos_en_gira'
 	inflect.irregular 'integrante_de_elenco_en_gira', 'integrantes_de_elenco_en_gira'
+	inflect.irregular 'formato', 'formatos'
+	inflect.irregular 'publico_por_edad', 'publicos_por_edad'
+	inflect.irregular 'publico_por_experiencia', 'publicos_por_experiencia'
+	inflect.irregular 'responsable', 'responsables'
+	inflect.irregular 'generos_espectaculo', 'generos_espectaculos'
+	inflect.irregular 'ficha_artistica', 'ficha_artisticas'
+	inflect.irregular 'espacios_espectaculo', 'espacios_espectaculos'
+	inflect.irregular 'datos_tecnicos_del_espectaculo', 'datos_tecnicos_del_espectaculos'
+	inflect.irregular 'datos_del_responsable', 'datos_del_responsables'
+	inflect.irregular 'datos:del_espectaculo', 'datos_del_espectaculos'
+	inflect.irregular 'datos_grupo', 'datos_grupos'
+
 end

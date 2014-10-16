@@ -1,6 +1,6 @@
-class CreateDatosTecnicosDelEspectaculos < ActiveRecord::Migration
+class CreateDatosTecs < ActiveRecord::Migration
   def change
-    create_table :datos_tecnicos_del_espectaculos do |t|
+    create_table :datos_tecs do |t|
 
     	t.string :duracion_montaje, :null => false
     	t.string :duracion_desmontaje, :null => false
@@ -13,9 +13,10 @@ class CreateDatosTecnicosDelEspectaculos < ActiveRecord::Migration
     	t.string :peso_total, :null => false
     	t.string :volumen_total, :null => false
     	t.string :otras_necesidades, :null => false
-
+    	t.references :formulario, :null => false
 
       t.timestamps
     end
+    add_index :datos_tecs, :formulario_id
   end
 end

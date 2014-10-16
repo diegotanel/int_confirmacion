@@ -5,5 +5,4 @@ class ElencoEnGira < ActiveRecord::Base
 	has_many :integrantes_de_elenco_en_gira
 
 	validates :formulario, presence: true
-
 end
