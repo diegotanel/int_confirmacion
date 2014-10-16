@@ -3,7 +3,6 @@ class Principal < ActiveRecord::Base
 	belongs_to :provincia
 	belongs_to :grupo
 	belongs_to :localidad
-	belongs_to :registro
 	belongs_to :formulario
 
 	validates :provincia, presence: true
@@ -11,6 +10,5 @@ class Principal < ActiveRecord::Base
 	validates :localidad, presence: true
 	validates :condiciones, presence: true
 	validates :nombre, presence: true, length: {maximum: 70}
-	validates :registro, presence: true
 	validates :formulario, presence: true
 end

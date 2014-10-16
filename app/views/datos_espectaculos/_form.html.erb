@@ -1,0 +1,80 @@
+#encoding: utf-8
+  <%= form_for([@formulario, @datos_espectaculo]) do |f| %>
+  	<%= render 'shared/error_messages', :object => f.object %>
+
+  	<div class="field">
+	  	<%= f.label :fecha_de_estreno, "Fecha de estreno" %>
+	    <%= f.date_select :fecha_de_estreno %>
+	  </div>
+
+	  <div class="field">
+	  	<%= f.label :nombre_autor, "Nombre del autor" %>
+	    <%= f.text_field :nombre_autor %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :nacionalidad_autor, "Nacionalidad del autor" %>
+	    <%= f.text_field :nacionalidad_autor %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :duracion_espectaculo, "Duracion del espectaculo (en minutos)" %>
+	    <%= f.text_field :duracion_espectaculo %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :interpretes_escena, "Cantidad de interpretes en escena" %>
+	    <%= f.text_field :interpretes_escena %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :directores_espectaculo, "Cantidad de directores del espectaculo" %>
+	    <%= f.text_field :directores_espectaculo %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :sinopsis_obra, "Sinopsis de la obra" %>
+	    <%= f.text_area :sinopsis_obra %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :pagina_web, "Pagina Web de la obra" %>
+	    <%= f.text_field :pagina_web %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :facebook, "Facebook de la obra" %>
+	    <%= f.text_field :facebook %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :twitter, "Twitter de la obra" %>
+	    <%= f.text_field :twitter %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :foro, "Foro sobre la obra" %>
+	    <%= f.text_field :foro %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :blog, "Blog sobre la obra" %>
+	    <%= f.text_field :blog %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :youtube, "Canal de Youtube de la obra" %>
+	    <%= f.text_field :youtube %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :instagram, "Instagram de la obra" %>
+	    <%= f.text_field :instagram %>
+	  </div>
+
+    <div class="actions">
+    	<%= f.submit "Guardar Datos", class: "btn btn-large btn-primary" %>
+  	</div>
+  <% end %>
+
+

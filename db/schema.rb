@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20141010143304) do
 
   create_table "grupos", force: true do |t|
     t.string   "detalle",    null: false
+    t.string   "codigo",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -90,10 +91,13 @@ ActiveRecord::Schema.define(version: 20141010143304) do
   add_index "integrantes_de_elenco_en_gira", ["type"], name: "index_integrantes_de_elenco_en_gira_on_type", using: :btree
 
   create_table "localidades", force: true do |t|
-    t.string   "detalle",    null: false
+    t.string   "detalle",      null: false
+    t.integer  "provincia_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "localidades", ["provincia_id"], name: "index_localidades_on_provincia_id", using: :btree
 
   create_table "principals", force: true do |t|
     t.integer  "formulario_id", null: false
@@ -101,7 +105,6 @@ ActiveRecord::Schema.define(version: 20141010143304) do
     t.integer  "localidad_id",  null: false
     t.integer  "grupo_id",      null: false
     t.string   "nombre",        null: false
-    t.integer  "registro_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -110,7 +113,6 @@ ActiveRecord::Schema.define(version: 20141010143304) do
   add_index "principals", ["grupo_id"], name: "index_principals_on_grupo_id", using: :btree
   add_index "principals", ["localidad_id"], name: "index_principals_on_localidad_id", using: :btree
   add_index "principals", ["provincia_id"], name: "index_principals_on_provincia_id", using: :btree
-  add_index "principals", ["registro_id"], name: "index_principals_on_registro_id", using: :btree
 
   create_table "provincias", force: true do |t|
     t.string   "detalle",    null: false
@@ -122,12 +124,6 @@ ActiveRecord::Schema.define(version: 20141010143304) do
   add_index "provincias", ["region_id"], name: "index_provincias_on_region_id", using: :btree
 
   create_table "regiones", force: true do |t|
-    t.string   "detalle",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "registros", force: true do |t|
     t.string   "detalle",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"

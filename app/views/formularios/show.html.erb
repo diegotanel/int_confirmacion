@@ -8,14 +8,14 @@
 	<%= link_to "Cargar Datos principales", new_formulario_principal_path(@formulario), class: "btn btn-large btn-primary" %></br>
 <% end %>
 
-<% if (@formulario.elenco_en_gira) %>
-	<%= link_to "Editar Datos del elenco", edit_formulario_elenco_en_gira_path(@formulario, @formulario.elenco_en_gira), class: "btn btn-large btn-primary" %></br>
-<% else %>
-	<%= link_to "Cargar Datos del elenco", formulario_elencos_en_gira_path(@formulario), class: "btn btn-large btn-primary" %></br>
-<% end %>
+<%= link_to "Cargar Datos del elenco", formulario_elencos_en_gira_path(@formulario), class: "btn btn-large btn-primary" %></br>
 
 <% if (@formulario.datos_grupo) %>
 	<%= link_to "Editar Datos del grupo", edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo), class: "btn btn-large btn-primary" %></br>
 <% else %>
-	<%= link_to "Cargar Datos del grupo", new_formulario_datos_grupo_path(@formulario), class: "btn btn-large btn-primary" %></br>
+	<% if (@formulario.principal) %>
+		<% if (@formulario.principal.grupo.codigo == "A" ) %>
+			<%= link_to "Cargar Datos del grupo", new_formulario_datos_grupo_path(@formulario), class: "btn btn-large btn-primary" %></br>
+		<% end %>
+	<% end %>
 <% end %>

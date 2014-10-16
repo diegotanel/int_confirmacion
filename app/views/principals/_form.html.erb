@@ -23,11 +23,6 @@
   </div>
 
   <div class="field">
-    <br/><%= f.label :registro, "Usted esta registrado en el INT?" %>
-    <%= f.collection_select("registro_id", @registros, "id", "detalle", :include_blank => "Seleccione una opcion...") %>
-  </div>
-
-  <div class="field">
     <br/><%= f.label :nombre, "Nombre del espectáculo" %>
     <%= f.text_field :nombre %>
   </div>

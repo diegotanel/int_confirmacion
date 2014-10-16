@@ -6,7 +6,6 @@ class CreatePrincipals < ActiveRecord::Migration
       t.references :localidad, :null => false
       t.references :grupo, :null => false
       t.string :nombre, :null => false
-      t.references :registro, :null => false
 
       t.timestamps
     end
@@ -14,6 +13,5 @@ class CreatePrincipals < ActiveRecord::Migration
     add_index :principals, :provincia_id
     add_index :principals, :localidad_id
     add_index :principals, :grupo_id
-    add_index :principals, :registro_id
   end
 end

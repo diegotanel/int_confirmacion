@@ -11,6 +11,10 @@ class ElencosEnGiraController < ApplicationController
     @integrantes = [@actores, @directores, @tecnicos]
   end
 
+  def edit
+    
+  end
+
   private
 
   # def principal_params

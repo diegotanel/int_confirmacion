@@ -1,0 +1,65 @@
+#encoding: utf-8
+  <%= form_for([@formulario, @datos_tecnicos_del_espectaculo]) do |f| %>
+  	<%= render 'shared/error_messages', :object => f.object %>
+
+    <div class="field">
+    	<%= f.label :duracion_montaje, "Duracion del montaje (en minutos)" %>
+      <%= f.date_select :duracion_montaje %>
+    </div>
+
+    <div class="field">
+    	<%= f.label :duracion_desmontaje, "Duracion del desmontaje (en minutos)" %>
+      <%= f.text_field :duracion_desmontaje %>
+    </div>
+
+    <div class="field">
+      <%= f.label :ancho, "Ancho" %>
+      <%= f.text_field :ancho %>
+    </div>
+
+    <div class="field">
+      <%= f.label :alto, "Alto" %>
+      <%= f.text_field :alto %>
+    </div>
+
+    <div class="field">
+      <%= f.label :profundidad, "Profundidad" %>
+      <%= f.text_field :profundidad %>
+    </div>
+
+    <div class="field">
+      <%= f.label :listado_artefactos_luminicos, "Listado de artefactos luminicos" %>
+      <%= f.text_area :listado_artefactos_luminicos %>
+    </div>
+
+    <div class="field">
+      <%= f.label :listado_sonido, "Sonido: Listado de equipamiento necesario" %>
+      <%= f.text_area :listado_sonido %>
+    </div>
+
+    <div class="field">
+      <%= f.label :otros_equipamientos, "Otros equipamientos" %>
+      <%= f.text_area :otros_equipamientos %>
+    </div>
+
+    <p>Carga:</p></br>
+
+    <div class="field">
+      <%= f.label :peso_total, "Peso total aprox. (en Kg)" %>
+      <%= f.text_field :peso_total %>
+    </div>
+
+    <div class="field">
+      <%= f.label :volumen_total, "Volumen total aprox. (en m3)" %>
+      <%= f.text_field :volumen_total %>
+    </div>
+
+    <div class="field">
+      <%= f.label :otras_necesidades, "Otras necesidades" %>
+      <%= f.text_area :otras_necesidades %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Guardar Datos", class: "btn btn-large btn-primary" %>
+    </div>
+  <% end %>

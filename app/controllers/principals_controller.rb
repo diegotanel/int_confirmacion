@@ -50,10 +50,19 @@ class PrincipalsController < ApplicationController
     end
   end
 
+  def obtener_localidad #esto no se si esta bien
+    @provincia = Provincia.find(params[:provincia_id])
+    @localidad = @provincia.localidad
+    respond_to do | format |
+      #format.json { render json: @listado }
+      format.js { render json: @localidad }
+    end
+  end
+
   private
 
   def principal_params
-    params.require(:principal).permit(:provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre, :condicion_ids => [])
+    params.require(:principal).permit(:provincia_id, :localidad_id, :grupo_id, :nombre, :condicion_ids => [])
   end
 
   def inicializar_variables
@@ -61,7 +70,6 @@ class PrincipalsController < ApplicationController
     @region = Region.all
     @localidades = Localidad.all
     @grupos = Grupo.all
-    @registros = Registro.all
     @condiciones = Condicion.all
   end
 end
