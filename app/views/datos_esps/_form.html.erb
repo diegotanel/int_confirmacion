@@ -1,5 +1,5 @@
 #encoding: utf-8
-  <%= form_for([@formulario, @datos_espectaculo]) do |f| %>
+  <%= form_for([@formulario, @datos_esp]) do |f| %>
   	<%= render 'shared/error_messages', :object => f.object %>
 
   	<div class="field">
@@ -33,9 +33,49 @@
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :sinopsis_obra, "Sinopsis de la obra" %>
+	    <%= f.label :sinopsis_obra, "Sinopsis de la obra" %><p>(no mas de 700 caracteres, los espacios cuentan como caracteres)</p>
 	    <%= f.text_area :sinopsis_obra %>
 	  </div>
+
+	  <div class="field">
+  		<br/><%= label_tag :gen_esp, "Generos del espectaculo" %>
+    	<% @gen_esps.each do |gen_esp| %>
+    		<tr>
+      		<td><%= check_box_tag "datos_esp[gen_esp_ids][]", gen_esp.id, false, :id => dom_id(gen_esp) %></td>
+      		<td><%= gen_esp.detalle %></td>
+    		</tr>
+    	<% end %>
+  	</div>
+
+	  <div class="field">
+  		<br/><%= label_tag :publ_exp, "Publicos por experiencia" %>
+    	<% @publs_exp.each do |publ_exp| %>
+    		<tr>
+      		<td><%= check_box_tag "datos_esp[publ_exp_ids][]", publ_exp.id, false, :id => dom_id(publ_exp) %></td>
+      		<td><%= publ_exp.detalle %></td>
+    		</tr>
+    	<% end %>
+  	</div>
+
+	  <div class="field">
+  		<br/><%= label_tag :publ_edad, "Publico por edad" %>
+    	<% @publs_edad.each do |publ_edad| %>
+    		<tr>
+      		<td><%= check_box_tag "datos_esp[publ_edad_ids][]", publ_edad.id, false, :id => dom_id(publ_edad) %></td>
+      		<td><%= publ_edad.detalle %></td>
+    		</tr>
+    	<% end %>
+  	</div>
+
+  	<div class="field">
+  		<br/><%= label_tag :formato, "Formato del espectaculo" %>
+    	<% @formatos.each do |formato| %>
+    		<tr>
+      		<td><%= check_box_tag "datos_esp[formato_ids][]", formato.id, false, :id => dom_id(formato) %></td>
+      		<td><%= formato.detalle %></td>
+    		</tr>
+    	<% end %>
+  	</div></br>
 
 	  <div class="field">
 	    <%= f.label :pagina_web, "Pagina Web de la obra" %>

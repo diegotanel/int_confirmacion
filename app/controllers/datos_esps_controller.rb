@@ -4,12 +4,12 @@ class DatosEspsController < ApplicationController
 
 	def new
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    @datos_esp = DatosEsps.new
+    @datos_esp = DatosEsp.new
   end
 
   def show
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    @datos_esp = DatosEsps.find(params[:id])
+    @datos_esp = DatosEsp.find(params[:id])
   end
 
   def create
@@ -26,12 +26,12 @@ class DatosEspsController < ApplicationController
 
   def edit
   	@formulario = Formulario.find_by_id(params[:formulario_id])
-    @datos_esp = DatosEsps.find(params[:id])
+    @datos_esp = DatosEsp.find(params[:id])
   end
 
   def update
   	@formulario = Formulario.find_by_id(params[:formulario_id])
-    @datos_esp = DatosEsps.find(params[:id])
+    @datos_esp = DatosEsp.find(params[:id])
     if @datos_esp.update_attributes(datos_esp_params)
       flash[:success] = "Datos del espectaculo actualizados"
       redirect_to formulario_datos_esp_path(@formulario, @datos_esp)
@@ -42,15 +42,15 @@ class DatosEspsController < ApplicationController
 
   private
 
-	  def datos_esp_params
-	    params.require(:datos_esp).permit(:interpretes_escena, :directores_espectaculo, :fecha_de_estreno, :nombre_autor, 
-        :nacionalidad_autor, :duracion_espectaculo, :sinopsis_obra, :gen_esp_ids => [], :publ_edad_ids => [], :publ_exp_ids => [], :formato_ids => [])
-	  end
+	 def datos_esp_params
+	  params.require(:datos_esp).permit(:interpretes_escena, :directores_espectaculo, :fecha_de_estreno, :nombre_autor, 
+       :nacionalidad_autor, :duracion_espectaculo, :sinopsis_obra, :gen_esp_ids => [], :publ_edad_ids => [], :publ_exp_ids => [], :formato_ids => [])
+	 end
 
-    def inicializar_variables
-      @gen_esp = GenEsps.all
-      @publ_exp = PublsExp.all
-      @publ_edad = PublsEdad.all
-      @formato = Formatos.all
-    end
+  def inicializar_variables
+    @gen_esps = GenEsp.all
+    @publs_exp = PublExp.all
+    @publs_edad = PublEdad.all
+    @formatos = Formato.all
+  end
 end

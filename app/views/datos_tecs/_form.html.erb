@@ -1,15 +1,30 @@
 #encoding: utf-8
-  <%= form_for([@formulario, @datos_tecnicos_del_espectaculo]) do |f| %>
+  <%= form_for([@formulario, @datos_tec]) do |f| %>
   	<%= render 'shared/error_messages', :object => f.object %>
 
     <div class="field">
     	<%= f.label :duracion_montaje, "Duracion del montaje (en minutos)" %>
-      <%= f.date_select :duracion_montaje %>
+      <%= f.text_field :duracion_montaje %>
     </div>
 
     <div class="field">
     	<%= f.label :duracion_desmontaje, "Duracion del desmontaje (en minutos)" %>
       <%= f.text_field :duracion_desmontaje %>
+    </div>
+
+    <div class="field">
+      <br/><%= label_tag :esps_esp, "Tipo de Espacio" %>
+      <% @esps_esps.each do |esps_esp| %>
+        <tr>
+          <td><%= check_box_tag "datos_tec[esps_esp_ids][]", esps_esp.id, false, :id => dom_id(esps_esp) %></td>
+          <td><%= esps_esp.detalle %></td>
+        </tr>
+      <% end %>
+    </div></br>
+
+    <div class="field">
+      <%= f.label :descripcion_espacio, "Descripcion del espacio" %><p>(no mas de 500 caracteres, los espacios cuentan como caracteres)</p>
+      <%= f.text_area :descripcion_espacio %>
     </div>
 
     <div class="field">
@@ -42,7 +57,7 @@
       <%= f.text_area :otros_equipamientos %>
     </div>
 
-    <p>Carga:</p></br>
+    <p>Carga:</p>
 
     <div class="field">
       <%= f.label :peso_total, "Peso total aprox. (en Kg)" %>

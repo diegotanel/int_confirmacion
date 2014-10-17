@@ -3,7 +3,6 @@ class CreateEspsEsps < ActiveRecord::Migration
     create_table :esps_esps do |t|
 
     	t.string :detalle, :null => false
-    	t.string :descripcion, :null => false
 
       t.timestamps
     end

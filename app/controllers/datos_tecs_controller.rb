@@ -2,14 +2,14 @@ class DatosTecsController < ApplicationController
   before_action :inicializar_variables, only: [:new, :edit]
   before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
 
-	def new
+  def new
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    @datos_tec = DatosTecs.new
+    @datos_tec = DatosTec.new
   end
 
   def show
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    @datos_tec = DatosTecs.find(params[:id])
+    @datos_tec = DatosTec.find(params[:id])
   end
 
   def create
@@ -26,12 +26,12 @@ class DatosTecsController < ApplicationController
 
   def edit
   	@formulario = Formulario.find_by_id(params[:formulario_id])
-    @datos_tec = DatosTecs.find(params[:id])
+    @datos_tec = DatosTec.find(params[:id])
   end
 
   def update
   	@formulario = Formulario.find_by_id(params[:formulario_id])
-    @datos_tec = DatosTecs.find(params[:id])
+    @datos_tec = DatosTec.find(params[:id])
     if @datos_tec.update_attributes(datos_tec_params)
       flash[:success] = "Datos tecnicos del espectaculo actualizados"
       redirect_to formulario_datos_tec_path(@formulario, @datos_tec)
@@ -42,11 +42,11 @@ class DatosTecsController < ApplicationController
 
   private
 
-	  def datos_tec_params
-	    params.require(:datos_tec).permit(:esps_esp_ids => [], :historia)
-	  end
+  def datos_tec_params
+    params.require(:datos_tec).permit(:duracion_montaje, :duracion_desmontaje, :descripcion_espacio, :ancho, :alto, :profundidad, :listado_artefactos_luminicos, :listado_sonido, :peso_total, :volumen_total, :historia, :esps_esp_ids => [])
+  end
 
-    def inicializar_variables
-      @esps_esp = EspsEsps.all
-    end
+  def inicializar_variables
+    @esps_esps = EspsEsp.all
+  end
 end

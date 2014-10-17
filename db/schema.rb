@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20141016175939) do
   add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id", using: :btree
 
   create_table "datos_del_responsables", force: true do |t|
-    t.string   "detalle",        null: false
     t.integer  "formulario_id",  null: false
     t.integer  "responsable_id", null: false
     t.datetime "created_at"
@@ -78,17 +77,15 @@ ActiveRecord::Schema.define(version: 20141016175939) do
   add_index "datos_esps_gen_esps", ["gen_esp_id", "datos_esp_id"], name: "index_datos_esps_gen_esps_on_gen_esp_id_and_datos_esp_id", using: :btree
 
   create_table "datos_esps_publs_edad", id: false, force: true do |t|
-    t.integer "publs_edad_id", null: false
-    t.integer "datos_esp_id",  null: false
-    t.integer "publ_edad_id",  null: false
+    t.integer "publ_edad_id", null: false
+    t.integer "datos_esp_id", null: false
   end
 
   add_index "datos_esps_publs_edad", ["publ_edad_id", "datos_esp_id"], name: "index_datos_esps_publs_edad_on_publ_edad_id_and_datos_esp_id", using: :btree
 
   create_table "datos_esps_publs_exp", id: false, force: true do |t|
-    t.integer "publs_exp_id", null: false
-    t.integer "datos_esp_id", null: false
     t.integer "publ_exp_id",  null: false
+    t.integer "datos_esp_id", null: false
   end
 
   add_index "datos_esps_publs_exp", ["publ_exp_id", "datos_esp_id"], name: "index_datos_esps_publs_exp_on_publ_exp_id_and_datos_esp_id", using: :btree
@@ -106,15 +103,16 @@ ActiveRecord::Schema.define(version: 20141016175939) do
   create_table "datos_tecs", force: true do |t|
     t.string   "duracion_montaje",             null: false
     t.string   "duracion_desmontaje",          null: false
+    t.string   "descripcion_espacio",          null: false
     t.string   "ancho",                        null: false
     t.string   "alto",                         null: false
     t.string   "profundidad",                  null: false
     t.string   "listado_artefactos_luminicos", null: false
     t.string   "listado_sonido",               null: false
-    t.string   "otros_equipamientos",          null: false
+    t.string   "otros_equipamientos"
     t.string   "peso_total",                   null: false
     t.string   "volumen_total",                null: false
-    t.string   "otras_necesidades",            null: false
+    t.string   "otras_necesidades"
     t.integer  "formulario_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -144,8 +142,7 @@ ActiveRecord::Schema.define(version: 20141016175939) do
   add_index "elencos_en_gira", ["formulario_id"], name: "index_elencos_en_gira_on_formulario_id", using: :btree
 
   create_table "esps_esps", force: true do |t|
-    t.string   "detalle",     null: false
-    t.string   "descripcion", null: false
+    t.string   "detalle",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -272,6 +269,7 @@ ActiveRecord::Schema.define(version: 20141016175939) do
   end
 
   create_table "responsables", force: true do |t|
+    t.string   "detalle",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -19,3 +19,21 @@
 		<% end %>
 	<% end %>
 <% end %>
+
+<% if (@formulario.datos_esp) %>
+	<%= link_to "Editar Datos del espectaculo", edit_formulario_datos_esp_path(@formulario, @formulario.datos_esp), class: "btn btn-large btn-primary" %></br>
+<% else %>
+	<%= link_to "Cargar Datos del espectaculo", new_formulario_datos_esp_path(@formulario), class: "btn btn-large btn-primary" %></br>
+<% end %>
+
+<% if (@formulario.datos_tec) %>
+	<%= link_to "Editar Datos tecnicos del espectaculo", edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec), class: "btn btn-large btn-primary" %></br>
+<% else %>
+	<%= link_to "Cargar Datos tecnicos del espectaculo", new_formulario_datos_tec_path(@formulario), class: "btn btn-large btn-primary" %></br>
+<% end %>
+
+<% if (@formulario.datos_del_responsable) %>
+	<%= link_to "Editar Datos del responsable", edit_formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable), class: "btn btn-large btn-primary" %></br>
+<% else %>
+	<%= link_to "Cargar Datos del responsable", new_formulario_datos_del_responsable_path(@formulario), class: "btn btn-large btn-primary" %></br>
+<% end %>

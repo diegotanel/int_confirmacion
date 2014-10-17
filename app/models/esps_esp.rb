@@ -3,5 +3,5 @@ class EspsEsp < ActiveRecord::Base
 	has_and_belongs_to_many :datos_tecs
 
 	validates :detalle, presence: true
-	validates :descripcion, presence: true, length: {maximum: 500}
+	
 end

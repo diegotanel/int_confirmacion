@@ -5,6 +5,7 @@ class Formulario < ActiveRecord::Base
 	has_one :datos_grupo
 	has_one :datos_esp
 	has_one :datos_tec
+	has_one :datos_del_responsable
 
 	default_scope -> { order('created_at DESC') }
 	validates :user_id, presence: true
