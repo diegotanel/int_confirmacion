@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Grupo do
 	before do
-		@grupo = Grupo.new(detalle: "Grupo")
+		@grupo = Grupo.new(codigo: "A", detalle: "Grupo")
 	end
 
 	subject { @grupo }

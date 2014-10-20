@@ -9,7 +9,7 @@ describe Principal do
   let(:formulario) { FactoryGirl.build(:formulario) }
 
   before do
-    @principal = formulario.build_principal(provincia: localidad.provincia, localidad: localidad, grupo: grupo,
+    @principal = formulario.build_principal(localidad: localidad, grupo: grupo,
                                             nombre: "Los gauchitos")
   end
 
@@ -20,9 +20,9 @@ describe Principal do
   it { should respond_to(:provincia_id) }
   it { should respond_to(:localidad) }
   it { should respond_to(:grupo) }
-  it { 
+  it {
     formulario.save!
-    should be_valid 
+    should be_valid
   }
 
   describe "validations" do
@@ -31,7 +31,7 @@ describe Principal do
     it {should_not be_valid}
 
     it "should have the right associated provincia" do
-      @principal.localidad.provincia_id.should == provincia.id
+      @principal.localidad.provincia_id.should == localidad.provincia.id
     end
 
     it "should have the right associated localidad" do
@@ -40,14 +40,6 @@ describe Principal do
 
     it "should have the right associated grupo" do
       @principal.grupo_id.should == grupo.id
-    end
-
-
-    describe "when provincia_id is not present" do
-      before do
-        @principal.provincia = nil
-      end
-      it { should_not be_valid }
     end
 
     describe "when localidad_id is not present" do
@@ -66,7 +58,7 @@ describe Principal do
 
     describe "when nombre is not present" do
       before do
-        @principal = Principal.new(formulario_id: 1, provincia: localidad.provincia, localidad: localidad, grupo: grupo,
+        @principal = Principal.new(formulario_id: 1, localidad: localidad, grupo: grupo,
                                    nombre: " ")
       end
       it { should_not be_valid }

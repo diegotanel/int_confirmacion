@@ -37,6 +37,7 @@ class PrincipalsController < ApplicationController
       flash[:success] = "Datos principales actualizados"
       redirect_to formulario_principal_path(@formulario, @principal)
     else
+      inicializar_variables
       render 'edit'
     end
   end

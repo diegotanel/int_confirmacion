@@ -109,8 +109,8 @@ describe "Principal" do
 
       it {
         should have_selector("div.alert.alert-success")
-        should have_content('Formulario de Inscripcion')
-        should have_title('Formularios de Inscripcion del usuario')
+        #should have_content('Formulario de Inscripcion')
+        should have_title('Sus datos principales')
       }
 
 
