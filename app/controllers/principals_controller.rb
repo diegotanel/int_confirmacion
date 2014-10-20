@@ -45,7 +45,6 @@ class PrincipalsController < ApplicationController
     @provincia = Provincia.find(params[:provincia_id])
     @region = @provincia.region
     respond_to do | format |
-      #format.json { render json: @listado }
       format.js { render json: @region }
     end
   end
@@ -54,7 +53,6 @@ class PrincipalsController < ApplicationController
     @provincia = Provincia.find(params[:provincia_id])
     @localidad = @provincia.localidad
     respond_to do | format |
-      #format.json { render json: @listado }
       format.js { render json: @localidad }
     end
   end

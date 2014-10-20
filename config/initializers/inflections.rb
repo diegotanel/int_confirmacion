@@ -40,5 +40,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'datos_del_responsable', 'datos_del_responsables'
 	inflect.irregular 'datos_esp', 'datos_esps'
 	inflect.irregular 'datos_grupo', 'datos_grupos'
+	inflect.irregular 'persona_juridica', 'personas_juridicas'
+	inflect.irregular 'persona_fisica', 'personas_fisicas'
 
 end

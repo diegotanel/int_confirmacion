@@ -2,17 +2,38 @@
 <% provide(:title, 'Editar formulario') %>
 <h1>Editar Formulario</h1></br>
 
-if (@formulario.principal)
+<% if (@formulario.principal) %>
+	<%= link_to "Editar Datos principales", edit_formulario_principal_path(@formulario, @formulario.principal), class: "btn btn-large btn-primary" %></br>
+<% else %>
 	<%= link_to "Cargar Datos principales", new_formulario_principal_path(@formulario), class: "btn btn-large btn-primary" %></br>
-else
-	<%= link_to "Editar Datos principales", edit_formulario_principal_path(@formulario, @principal), class: "btn btn-large btn-primary" %></br>
+<% end %>
 
-if (@formulario.elenco_en_gira)
-	<%= link_to "Cargar Datos del Elenco", new_formulario_elenco_en_gira_path(@formulario), class: "btn btn-large btn-primary" %></br>
-else
-	<%= link_to "Editar Datos principales", edit_formulario_elenco_en_gira_path(@formulario, @elenco_en_gira), class: "btn btn-large btn-primary" %></br>
+<%= link_to "Cargar Datos del elenco", formulario_elencos_en_gira_path(@formulario), class: "btn btn-large btn-primary" %></br>
 
-if (@formulario.datos_grupo)
-	<%= link_to "Cargar Datos del Grupo", new_formulario_datos_grupo_path(@formulario), class: "btn btn-large btn-primary" %></br>
-else
-	<%= link_to "Editar Datos principales", edit_formulario_datos_grupo_path(@formulario, @datos_grupo), class: "btn btn-large btn-primary" %></br>
+<% if (@formulario.datos_grupo) %>
+	<%= link_to "Editar Datos del grupo", edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo), class: "btn btn-large btn-primary" %></br>
+<% else %>
+	<% if (@formulario.principal) %>
+		<% if (@formulario.principal.grupo.codigo == "A" ) %>
+			<%= link_to "Cargar Datos del grupo", new_formulario_datos_grupo_path(@formulario), class: "btn btn-large btn-primary" %></br>
+		<% end %>
+	<% end %>
+<% end %>
+
+<% if (@formulario.datos_esp) %>
+	<%= link_to "Editar Datos del espectaculo", edit_formulario_datos_esp_path(@formulario, @formulario.datos_esp), class: "btn btn-large btn-primary" %></br>
+<% else %>
+	<%= link_to "Cargar Datos del espectaculo", new_formulario_datos_esp_path(@formulario), class: "btn btn-large btn-primary" %></br>
+<% end %>
+
+<% if (@formulario.datos_tec) %>
+	<%= link_to "Editar Datos tecnicos del espectaculo", edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec), class: "btn btn-large btn-primary" %></br>
+<% else %>
+	<%= link_to "Cargar Datos tecnicos del espectaculo", new_formulario_datos_tec_path(@formulario), class: "btn btn-large btn-primary" %></br>
+<% end %>
+
+<% if (@formulario.datos_del_responsable) %>
+	<%= link_to "Editar Datos del responsable", edit_formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable), class: "btn btn-large btn-primary" %></br>
+<% else %>
+	<%= link_to "Cargar Datos del responsable", new_formulario_datos_del_responsable_path(@formulario), class: "btn btn-large btn-primary" %></br>
+<% end %>

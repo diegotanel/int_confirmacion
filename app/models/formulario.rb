@@ -1,11 +1,11 @@
 class Formulario < ActiveRecord::Base
 	belongs_to :user
-	has_one :principal
-	has_one :elenco_en_gira
-	has_one :datos_grupo
-	has_one :datos_esp
-	has_one :datos_tec
-	has_one :datos_del_responsable
+	has_one :principal, dependent: :destroy
+	has_one :elenco_en_gira, dependent: :destroy
+	has_one :datos_grupo, dependent: :destroy
+	has_one :datos_esp, dependent: :destroy
+	has_one :datos_tec, dependent: :destroy
+	has_one :datos_del_responsable, dependent: :destroy
 
 	default_scope -> { order('created_at DESC') }
 	validates :user_id, presence: true

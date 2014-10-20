@@ -1,5 +1,5 @@
 class FormulariosController < ApplicationController
-	before_action :signed_in_user, only: [:new, :create, :edit, :update]
+	before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
 
 	def new
   	@formulario = Formulario.new
@@ -34,6 +34,13 @@ class FormulariosController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    Formulario.find(params[:id]).destroy
+    flash[:success] = "Formulario eliminado"
+    redirect_to formularios_path
+
   end
 
 
