@@ -14,10 +14,8 @@ FactoryGirl.define do
   end
 
   factory :principal do
-    provincia
     localidad
     grupo
-    registro
     nombre "Los Chaquenos"
     formulario
   end
@@ -36,21 +34,13 @@ FactoryGirl.define do
   factory :localidad do
     id 1
     detalle "Capital Federal"
+    provincia
   end
 
   factory :grupo do
     id 1
+    codigo "G"
     detalle "Grupo"
-  end
-
-  factory :condicion do
-    codigo "ic2014"
-    detalle "Espectáculo Integrante Catálogo 2014"
-  end
-
-  factory :registro do
-    id 1
-    detalle "Ya registrado"
   end
 
   factory :elenco_en_gira do

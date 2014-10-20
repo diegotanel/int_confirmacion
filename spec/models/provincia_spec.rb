@@ -12,6 +12,7 @@ describe Provincia do
 
 	it { should respond_to(:detalle) }
 	it { should respond_to(:region) }
+  it { should respond_to(:localidades) }
 
 	it {should be_valid}
 

@@ -62,7 +62,7 @@ class PrincipalsController < ApplicationController
   private
 
   def principal_params
-    params.require(:principal).permit(:provincia_id, :localidad_id, :grupo_id, :nombre, :condicion_ids => [])
+    params.require(:principal).permit(:localidad_id, :grupo_id, :nombre)
   end
 
   def inicializar_variables
@@ -70,6 +70,5 @@ class PrincipalsController < ApplicationController
     @region = Region.all
     @localidades = Localidad.all
     @grupos = Grupo.all
-    @condiciones = Condicion.all
   end
 end

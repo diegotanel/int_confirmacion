@@ -17,14 +17,10 @@ describe "Formulario" do
   end
 
   describe "lista de formularios" do
-    #let(:formulario) { FactoryGirl.create(:formulario) }
     describe "con instancia principal creada" do
       let(:principal) { FactoryGirl.build(:principal) }
-      let(:condicion) { FactoryGirl.create(:condicion) }
 
       before do
-        principal.condiciones << condicion
-        principal.save!
         sign_in principal.formulario.user
         visit formularios_path
       end

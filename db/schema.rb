@@ -16,20 +16,6 @@ ActiveRecord::Schema.define(version: 20141016175939) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "condiciones", force: true do |t|
-    t.string   "codigo",     null: false
-    t.string   "detalle",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "condiciones_principals", id: false, force: true do |t|
-    t.integer "condicion_id", null: false
-    t.integer "principal_id", null: false
-  end
-
-  add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id", using: :btree
-
   create_table "datos_del_responsables", force: true do |t|
     t.integer  "formulario_id",  null: false
     t.integer  "responsable_id", null: false
@@ -193,7 +179,6 @@ ActiveRecord::Schema.define(version: 20141016175939) do
     t.string   "altura_calle",        null: false
     t.string   "piso"
     t.string   "depto"
-    t.integer  "provincia_id",        null: false
     t.integer  "localidad_id",        null: false
     t.string   "codigo_postal",       null: false
     t.string   "tel_particular"
@@ -206,7 +191,6 @@ ActiveRecord::Schema.define(version: 20141016175939) do
 
   add_index "integrantes_de_elenco_en_gira", ["elenco_en_gira_id"], name: "index_integrantes_de_elenco_en_gira_on_elenco_en_gira_id", using: :btree
   add_index "integrantes_de_elenco_en_gira", ["localidad_id"], name: "index_integrantes_de_elenco_en_gira_on_localidad_id", using: :btree
-  add_index "integrantes_de_elenco_en_gira", ["provincia_id"], name: "index_integrantes_de_elenco_en_gira_on_provincia_id", using: :btree
   add_index "integrantes_de_elenco_en_gira", ["type"], name: "index_integrantes_de_elenco_en_gira_on_type", using: :btree
 
   create_table "integrantes_del_esp", force: true do |t|
@@ -228,7 +212,6 @@ ActiveRecord::Schema.define(version: 20141016175939) do
 
   create_table "principals", force: true do |t|
     t.integer  "formulario_id", null: false
-    t.integer  "provincia_id",  null: false
     t.integer  "localidad_id",  null: false
     t.integer  "grupo_id",      null: false
     t.string   "nombre",        null: false
@@ -239,7 +222,6 @@ ActiveRecord::Schema.define(version: 20141016175939) do
   add_index "principals", ["formulario_id"], name: "index_principals_on_formulario_id", using: :btree
   add_index "principals", ["grupo_id"], name: "index_principals_on_grupo_id", using: :btree
   add_index "principals", ["localidad_id"], name: "index_principals_on_localidad_id", using: :btree
-  add_index "principals", ["provincia_id"], name: "index_principals_on_provincia_id", using: :btree
 
   create_table "provincias", force: true do |t|
     t.string   "detalle",    null: false

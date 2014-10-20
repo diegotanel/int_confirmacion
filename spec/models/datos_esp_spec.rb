@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe GenerosEspectaculo do
+describe DatosEsp do
   pending "add some examples to (or delete) #{__FILE__}"
 end

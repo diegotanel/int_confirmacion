@@ -10,7 +10,6 @@ class CreateIntegrantesDeElencoEnGira < ActiveRecord::Migration
       t.string :altura_calle, :null => false
       t.string :piso
       t.string :depto
-      t.references :provincia, index: true, :null => false
       t.references :localidad, index: true, :null => false
       t.string :codigo_postal, :null => false
       t.string :tel_particular

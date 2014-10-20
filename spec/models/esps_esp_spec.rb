@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe PublicoPorExperiencia do
+describe EspsEsp do
   pending "add some examples to (or delete) #{__FILE__}"
 end

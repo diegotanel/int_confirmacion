@@ -3,17 +3,29 @@ require 'spec_helper'
 
 describe Localidad do
 
-	before do
-		@localidad = Localidad.new(detalle: "Buenos Aires")
-	end
+  let(:provincia) { FactoryGirl.create(:provincia) }
+  before do
+    @localidad = provincia.localidades.build(detalle: "Buenos Aires")
+  end
 
-	subject { @localidad }
+  subject { @localidad }
 
-	it { should respond_to(:detalle) }
+  it { should respond_to(:detalle) }
 
-	it {should be_valid}
+  it {should be_valid}
 
-	describe "validations" do
+  describe "validations" do
+
+    it "should have the right associated provincia" do
+      @localidad.provincia_id.should == provincia.id
+    end
+
+    describe "when provincia_id is not present" do
+      before do
+        @localidad = Localidad.new(provincia_id: " ", detalle: "CABA")
+      end
+      it { should_not be_valid }
+    end
 
     before {@localidad.detalle = ' '}
     it {should_not be_valid}
@@ -24,4 +36,3 @@ describe Localidad do
     end
   end
 end
-
