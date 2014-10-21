@@ -13,6 +13,11 @@ Int::Application.routes.draw do
     resources :datos_esps, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :datos_tecs, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :datos_del_responsables, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :persona_juridica, only: [:new, :create, :show, :edit, :update, :index]
+    resources :integrantes_persona_juridica, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :persona_fisica_n, only: [:new, :create, :show, :edit, :update]
+    resources :persona_fisica_e, only: [:new, :create, :show, :edit, :update]
+    resources :ficha_artisticas, only: [:new, :create, :show, :edit, :update, :index, :destroy]
   end
   get "principals/obtener_region", :defaults => {:format => :js}
 
