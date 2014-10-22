@@ -1,4 +1,4 @@
-class DatosEspsController < ApplicationController
+class DatosDelResponsablesController < ApplicationController
   before_action :inicializar_variables, only: [:new, :edit]
   before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
 
@@ -42,11 +42,11 @@ class DatosEspsController < ApplicationController
 
   private
 
-	 def datos_del_responsable_params
-	  params.require(:datos_responsable).permit(:responsable_id)
-	 end
+	def datos_del_responsable_params
+	 params.require(:datos_responsable).permit(:responsable_id)
+	end
 
   def inicializar_variables
-    @responsables = Responsable.all
+   @responsables = Responsable.all
   end
 end

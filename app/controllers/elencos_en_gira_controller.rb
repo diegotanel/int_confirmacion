@@ -17,8 +17,4 @@ class ElencosEnGiraController < ApplicationController
 
   private
 
-  # def principal_params
-  #   params.require(:elenco_en_gira).permit(:provincia_id, :localidad_id, :grupo_id, :registro_id, :nombre, :condicion_ids => [])
-  # end
-
 end
