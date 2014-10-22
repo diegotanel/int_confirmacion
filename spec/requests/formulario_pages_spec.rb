@@ -18,7 +18,7 @@ describe "Formulario" do
 
   describe "lista de formularios" do
     describe "con instancia principal creada" do
-      let(:principal) { FactoryGirl.build(:principal) }
+      let(:principal) { FactoryGirl.create(:principal) }
 
       before do
         sign_in principal.formulario.user
@@ -28,13 +28,12 @@ describe "Formulario" do
       it { should have_selector("td", :text => "Los Chaquenos")}
       it { should have_selector("td", :text => "borrador")}
 
-      describe "Formulario show debe tener" do
+      describe "Formulario edit debe tener" do
         before do
-          visit formularios_path(principal.formulario)
+          visit edit_formulario_path(principal.formulario)
         end
 
         it { should have_link('Editar Datos principales') }
-        it { should have_link('Cargar Datos del grupo') }
       end
     end
 
@@ -51,10 +50,9 @@ describe "Formulario" do
     end
 
     describe "con instancia elenco_en_gira creada" do
-      let(:elenco_en_gira) { FactoryGirl.build(:elenco_en_gira) }
+      let(:elenco_en_gira) { FactoryGirl.create(:elenco_en_gira) }
 
       before do
-        elenco_en_gira.save!
         sign_in elenco_en_gira.formulario.user
         visit formularios_path
       end
@@ -64,10 +62,9 @@ describe "Formulario" do
     end
 
     describe "con instancia datos_grupo creada" do
-      let(:datos_grupo) { FactoryGirl.build(:datos_grupo) }
+      let(:datos_grupo) { FactoryGirl.create(:datos_grupo) }
 
       before do
-        datos_grupo.save!
         sign_in datos_grupo.formulario.user
         visit formularios_path
       end
@@ -75,9 +72,9 @@ describe "Formulario" do
       it { should_not have_selector("td", :text => "Los Chaquenos")}
       it { should have_selector("td", :text => "borrador")}
 
-      describe "Formulario show debe tener" do
+      describe "Formulario edit debe tener" do
         before do
-          visit formularios_path(datos_grupo.formulario)
+          visit edit_formulario_path(datos_grupo.formulario)
         end
 
         it { should have_link('Cargar Datos principales') }

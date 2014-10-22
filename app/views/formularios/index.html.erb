@@ -9,6 +9,7 @@
     <th>Nombre del Espectaculo</th>
     <th>Estado</th>
     <th></th>
+    <th></th>
   </tr>
 
   <%= content_tag_for(:tr, @formularios) do |formulario| %>
@@ -17,7 +18,6 @@
     <td><%= formulario.principal.nombre if formulario.principal%></td>
     <td><%= Formulario::ESTADOS.key(formulario.estado) %></td>
 
-    <td><%= link_to t("scaffoldi18n.show"),formulario_path(formulario) %></td>
     <td><%= link_to t("scaffoldi18n.edit"),edit_formulario_path(formulario) %></td>
     <td><%= link_to t("scaffoldi18n.destroy"), formulario_path(formulario), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
     

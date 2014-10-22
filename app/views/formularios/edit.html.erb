@@ -14,7 +14,7 @@
 	<%= link_to "Editar Datos del grupo", edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo), class: "btn btn-large btn-primary" %></br>
 <% else %>
 	<% if (@formulario.principal) %>
-		<% if (@formulario.principal.grupo.codigo == "A" ) %>
+		<% if (@formulario.principal.grupo.codigo == "a" ) %>
 			<%= link_to "Cargar Datos del grupo", new_formulario_datos_grupo_path(@formulario), class: "btn btn-large btn-primary" %></br>
 		<% end %>
 	<% end %>

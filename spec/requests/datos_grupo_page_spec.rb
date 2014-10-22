@@ -16,7 +16,7 @@ describe "Datos_Grupo" do
     it { should have_title("Datos del grupo") }
 
     describe "falla" do
-      let(:submit) { "Cargar Datos" }
+      let(:submit) { "Guardar Datos" }
 
       describe "with invalid information" do
         it "should not create a datos_grupo" do
