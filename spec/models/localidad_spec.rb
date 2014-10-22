@@ -5,11 +5,12 @@ describe Localidad do
 
   let(:provincia) { FactoryGirl.create(:provincia) }
   before do
-    @localidad = provincia.localidades.build(detalle: "Buenos Aires")
+    @localidad = provincia.localidades.build(codigo: "bb", detalle: "Buenos Aires")
   end
 
   subject { @localidad }
 
+  it { should respond_to(:codigo) }
   it { should respond_to(:detalle) }
 
   it {should be_valid}
@@ -27,8 +28,15 @@ describe Localidad do
       it { should_not be_valid }
     end
 
-    before {@localidad.detalle = ' '}
-    it {should_not be_valid}
+    describe "cuando detalle es nulo" do
+      before {@localidad.detalle = ' '}
+      it {should_not be_valid}
+    end
+
+    describe "cuando codigo es nulo" do
+      before {@localidad.codigo = " "}
+      it {should_not be_valid}
+    end
 
     describe "when detalle is too long" do
       before { @localidad.detalle = "a" * 71 }

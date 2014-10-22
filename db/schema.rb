@@ -235,6 +235,7 @@ ActiveRecord::Schema.define(version: 20141021143618) do
   add_index "integrantes_persona_juridica", ["persona_juridica_id"], name: "index_integrantes_persona_juridica_on_persona_juridica_id", using: :btree
 
   create_table "localidades", force: true do |t|
+    t.string   "codigo",       null: false
     t.string   "detalle",      null: false
     t.integer  "provincia_id", null: false
     t.datetime "created_at"
@@ -304,6 +305,7 @@ ActiveRecord::Schema.define(version: 20141021143618) do
   add_index "principals", ["localidad_id"], name: "index_principals_on_localidad_id", using: :btree
 
   create_table "provincias", force: true do |t|
+    t.string   "codigo",     null: false
     t.string   "detalle",    null: false
     t.integer  "region_id",  null: false
     t.datetime "created_at"
@@ -325,6 +327,7 @@ ActiveRecord::Schema.define(version: 20141021143618) do
   end
 
   create_table "regiones", force: true do |t|
+    t.string   "codigo",     null: false
     t.string   "detalle",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
