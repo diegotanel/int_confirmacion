@@ -16,7 +16,7 @@ class FormulariosController < ApplicationController
   def create
     if @formulario = current_user.formularios.create!()
     	flash[:success] = "Formulario correctamente creado"
-      redirect_to @formulario
+      redirect_to edit_formulario_path(@formulario)
     else
       render 'new'
     end

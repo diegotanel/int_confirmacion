@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016175939) do
+ActiveRecord::Schema.define(version: 20141021143618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "condiciones_principals", id: false, force: true do |t|
+    t.integer "condicion_id", null: false
+    t.integer "principal_id", null: false
+  end
+
+  add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id", using: :btree
 
   create_table "datos_del_responsables", force: true do |t|
     t.integer  "formulario_id",  null: false
@@ -137,9 +144,12 @@ ActiveRecord::Schema.define(version: 20141016175939) do
     t.string   "nombre_artista",   null: false
     t.string   "apellido_artista", null: false
     t.string   "rol_artista",      null: false
+    t.integer  "datos_esp_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "ficha_artisticas", ["datos_esp_id"], name: "index_ficha_artisticas_on_datos_esp_id", using: :btree
 
   create_table "formatos", force: true do |t|
     t.string   "detalle",    null: false
@@ -201,6 +211,29 @@ ActiveRecord::Schema.define(version: 20141016175939) do
     t.datetime "updated_at"
   end
 
+  create_table "integrantes_persona_juridica", force: true do |t|
+    t.string   "cargo",               null: false
+    t.string   "nombre",              null: false
+    t.string   "apellido",            null: false
+    t.string   "cuil_cuit",           null: false
+    t.datetime "fecha_de_nacimiento", null: false
+    t.string   "calle",               null: false
+    t.string   "altura_calle",        null: false
+    t.string   "piso"
+    t.string   "depto"
+    t.integer  "localidad_id",        null: false
+    t.string   "codigo_postal",       null: false
+    t.string   "tel_particular"
+    t.string   "tel_celular"
+    t.string   "email",               null: false
+    t.integer  "persona_juridica_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "integrantes_persona_juridica", ["localidad_id"], name: "index_integrantes_persona_juridica_on_localidad_id", using: :btree
+  add_index "integrantes_persona_juridica", ["persona_juridica_id"], name: "index_integrantes_persona_juridica_on_persona_juridica_id", using: :btree
+
   create_table "localidades", force: true do |t|
     t.string   "detalle",      null: false
     t.integer  "provincia_id", null: false
@@ -209,6 +242,53 @@ ActiveRecord::Schema.define(version: 20141016175939) do
   end
 
   add_index "localidades", ["provincia_id"], name: "index_localidades_on_provincia_id", using: :btree
+
+  create_table "personas_fisicas_e", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personas_fisicas_n", force: true do |t|
+    t.string   "nombre_per_fisica",        null: false
+    t.string   "apellido_per_fisica",      null: false
+    t.string   "cuil_cuit_per_fisica",     null: false
+    t.datetime "fecha_de_nacimiento",      null: false
+    t.string   "calle",                    null: false
+    t.string   "altura_calle",             null: false
+    t.string   "piso"
+    t.string   "depto"
+    t.integer  "localidad_id",             null: false
+    t.string   "codigo_postal",            null: false
+    t.string   "tel_particular"
+    t.string   "tel_celular",              null: false
+    t.string   "email",                    null: false
+    t.integer  "datos_del_responsable_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "personas_fisicas_n", ["datos_del_responsable_id"], name: "index_personas_fisicas_n_on_datos_del_responsable_id", using: :btree
+  add_index "personas_fisicas_n", ["localidad_id"], name: "index_personas_fisicas_n_on_localidad_id", using: :btree
+
+  create_table "personas_juridicas", force: true do |t|
+    t.string   "nombre_per_juridica",      null: false
+    t.string   "num_cuit",                 null: false
+    t.string   "num_per_juridica",         null: false
+    t.string   "calle",                    null: false
+    t.string   "altura_calle",             null: false
+    t.string   "piso"
+    t.string   "depto"
+    t.integer  "localidad_id",             null: false
+    t.string   "codigo_postal",            null: false
+    t.string   "tel_entidad"
+    t.string   "email_entidad",            null: false
+    t.integer  "datos_del_responsable_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "personas_juridicas", ["datos_del_responsable_id"], name: "index_personas_juridicas_on_datos_del_responsable_id", using: :btree
+  add_index "personas_juridicas", ["localidad_id"], name: "index_personas_juridicas_on_localidad_id", using: :btree
 
   create_table "principals", force: true do |t|
     t.integer  "formulario_id", null: false

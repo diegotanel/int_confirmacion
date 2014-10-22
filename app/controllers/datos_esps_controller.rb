@@ -17,7 +17,7 @@ class DatosEspsController < ApplicationController
   	@datos_esp = @formulario.build_datos_esp(datos_esp_params)
     if @datos_esp.save
       flash[:success] = "Datos del espectaculo correctamente creados"
-      redirect_to formulario_datos_esp_path(@formulario, @datos_esp)
+      redirect_to formulario_ficha_artisticas_path
     else
       inicializar_variables
       render 'new'
@@ -34,7 +34,7 @@ class DatosEspsController < ApplicationController
     @datos_esp = DatosEsp.find(params[:id])
     if @datos_esp.update_attributes(datos_esp_params)
       flash[:success] = "Datos del espectaculo actualizados"
-      redirect_to formulario_datos_esp_path(@formulario, @datos_esp)
+      redirect_to formulario_ficha_artisticas_path
     else
       render 'edit'
     end
