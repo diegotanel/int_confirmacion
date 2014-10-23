@@ -45,4 +45,6 @@ Grupo.create!(codigo: "b", detalle: "Espectáculo concertado")
 @formato = %Q[grande,mediano,pequeño].split(",")
 @formato.each { |p| Formato.create!(detalle: p) }
 
+@tipo_de_espacio = %Q[calle – exteriores,convencional,no convencional].split(",")
+@tipo_de_espacio.each { |p| EspsEsp.create!(detalle: p) }
 
