@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Region do
 
 	before do
-		@region = Region.new(detalle: "Cuyo")
+		@region = Region.new(codigo: "4141", detalle: "Cuyo")
 	end
 
 	subject { @region }

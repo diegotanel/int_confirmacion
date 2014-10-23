@@ -118,12 +118,12 @@ describe "Principal" do
 
     describe "lista de localidades" do
       it "debe listarse las localidades correspondientes a la provincia", js: :true do
-        @reg1 = Region.create!(detalle: "NOA")
-        @provincia1 = @reg1.provincias.create!(detalle: "Jujuy")
-        @localidad1 = @provincia1.localidades.create!(detalle: "9 de Octubre")
-        @reg2 = Region.create!(detalle: "Centro")
-        @provincia2 = @reg2.provincias.create!(detalle: "Buenos Aires")
-        @localidad2 = @provincia2.localidades.create!(detalle: "CABA")
+        @reg1 = Region.create!(codigo: "13213", detalle: "NOA")
+        @provincia1 = @reg1.provincias.create!(codigo: "1421", detalle: "Jujuy")
+        @localidad1 = @provincia1.localidades.create!(codigo: "13213", detalle: "9 de Octubre")
+        @reg2 = Region.create!(codigo: "1411", detalle: "Centro")
+        @provincia2 = @reg2.provincias.create!(codigo: "13342", detalle: "Buenos Aires")
+        @localidad2 = @provincia2.localidades.create!(codigo: "1113", detalle: "CABA")
         visit new_formulario_principal_path(formulario)
         select "Buenos Aires", :from => :p_provincia_id
         should have_selector(%-option[value="#{@localidad2.id}"]-, :text => "Buenos Aires")

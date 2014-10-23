@@ -93,12 +93,12 @@ describe "IntegrantesDeElencoEnGira" do
 
     describe "lista de localidades" do
       it "debe listarse las localidades correspondientes a la provincia", js: :true do
-        @reg1 = Region.create!(detalle: "NOA")
-        @provincia1 = @reg1.provincias.create!(detalle: "Jujuy")
-        @localidad1 = @provincia1.localidades.create!(detalle: "9 de Octubre")
-        @reg2 = Region.create!(detalle: "Centro")
-        @provincia2 = @reg2.provincias.create!(detalle: "Buenos Aires")
-        @localidad2 = @provincia2.localidades.create!(detalle: "CABA")
+        @reg1 = Region.create!(codigo: "122", detalle: "NOA")
+        @provincia1 = @reg1.provincias.create!(codigo: "1234", detalle: "Jujuy")
+        @localidad1 = @provincia1.localidades.create!(codigo: "asdfa", detalle: "9 de Octubre")
+        @reg2 = Region.create!(codigo: "13213", detalle: "Centro")
+        @provincia2 = @reg2.provincias.create!(codigo: "asdfdsa", detalle: "Buenos Aires")
+        @localidad2 = @provincia2.localidades.create!(codigo: "asdfads", detalle: "CABA")
         visit new_formulario_actor_path(elenco_en_gira.formulario)
         select "Buenos Aires", :from => :ideec_provincia_id
         should have_selector(%-option[value="#{@localidad2.id}"]-, :text => "Buenos Aires")
