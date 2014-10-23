@@ -15,3 +15,13 @@ es-AR:
         user: Usuario
         created_at: Fecha de creación
         deleted_at: Fecha de baja
+        esps_esp: "Espacios del espectaculo"
+        gen_esp: "Generos del espectaculo"
+        publ_edad: "Publicos por edad"
+        publ_exp: "Publicos por experiencia"
+    errors:
+        models:
+          esps_esp: "Espacios del espectaculo"
+          gen_esp: "Generos del espectaculo"
+          publ_edad: "Publicos por edad"
+          publ_exp: "Publicos por experiencia"

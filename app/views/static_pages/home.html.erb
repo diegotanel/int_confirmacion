@@ -1,11 +1,21 @@
 <% provide(:title, 'Home') %>
 <div class="center hero-unit">
-  <h1>Bienvenido INT</h1>
+  <h1>Bienvenido INT</h1></br>
 
   <% if signed_in? %>
-  	<h3>Que tenga un lindo dia!</h3>
+  	<h3>Bienvenido <%= current_user.name %>, usted esta iniciando su inscripcion a la
+		seleccion de espectaculos para el catalogo 2015 del programa INT presenta.</h3></br>
+		<%= link_to "Inscripcion al INT", formularios_path, class: "btn btn-large btn-medium" %></br>
+		</br>
+		<%= link_to "Configuracion", edit_user_path(current_user), class: "btn btn-large btn-medium" %></br>
+		</br>
+		<%= link_to "Cerrar Sesion", signout_path, method: "delete", class: "btn btn-large btn-medium" %></br>
+		</br>
+
   <% else %>
-  	<%= link_to "Registrarse!", signup_path, class: "btn btn-large btn-primary" %>
+  	<%= link_to "Registrarse!", signup_path, class: "btn btn-large btn-medium" %></br>
+  	</br>
+  	<%= link_to "Iniciar Sesion", signin_path, class: "btn btn-large btn-medium" %>
 	<% end %>
 </div>
 

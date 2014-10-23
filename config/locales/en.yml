@@ -21,3 +21,24 @@
 
 en:
   hello: "Hello world"
+en:  
+ activerecord:
+  models: 
+    user:
+    esps_esp: "Espacios del espectaculo"
+    gen_esp: "Generos del espectaculo"
+    publ_edad: "Publicos por edad"
+    publ_exp: "Publicos por experiencia"
+  attributes:
+    user:
+      email: "Email address"
+    esps_esp: "Espacios del espectaculo"
+    gen_esp: "Generos del espectaculo"
+    publ_edad: "Publicos por edad"
+    publ_exp: "Publicos por experiencia"
+  errors:
+    models:
+      esps_esp: "Espacios del espectaculo"
+      gen_esp: "Generos del espectaculo"
+      publ_edad: "Publicos por edad"
+      publ_exp: "Publicos por experiencia"

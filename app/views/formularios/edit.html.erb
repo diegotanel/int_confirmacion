@@ -1,39 +1,93 @@
 #encoding: utf-8
 <% provide(:title, 'Editar formulario') %>
-<h1>Editar Formulario</h1></br>
 
 <% if (@formulario.principal) %>
-	<%= link_to "Editar Datos principales", edit_formulario_principal_path(@formulario, @formulario.principal), class: "btn btn-large btn-primary" %></br>
+  <h1> Formulario <%=  @formulario.principal.nombre %></h1></br>
 <% else %>
-	<%= link_to "Cargar Datos principales", new_formulario_principal_path(@formulario), class: "btn btn-large btn-primary" %></br>
+  <h1> Editar Formulario </h1>
 <% end %>
 
-<%= link_to "Cargar Datos del elenco", formulario_elencos_en_gira_path(@formulario), class: "btn btn-large btn-primary" %></br>
+<table class="table table-striped">
+  <tr>
 
-<% if (@formulario.datos_grupo) %>
-	<%= link_to "Editar Datos del grupo", edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo), class: "btn btn-large btn-primary" %></br>
-<% else %>
-	<% if (@formulario.principal) %>
-		<% if (@formulario.principal.grupo.codigo == "a" ) %>
-			<%= link_to "Cargar Datos del grupo", new_formulario_datos_grupo_path(@formulario), class: "btn btn-large btn-primary" %></br>
-		<% end %>
-	<% end %>
-<% end %>
+    <th>Tipo de datos</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-<% if (@formulario.datos_esp) %>
-	<%= link_to "Editar Datos del espectaculo", edit_formulario_datos_esp_path(@formulario, @formulario.datos_esp), class: "btn btn-large btn-primary" %></br>
-<% else %>
-	<%= link_to "Cargar Datos del espectaculo", new_formulario_datos_esp_path(@formulario), class: "btn btn-large btn-primary" %></br>
-<% end %>
+  <tr>
+    <td>Datos Principales</td>
 
-<% if (@formulario.datos_tec) %>
-	<%= link_to "Editar Datos tecnicos del espectaculo", edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec), class: "btn btn-large btn-primary" %></br>
-<% else %>
-	<%= link_to "Cargar Datos tecnicos del espectaculo", new_formulario_datos_tec_path(@formulario), class: "btn btn-large btn-primary" %></br>
-<% end %>
+    <% if (@formulario.principal) %>
 
-<% if (@formulario.datos_del_responsable) %>
-	<%= link_to "Editar Datos del responsable", edit_formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable), class: "btn btn-large btn-primary" %></br>
-<% else %>
-	<%= link_to "Cargar Datos del responsable", new_formulario_datos_del_responsable_path(@formulario), class: "btn btn-large btn-primary" %></br>
-<% end %>
+    	<td><%= link_to t("scaffoldi18n.ver"), formulario_principal_path(@formulario, @formulario.principal)  %></td>
+      <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_principal_path(@formulario, @formulario.principal)  %></td>
+    <% else %>
+      <td><%= link_to t("scaffoldi18n.new"), new_formulario_principal_path(@formulario) %></td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <td>Datos generales del espectaculo</td>
+
+    <% if (@formulario.datos_esp) %>
+
+    	<td><%= link_to t("scaffoldi18n.ver"), formulario_datos_esp_path(@formulario, @formulario.datos_esp)  %></td>
+      <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_esp_path(@formulario, @formulario.datos_esp)  %></td>
+    <% else %>
+      <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_esp_path(@formulario) %></td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <td>Datos tecnicos del espectaculo</td>
+
+
+    <% if (@formulario.datos_tec) %>
+
+    	<td><%= link_to t("scaffoldi18n.ver"), formulario_datos_tec_path(@formulario, @formulario.datos_tec)  %></td>
+      <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec)  %></td>
+    <% else %>
+      <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_tec_path(@formulario) %></td>
+    <% end %>
+
+  </tr>
+
+  <tr>
+    <td>Datos del elenco en gira</td>
+
+    <td><%= link_to t("scaffoldi18n.new"), formulario_elencos_en_gira_path(@formulario, @formulario.datos_tec)  %></td>
+
+    <td><%= link_to t("scaffoldi18n.edit"), formulario_elencos_en_gira_path(@formulario) %></td>
+  </tr>
+
+  <% if (@formulario.principal) %>
+    <% if (@formulario.principal.grupo.codigo == "a" ) %>
+      <tr>
+        <td>Datos del grupo</td>
+
+        <% if (@formulario.datos_grupo) %>
+
+        	<td><%= link_to t("scaffoldi18n.ver"), formulario_datos_grupo_path(@formulario, @formulario.datos_grupo)  %></td>
+          <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo)  %></td>
+        <% else %>
+          <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_grupo_path(@formulario) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+
+  <tr>
+    <td>Datos del responsable</td>
+
+    <% if (@formulario.datos_del_responsable) %>
+
+    	<td><%= link_to t("scaffoldi18n.ver"), formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable)  %></td>
+
+      <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable)  %></td>
+    <% else %>
+      <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_del_responsable_path(@formulario) %></td>
+    <% end %>
+  </tr>
+
+</table>

@@ -2,7 +2,7 @@ Int::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_recovers, only: [:new, :create]
-  resources :formularios, only: [:new, :create, :edit, :update, :index] do
+  resources :formularios, only: [:new, :create, :edit, :update, :index, :destroy] do
     resources :principals, only: [:new, :create, :show, :edit, :update]
     resources :elencos_en_gira, only: [:index]
     resources :integrantes_de_elenco_en_gira, only: [:new, :create, :show, :edit, :update, :destroy]

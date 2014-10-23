@@ -1,0 +1,91 @@
+#encoding: utf-8
+<% provide(:title, 'Datos generales del espectaculo') %>
+<h1>Datos generales del espectaculo</h1>
+
+</br>
+<p>
+  <b>Fecha de Estreno:</b>
+  <%= @datos_esp.fecha_de_estreno %>
+</p>
+
+<p>
+  <b>Nombre del autor:</b>
+  <%= @datos_esp.nombre_autor %>
+</p>
+
+<p>
+  <b>Nacionalidad del autor:</b>
+  <%= @datos_esp.nacionalidad_autor %>
+</p>
+
+<p>
+  <b>Duracion del espectaculo:</b>
+  <%= @datos_esp.duracion_espectaculo %>
+</p>
+
+<p>
+  <b>Cantidad de interpretes en escena:</b>
+  <%= @datos_esp.interpretes_escena %>
+</p>
+
+<p>
+  <b>Cantidad de directores del espectaculo:</b>
+  <%= @datos_esp.directores_espectaculo %>
+</p>
+
+<p>
+  <b>Sinopsis del espectaculo:</b>
+  <%= @datos_esp.sinopsis_obra %>
+</p>
+
+<p>
+  <b>Generos del espectaculo:</b>
+  <%= @datos_esp.gen_esps.map { |e| e.detalle }.join(", ") %>
+</p>
+
+<p>
+  <b>Publicos por experiencia:</b>
+  <%= @datos_esp.publs_exp.map { |e| e.detalle }.join(", ") %>
+</p>
+
+<p>
+  <b>Publicos por edad:</b>
+  <%= @datos_esp.publs_edad.map { |e| e.detalle }.join(", ") %>
+</p>
+
+<p>
+  <b>Formatos:</b>
+  <%= @datos_esp.formatos.map { |e| e.detalle }.join(", ") %>
+</p></br>
+
+<% if (@formulario.principal) %>
+    <%= link_to t("Editar datos principales"), edit_formulario_principal_path(@formulario, @formulario.principal) %></br>
+<% else %>
+    <%= link_to t("Alta datos principales"), new_formulario_principal_path(@formulario) %></br>
+<% end %>
+
+<% if (@formulario.datos_tec) %>
+  <%= link_to t("Editar datos tecnicos del espectaculo"), edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec) %></br>
+<% else %>
+  <%= link_to t("Alta datos tenicos del espectaculo"), new_formulario_datos_tec_path(@formulario) %></br>
+<% end %>
+
+<%= link_to t("Alta datos de elenco en gira"), formulario_elencos_en_gira_path(@formulario) %></br>
+
+<% if (@formulario.datos_grupo) %>
+  <%= link_to t("Editar datos del grupo"), edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo) %></br>
+<% else %>
+  <% if (@formulario.principal) %>
+    <% if (@formulario.principal.grupo.codigo == "a" ) %>
+      <%= link_to t("Alta datos del grupo"), new_formulario_datos_grupo_path(@formulario) %></br>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if (@formulario.datos_del_responsable) %>
+  <%= link_to t("Editar datos del responsable"), edit_formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable) %></br>
+<% else %>
+  <%= link_to t("Alta datos del responsable"), new_formulario_datos_del_responsable_path(@formulario) %></br>
+<% end %>
+
+<%= link_to t('scaffoldi18n.back'), edit_formulario_path(@formulario) %>

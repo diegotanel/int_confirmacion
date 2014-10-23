@@ -2,43 +2,45 @@
   <%= form_for([@formulario, @datos_esp]) do |f| %>
   	<%= render 'shared/error_messages', :object => f.object %>
 
+  	<p>Los campos marcados con * son obligatorios</p>
+
   	<div class="field">
-	  	<%= f.label :fecha_de_estreno, "Fecha de estreno" %>
+	  	<%= f.label :fecha_de_estreno, "Fecha de estreno *" %>
 	    <%= f.date_select :fecha_de_estreno %>
 	  </div>
 
 	  <div class="field">
-	  	<%= f.label :nombre_autor, "Nombre del autor" %>
+	  	<%= f.label :nombre_autor, "Nombre del autor *" %>
 	    <%= f.text_field :nombre_autor %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :nacionalidad_autor, "Nacionalidad del autor" %>
+	    <%= f.label :nacionalidad_autor, "Nacionalidad del autor *" %>
 	    <%= f.text_field :nacionalidad_autor %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :duracion_espectaculo, "Duracion del espectaculo (en minutos)" %>
+	    <%= f.label :duracion_espectaculo, "Duracion del espectaculo (en minutos) *" %>
 	    <%= f.text_field :duracion_espectaculo %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :interpretes_escena, "Cantidad de interpretes en escena" %>
+	    <%= f.label :interpretes_escena, "Cantidad de interpretes en escena *" %>
 	    <%= f.text_field :interpretes_escena %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :directores_espectaculo, "Cantidad de directores del espectaculo" %>
+	    <%= f.label :directores_espectaculo, "Cantidad de directores del espectaculo *" %>
 	    <%= f.text_field :directores_espectaculo %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :sinopsis_obra, "Sinopsis de la obra" %><p>(no mas de 700 caracteres, los espacios cuentan como caracteres)</p>
+	    <%= f.label :sinopsis_obra, "Sinopsis del espectaculo *" %><p>(no mas de 700 caracteres, los espacios cuentan como caracteres)</p>
 	    <%= f.text_area :sinopsis_obra %>
 	  </div>
 
 	  <div class="field">
-  		<br/><%= label_tag :gen_esp, "Generos del espectaculo" %>
+  		<br/><%= label_tag :gen_esp, "Generos del espectaculo *" %><p>(Tildar al menos uno)</p>
     	<%= hidden_field_tag "datos_esp[gen_esp_ids][]", nil %>
       <% GenEsp.all.each do |gen_esp| %>
     		<tr>
@@ -49,7 +51,7 @@
   	</div>
 
 	  <div class="field">
-  		<br/><%= label_tag :publ_exp, "Publicos por experiencia" %>
+  		<br/><%= label_tag :publ_exp, "Publicos por experiencia *" %><p>(Tildar al menos uno)</p>
     	<%= hidden_field_tag "datos_esp[publ_exp_ids][]", nil %>
       <% PublExp.all.each do |publ_exp| %>
     		<tr>
@@ -60,7 +62,7 @@
   	</div>
 
 	  <div class="field">
-  		<br/><%= label_tag :publ_edad, "Publico por edad" %>
+  		<br/><%= label_tag :publ_edad, "Publico por edad *" %><p>(Tildar al menos uno)</p>
     	<%= hidden_field_tag "datos_esp[publ_edad_ids][]", nil %>
       <% PublEdad.all.each do |publ_edad| %>
     		<tr>
@@ -71,7 +73,7 @@
   	</div>
 
   	<div class="field">
-  		<br/><%= label_tag :formato, "Formato del espectaculo" %>
+  		<br/><%= label_tag :formato, "Formato del espectaculo *" %><p>(Tildar al menos uno)</p>
     	<%= hidden_field_tag "datos_esp[formato_ids][]", nil %>
       <% Formato.all.each do |formato| %>
     		<tr>
@@ -81,46 +83,40 @@
     	<% end %>
   	</div></br>
 
- <fieldset>
-    <legend>Sitios Web:</legend>
+    <p>Sitios Web:</p>
+    <p>(Copiar el link)</p>
 	  <div class="field">
-	    <%= f.label :pagina_web, "Pagina Web de la obra" %>
+	    <%= f.label :pagina_web, "Pagina Web" %>
 	    <%= f.text_field :pagina_web %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :facebook, "Facebook de la obra" %>
+	    <%= f.label :facebook, "Facebook" %>
 	    <%= f.text_field :facebook %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :twitter, "Twitter de la obra" %>
+	    <%= f.label :twitter, "Twitter" %>
 	    <%= f.text_field :twitter %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :foro, "Foro sobre la obra" %>
+	    <%= f.label :foro, "Foro" %>
 	    <%= f.text_field :foro %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :blog, "Blog sobre la obra" %>
+	    <%= f.label :blog, "Blog" %>
 	    <%= f.text_field :blog %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :youtube, "Canal de Youtube de la obra" %>
+	    <%= f.label :youtube, "Canal de Youtube del espectaculo" %>
 	    <%= f.text_field :youtube %>
 	  </div>
 
-	  <div class="field">
-	    <%= f.label :instagram, "Instagram de la obra" %>
-	    <%= f.text_field :instagram %>
-	  </div>
-    </fieldset>
-
     <div class="actions">
-    	<%= f.submit "Guardar datos y abrir ficha técnica", class: "btn btn-large btn-primary" %>
+    	<%= f.submit "Guardar datos y abrir ficha artistica", class: "btn btn-large btn-primary" %>
   	</div>
   <% end %>
 

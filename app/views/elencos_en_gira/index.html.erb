@@ -38,7 +38,6 @@
 <%= link_to "Nuevo actor", new_formulario_actor_path(@formulario), class: "btn btn-medium btn-primary" %>
 
 <br />
-<br />
 
 </div>
 
@@ -78,7 +77,6 @@
 <%= link_to "Nuevo director", new_formulario_director_path(@formulario), class: "btn btn-medium btn-primary" %>
 
 <br />
-<br />
 
 </div>
 
@@ -114,8 +112,43 @@
     
   <% end %>
 </table>
-<%= link_to "Nuevo técnico", new_formulario_tecnico_path(@formulario), class: "btn btn-medium btn-primary" %>
+<%= link_to "Nuevo técnico", new_formulario_tecnico_path(@formulario), class: "btn btn-medium btn-primary" %></br>
 
 <br />
+<% if (@formulario.principal) %>
+    <%= link_to t("Editar datos principales"), edit_formulario_principal_path(@formulario, @formulario.principal) %></br>
+<% else %>
+    <%= link_to t("Alta datos principales"), new_formulario_principal_path(@formulario) %></br>
+<% end %>
+
+<% if (@formulario.datos_esp) %>
+      <%= link_to t("Editar datos del espectaculo"), edit_formulario_datos_esp_path(@formulario, @formulario.datos_esp) %></br>
+<% else %>
+      <%= link_to t("Alta datos del espectaculo"), new_formulario_datos_esp_path(@formulario) %></br>
+<% end %>
+
+<% if (@formulario.datos_tec) %>
+  <%= link_to t("Editar datos tecnicos del espectaculo"), edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec) %></br>
+<% else %>
+<%= link_to t("Alta datos tenicos del espectaculo"), new_formulario_datos_tec_path(@formulario) %></br>
+<% end %>
+
+<% if (@formulario.datos_grupo) %>
+  <%= link_to t("Editar datos del grupo"), edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo) %></br>
+<% else %>
+  <% if (@formulario.principal) %>
+    <% if (@formulario.principal.grupo.codigo == "a" ) %>
+      <%= link_to t("Alta datos del grupo"), new_formulario_datos_grupo_path(@formulario) %></br>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if (@formulario.datos_del_responsable) %>
+  <%= link_to t("Editar datos del responsable"), edit_formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable) %></br>
+<% else %>
+  <%= link_to t("Alta datos del responsable"), new_formulario_datos_del_responsable_path(@formulario) %></br>
+<% end %>
+
+<%= link_to t('scaffoldi18n.back'), edit_formulario_path(@formulario) %>
 
 </div>

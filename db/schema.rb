@@ -16,13 +16,6 @@ ActiveRecord::Schema.define(version: 20141021143618) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "condiciones_principals", id: false, force: true do |t|
-    t.integer "condicion_id", null: false
-    t.integer "principal_id", null: false
-  end
-
-  add_index "condiciones_principals", ["condicion_id", "principal_id"], name: "index_condiciones_principals_on_condicion_id_and_principal_id", using: :btree
-
   create_table "datos_del_responsables", force: true do |t|
     t.integer  "formulario_id",  null: false
     t.integer  "responsable_id", null: false
