@@ -43,7 +43,7 @@ class DatosTecsController < ApplicationController
   private
 
   def datos_tec_params
-    params.require(:datos_tec).permit(:duracion_montaje, :duracion_desmontaje, :descripcion_espacio, :ancho, :alto, :profundidad, :listado_artefactos_luminicos, :listado_sonido, :peso_total, :volumen_total, :historia, :esps_esp_ids => [])
+    params.require(:datos_tec).permit(:duracion_montaje, :duracion_desmontaje, :descripcion_espacio, :ancho, :alto, :profundidad, :listado_artefactos_luminicos, :listado_sonido, :otros_equipamientos, :peso_total, :volumen_total, :historia, :otras_necesidades, :esps_esp_ids => [])
   end
 
   def inicializar_variables

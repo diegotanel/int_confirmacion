@@ -39,9 +39,10 @@
 
 	  <div class="field">
   		<br/><%= label_tag :gen_esp, "Generos del espectaculo" %>
-    	<% @gen_esps.each do |gen_esp| %>
+    	<%= hidden_field_tag "datos_esp[gen_esp_ids][]", nil %>
+      <% GenEsp.all.each do |gen_esp| %>
     		<tr>
-      		<td><%= check_box_tag "datos_esp[gen_esp_ids][]", gen_esp.id, false, :id => dom_id(gen_esp) %></td>
+      		<td><%= check_box_tag "datos_esp[gen_esp_ids][]", gen_esp.id, @datos_esp.gen_esp_ids.include?(gen_esp.id), :id => dom_id(gen_esp) %></td>
       		<td><%= gen_esp.detalle %></td>
     		</tr>
     	<% end %>
@@ -49,9 +50,10 @@
 
 	  <div class="field">
   		<br/><%= label_tag :publ_exp, "Publicos por experiencia" %>
-    	<% @publs_exp.each do |publ_exp| %>
+    	<%= hidden_field_tag "datos_esp[publ_exp_ids][]", nil %>
+      <% PublExp.all.each do |publ_exp| %>
     		<tr>
-      		<td><%= check_box_tag "datos_esp[publ_exp_ids][]", publ_exp.id, false, :id => dom_id(publ_exp) %></td>
+      		<td><%= check_box_tag "datos_esp[publ_exp_ids][]", publ_exp.id, @datos_esp.publ_exp_ids.include?(publ_exp.id), :id => dom_id(publ_exp) %></td>
       		<td><%= publ_exp.detalle %></td>
     		</tr>
     	<% end %>
@@ -59,9 +61,10 @@
 
 	  <div class="field">
   		<br/><%= label_tag :publ_edad, "Publico por edad" %>
-    	<% @publs_edad.each do |publ_edad| %>
+    	<%= hidden_field_tag "datos_esp[publ_edad_ids][]", nil %>
+      <% PublEdad.all.each do |publ_edad| %>
     		<tr>
-      		<td><%= check_box_tag "datos_esp[publ_edad_ids][]", publ_edad.id, false, :id => dom_id(publ_edad) %></td>
+      		<td><%= check_box_tag "datos_esp[publ_edad_ids][]", publ_edad.id, @datos_esp.publ_edad_ids.include?(publ_edad.id), :id => dom_id(publ_edad) %></td>
       		<td><%= publ_edad.detalle %></td>
     		</tr>
     	<% end %>
@@ -69,14 +72,17 @@
 
   	<div class="field">
   		<br/><%= label_tag :formato, "Formato del espectaculo" %>
-    	<% @formatos.each do |formato| %>
+    	<%= hidden_field_tag "datos_esp[formato_ids][]", nil %>
+      <% Formato.all.each do |formato| %>
     		<tr>
-      		<td><%= check_box_tag "datos_esp[formato_ids][]", formato.id, false, :id => dom_id(formato) %></td>
+      		<td><%= check_box_tag "datos_esp[formato_ids][]", formato.id, @datos_esp.formato_ids.include?(formato.id), :id => dom_id(formato) %></td>
       		<td><%= formato.detalle %></td>
     		</tr>
     	<% end %>
   	</div></br>
 
+ <fieldset>
+    <legend>Sitios Web:</legend>
 	  <div class="field">
 	    <%= f.label :pagina_web, "Pagina Web de la obra" %>
 	    <%= f.text_field :pagina_web %>
@@ -111,9 +117,10 @@
 	    <%= f.label :instagram, "Instagram de la obra" %>
 	    <%= f.text_field :instagram %>
 	  </div>
+    </fieldset>
 
     <div class="actions">
-    	<%= f.submit "Guardar Datos", class: "btn btn-large btn-primary" %>
+    	<%= f.submit "Guardar datos y abrir ficha técnica", class: "btn btn-large btn-primary" %>
   	</div>
   <% end %>
 

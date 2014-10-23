@@ -15,8 +15,7 @@
 
 <p>
   <b>Tipo de espacio:</b>
-  <% @tipos_de_espacio = @datos_tec.esps_esps.map { |e| e.detalle } %>
-  <%= @tipos_de_espacio %>
+  <%= @datos_tec.esps_esps.map { |e| e.detalle }.join(", ") %>
 </p>
 
 <p>

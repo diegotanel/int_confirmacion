@@ -14,9 +14,10 @@
 
     <div class="field">
       <br/><%= label_tag :esps_esp, "Tipo de Espacio" %>
-      <% @esps_esps.each do |esps_esp| %>
+       <%= hidden_field_tag "datos_tec[esps_esp_ids][]", nil %>
+      <% EspsEsp.all.each do |esps_esp| %>
         <tr>
-          <td><%= check_box_tag "datos_tec[esps_esp_ids][]", esps_esp.id, false, :id => dom_id(esps_esp) %></td>
+          <td><%= check_box_tag "datos_tec[esps_esp_ids][]", esps_esp.id, @datos_tec.esps_esp_ids.include?(esps_esp.id), :id => dom_id(esps_esp) %></td>
           <td><%= esps_esp.detalle %></td>
         </tr>
       <% end %>
