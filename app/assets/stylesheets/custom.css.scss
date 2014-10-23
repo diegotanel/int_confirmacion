@@ -7,7 +7,7 @@
   Base Styles
 ************************************/  
 
-body {font-size: 14px; font-family: 'Lato'; background: #e8e8e8; padding-top: 100px;}
+body {font-size: 14px; font-family: 'Lato'; background: #e8e8e8; padding-top: 150px;}
 .logostop{
 	text-align: right;
 	padding-top: 25px;
@@ -84,6 +84,22 @@ border: none;
  #uwpqsf_id{
  	border: none !important;
  }
+
+.menu-1{
+background: #f3bc55;
+color:white;
+border: none;
+}
+.menu-2{
+background: #ee9247;
+color:white;
+border: none;
+}
+
+.navbar-inverse .brand, .navbar-inverse .nav > li > a {
+    color: #893030;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
 
  #uwpqsf_id input[type=checkbox].css-checkbox {
 							position: absolute; 
@@ -181,6 +197,13 @@ border: none;
 	height: 30px;
 	margin-top: 21px;
 	margin-left: auto;
+}
+
+.navbar-inverse .navbar-inner {
+    background-color: #1B1B1B;
+    background-image: linear-gradient(to bottom, #e8e8e8, #e8e8e8);
+    background-repeat: repeat-x;
+    border-color: #252525;
 }
 
 /*----------------------------------*/
