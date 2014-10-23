@@ -32,3 +32,17 @@ end
 
 Grupo.create!(codigo: "a", detalle: "Grupo")
 Grupo.create!(codigo: "b", detalle: "Espectáculo concertado")
+
+@genero = %Q[antropológico,circo,clásico adaptado,clown,comedia,humor,comedia dramática – drama,comunitario,danza – físico,infantil,murga,nuevas tendencias,objetos – títeres – marionetas,teatro clásico argentino,teatro clásico universal,teatro de sombras,teatro y música,unipersonales].split(",")
+@genero.each { |g| GenEsp.create!(detalle: g) }
+
+@publico_por_experiencia = %Q[con experiencia,especialmente experimentado,nuevos públicos].split(",")
+@publico_por_experiencia.each { |p| PublExp.create!(detalle: p) }
+
+@publico_por_edad = %Q[niños,adolescentes,adultos,apto todo público].split(",")
+@publico_por_edad.each { |p| PublEdad.create!(detalle: p) }
+
+@formato = %Q[grande,mediano,pequeño].split(",")
+@formato.each { |p| Formato.create!(detalle: p) }
+
+
