@@ -24,6 +24,7 @@
       <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_principal_path(@formulario, @formulario.principal)  %></td>
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), new_formulario_principal_path(@formulario) %></td>
+      <td></td>
     <% end %>
   </tr>
 
@@ -36,6 +37,7 @@
       <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_esp_path(@formulario, @formulario.datos_esp)  %></td>
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_esp_path(@formulario) %></td>
+      <td></td>
     <% end %>
   </tr>
 
@@ -49,6 +51,7 @@
       <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec)  %></td>
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_tec_path(@formulario) %></td>
+      <td></td>
     <% end %>
 
   </tr>
@@ -72,6 +75,7 @@
           <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo)  %></td>
         <% else %>
           <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_grupo_path(@formulario) %></td>
+        	<td></td>
         <% end %>
       </tr>
     <% end %>
@@ -87,6 +91,7 @@
       <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable)  %></td>
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_del_responsable_path(@formulario) %></td>
+      <td></td>
     <% end %>
   </tr>
 

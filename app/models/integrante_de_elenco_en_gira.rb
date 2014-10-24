@@ -14,7 +14,7 @@ class IntegranteDeElencoEnGira < ActiveRecord::Base
 
   validates :nombre, presence: true, length: {maximum: 70}
   validates :apellido, presence: true, length: {maximum: 70}
-  validates :cuil_cuit, presence: true, length: {maximum: 11, minimum: 11}, numericality: { only_integer: true }
+  validates :cuil_cuit, presence: true, length: {maximum: 11, minimum: 11}, numericality: { only_integer: true }, uniqueness: { case_sensitive: false }
   validates :fecha_de_nacimiento, presence: true
   validates :calle, presence: true
   validates :altura_calle, presence: true, numericality: { only_integer: true }

@@ -8,7 +8,6 @@ class ElencosEnGiraController < ApplicationController
     @actores = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Actor')
     @directores = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director')
     @tecnicos = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico')
-    @integrantes = [@actores, @directores, @tecnicos]
   end
 
   def edit

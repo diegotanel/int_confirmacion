@@ -1,0 +1,175 @@
+#encoding: utf-8
+<% provide(:title, 'Vista general del formulario') %>
+<h1>Vista general del formulario</h1>
+</br>
+<h3>Datos Principales</h3>
+<% if (@formulario.principal) %>
+	<p>
+		<b>Provincia:</b>
+		<%= @formulario.principal.provincia.detalle %>
+	</p>
+
+	<p>
+		<b>Localidad:</b>
+		<%= @formulario.principal.localidad.detalle %>
+	</p>
+
+	<p>
+		<b>Grupo o Espectaculo Concertado:</b>
+		<%= @formulario.principal.grupo.detalle %>
+	</p>
+
+	<p>
+		<b>Nombre del espectaculo:</b>
+		<%= @formulario.principal.nombre %>
+	</p>
+<% end %>
+</br>
+<h3>Datos generales del espectaculo</h3>
+<% if (@formulario.datos_esp) %>
+	<p>
+  	<b>Fecha de Estreno:</b>
+  	<%= @formulario.datos_esp.fecha_de_estreno %>
+	</p>
+
+	<p>
+	  <b>Nombre del autor:</b>
+	  <%= @formulario.datos_esp.nombre_autor %>
+	</p>
+
+	<p>
+	  <b>Nacionalidad del autor:</b>
+	  <%= @formulario.datos_esp.nacionalidad_autor %>
+	</p>
+
+	<p>
+	  <b>Duracion del espectaculo:</b>
+	  <%= @formulario.datos_esp.duracion_espectaculo %>
+	</p>
+
+	<p>
+	  <b>Cantidad de interpretes en escena:</b>
+	  <%= @formulario.datos_esp.interpretes_escena %>
+	</p>
+
+	<p>
+	  <b>Cantidad de directores del espectaculo:</b>
+	  <%= @formulario.datos_esp.directores_espectaculo %>
+	</p>
+
+	<p>
+	  <b>Sinopsis del espectaculo:</b>
+	  <%= @formulario.datos_esp.sinopsis_obra %>
+	</p>
+
+	<p>
+	  <b>Generos del espectaculo:</b>
+	  <%= @formulario.datos_esp.gen_esps.map { |e| e.detalle }.join(", ") %>
+	</p>
+
+	<p>
+	  <b>Publicos por experiencia:</b>
+	  <%= @formulario.datos_esp.publs_exp.map { |e| e.detalle }.join(", ") %>
+	</p>
+
+	<p>
+	  <b>Publicos por edad:</b>
+	  <%= @formulario.datos_esp.publs_edad.map { |e| e.detalle }.join(", ") %>
+	</p>
+
+	<p>
+	  <b>Formatos:</b>
+	  <%= @formulario.datos_esp.formatos.map { |e| e.detalle }.join(", ") %>
+	</p></br>
+<% end %>
+</br>
+<h3>Datos tecnicos del espectaculo</h3>
+<% if (@formulario.datos_tec) %>
+	<p>
+  	<b>Duración montaje:</b>
+  	<%= @formulario.datos_tec.duracion_montaje %>
+	</p>
+
+	<p>
+	  <b>Duración desmontaje:</b>
+	  <%= @formulario.datos_tec.duracion_desmontaje %>
+	</p>
+
+	<p>
+	  <b>Tipo de espacio:</b>
+	  <%= @formulario.datos_tec.esps_esps.map { |e| e.detalle }.join(", ") %>
+	</p>
+
+	<p>
+	  <b>Descripcion espacio:</b>
+	  <%= @formulario.datos_tec.descripcion_espacio %>
+	</p>
+
+	<p>
+	  <b>Ancho:</b>
+	  <%= @formulario.datos_tec.ancho %>
+	</p>
+
+	<p>
+	  <b>Alto:</b>
+	  <%= @formulario.datos_tec.alto %>
+	</p>
+
+	<p>
+	  <b>Profundidad:</b>
+	  <%= @formulario.datos_tec.profundidad %>
+	</p>
+
+	<p>
+	  <b>Listado de artefactos lumínicos:</b>
+	  <%= @formulario.datos_tec.listado_artefactos_luminicos %>
+	</p>
+
+	<p>
+	  <b>Listado sonido:</b>
+	  <%= @formulario.datos_tec.listado_sonido %>
+	</p>
+
+	<p>
+	  <b>Otros equipamientos:</b>
+	  <%= @formulario.datos_tec.otros_equipamientos %>
+	</p>
+
+	<p>
+	  <b>Peso total:</b>
+	  <%= @formulario.datos_tec.peso_total %>
+	</p>
+
+	<p>
+	  <b>Volumen total:</b>
+	  <%= @formulario.datos_tec.volumen_total %>
+	</p>
+
+	<p>
+	  <b>Otras necesidades:</b>
+	  <%= @formulario.datos_tec.otras_necesidades %>
+	</p></br>
+	</br>
+<% end %>
+<% if (@formulario.principal) %>
+    <% if (@formulario.principal.grupo.codigo == "a" ) %>
+			<h3>Datos del grupo</h3>
+			<% if (@formulario.datos_grupo) %>
+				<p>
+	  			<b>Nombre del grupo:</b>
+	  			<%= @formulario.datos_grupo.nombre_grupo %>
+				</p>
+
+				<p>
+	  			<b>Historia del grupo:</b>
+	  			<%= @formulario.datos_grupo.historia %>
+				</p></br>
+				</br>
+			<% end %>
+		<% end %>
+<% end %>
+</br>
+<h3>Datos del responsable</h3>
+<% if (@formulario.datos_del_responsable) %>
+	<p>Holaaaaaa</p>
+<% end %>

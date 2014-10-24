@@ -11,7 +11,7 @@ class PersonaJuridica < ActiveRecord::Base
   delegate :provincia_id, to: :localidad
 
   validates :nombre_per_juridica, presence: true, length: {maximum: 70}
-  validates :num_cuit_per_juridica, presence: true, length: {maximum: 11, minimum: 11}, numericality: { only_integer: true }
+  validates :num_cuit_per_juridica, presence: true, length: {maximum: 11, minimum: 11}, numericality: { only_integer: true }, uniqueness: { case_sensitive: false }
   validates :num_per_juridica, presence: true, numericality: { only_integer: true }
   validates :calle, presence: true
   validates :altura_calle, presence: true, numericality: { only_integer: true }

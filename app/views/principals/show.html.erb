@@ -21,15 +21,16 @@
 				<b>Nombre del espectaculo:</b>
 				<%= @principal.nombre %>
 			</p>
-
+			</br>
+			<h4>Ir a:</h4>
 			<% if (@formulario.datos_esp) %>
-			      <%= link_to t("Editar datos del espectaculo"), edit_formulario_datos_esp_path(@formulario, @formulario.datos_esp) %></br>
+			      <%= link_to t("datos del espectaculo"), edit_formulario_datos_esp_path(@formulario, @formulario.datos_esp) %></br>
 			<% else %>
 			      <%= link_to t("Alta datos del espectaculo"), new_formulario_datos_esp_path(@formulario) %></br>
 			<% end %>
 
 			<% if (@formulario.datos_tec) %>
-      	<%= link_to t("Editar datos tecnicos del espectaculo"), edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec) %></br>
+      	<%= link_to t("datos tecnicos del espectaculo"), edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec) %></br>
     	<% else %>
       	<%= link_to t("Alta datos tenicos del espectaculo"), new_formulario_datos_tec_path(@formulario) %></br>
     	<% end %>
@@ -37,7 +38,7 @@
 			<%= link_to t("Alta datos de elenco en gira"), formulario_elencos_en_gira_path(@formulario) %></br>
 
 			<% if (@formulario.datos_grupo) %>
-			  <%= link_to t("Editar datos del grupo"), edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo) %></br>
+			  <%= link_to t("datos del grupo"), edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo) %></br>
 			<% else %>
 			  <% if (@formulario.principal) %>
 			    <% if (@formulario.principal.grupo.codigo == "a" ) %>
@@ -47,7 +48,7 @@
 			<% end %>
 
 			<% if (@formulario.datos_del_responsable) %>
-			  <%= link_to t("Editar datos del responsable"), edit_formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable) %></br>
+			  <%= link_to t("datos del responsable"), edit_formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable) %></br>
 			<% else %>
 			  <%= link_to t("Alta datos del responsable"), new_formulario_datos_del_responsable_path(@formulario) %></br>
 			<% end %>

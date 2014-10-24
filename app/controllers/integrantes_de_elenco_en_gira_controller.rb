@@ -11,6 +11,11 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
 
   def new
     @formulario = Formulario.find_by_id(params[:formulario_id])
+    if @formulario.elenco_en_gira
+      if params[:type] == 'Director'
+        @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').count == 2
+      end
+    end
     @integrante = IntegranteDeElencoEnGira.new(type: params[:type])
   end
 

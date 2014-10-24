@@ -18,6 +18,7 @@ Int::Application.routes.draw do
     resources :persona_fisica_n, only: [:new, :create, :show, :edit, :update]
     resources :persona_fisica_e, only: [:new, :create, :show, :edit, :update]
     resources :ficha_artisticas, only: [:new, :create, :show, :edit, :update, :index, :destroy]
+    resources :super_vistas, ony: [:index]
   end
   get "principals/obtener_region", :defaults => {:format => :js}
 
