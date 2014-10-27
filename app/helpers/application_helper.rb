@@ -9,6 +9,6 @@ module ApplicationHelper
   end
 
   def logo
-    image_tag("logosm.png", :alt => "INT", :id => 'logo')
+    image_tag("catalogo_int2015.png", :alt => "INT", :id => 'logo')
   end
 end
