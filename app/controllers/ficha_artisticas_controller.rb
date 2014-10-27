@@ -10,7 +10,12 @@ class FichaArtisticasController < ApplicationController
 
   def new
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    @ficha = FichaArtistica.new(params[:id])
+    if @formulario.datos_esp.ficha_artisticas.count == 25
+      flash[:error] = "No puede tener mas de 25 fichas"
+      redirect_to formulario_ficha_artisticas_path
+    else
+      @ficha = FichaArtistica.new(params[:id])
+    end
   end
 
   def index

@@ -57,12 +57,16 @@
   </tr>
 
   <tr>
-    <td>Datos del elenco en gira</td>
+  <td>Datos del elenco en gira</td>
 
-    <td><%= link_to t("scaffoldi18n.new"), formulario_elencos_en_gira_path(@formulario, @formulario.datos_tec)  %></td>
-
+  <% if (@formulario.elenco_en_gira) %>
+    <td></td>
     <td><%= link_to t("scaffoldi18n.edit"), formulario_elencos_en_gira_path(@formulario) %></td>
-  </tr>
+  	</tr>
+  <% else %>
+  	<td><%= link_to t("scaffoldi18n.new"), formulario_elencos_en_gira_path(@formulario, @formulario.datos_tec)  %></td>
+  	<td></td>
+  <% end %>
 
   <% if (@formulario.principal) %>
     <% if (@formulario.principal.grupo.codigo == "a" ) %>

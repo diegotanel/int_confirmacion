@@ -11,25 +11,17 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
 
   def new
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    if @formulario.elenco_en_gira
-      if params[:type] == 'Director'
-        @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').count == 3
-        flash.now[:failure] = "No puede tener mas de 3 directores en gira"
-        redirect_to formulario_elencos_en_gira_path
-      end
-      if params[:type] == 'Tecnico'
-        @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count == 2
-        flash.now[:failure] = "No puede tener mas de 2 tecnicos en gira"
-        redirect_to formulario_elencos_en_gira_path
-      end
-      if params[:type] == 'Director' || params[:type] == 'Tecnico'
-        (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').count + 
-        @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count) == 3
-        flash.now[:failure] = "No puede tener mas de 3 personas que no sean actores en la gira"
-        redirect_to formulario_elencos_en_gira_path
-      end
+    if params[:type] == 'Tecnico' && (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count == 2)
+      flash[:error] = "No puede tener mas de 2 tecnicos en gira"
+      redirect_to formulario_elencos_en_gira_path
     end
-    @integrante = IntegranteDeElencoEnGira.new(type: params[:type])
+    if (params[:type] == 'Director' || params[:type] == 'Tecnico') && ((@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').count + 
+      @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count) == 3)
+      flash[:error] = "No puede tener mas de 3 personas que no sean actores en la gira"
+      redirect_to formulario_elencos_en_gira_path
+    else
+      @integrante = IntegranteDeElencoEnGira.new(type: params[:type])
+    end
   end
 
   def edit
