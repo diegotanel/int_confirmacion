@@ -46,6 +46,7 @@ describe "UserPages" do
     describe "with valid information" do
       before do
         fill_in "Nombre",         with: "Example User"
+        fill_in "Apellido",        with: "apellido ejemplo"
         fill_in "Email",        with: "user@example.com"
         fill_in "Contraseña",     with: "foobar"
         fill_in "Confirmar Contraseña", with: "foobar"
@@ -62,7 +63,7 @@ describe "UserPages" do
         let(:user) { User.find_by(email: 'user@example.com') }
 
         it { should have_link('Cerrar Sesion') }
-        it { should have_title(user.name) }
+        it { should have_title('Convocatoria INT Presenta 2015') }
         it { should have_selector('div.alert.alert-success', text: 'Bienvenido') }
       end
     end
@@ -76,30 +77,36 @@ describe "UserPages" do
     end
 
     describe "page" do
-      it { should have_content("Actualiza tu perfil") }
+      it { should have_content("Actualización de perfil") }
       it { should have_title("Editar Usuario") }
     end
 
     describe "with valid information" do
       let(:new_name)  { "New Name" }
+      let(:new_last_name)  { "New Last Name" }
       let(:new_email) { "new@example.com" }
       before do
         fill_in "Nombre",             with: new_name
+        fill_in "Apellido",             with: new_last_name
         fill_in "Email",            with: new_email
         fill_in "Nueva Contraseña",         with: user.password
         fill_in "Confirmar Contraseña", with: user.password
-        click_button "Salvar Cambios"
+        click_button "Guardar cambios"
       end
 
-      it { should have_title(new_name) }
+      it { should have_title("Cuenta " + new_name + ' ' + new_last_name) }
       it { should have_selector('div.alert.alert-success') }
-      it { should have_link('Cerrar Sesion', href: signout_path) }
+      it { should have_link('Cerrar Sesión', href: signout_path) }
       specify { expect(user.reload.name).to  eq new_name }
+      specify { expect(user.reload.last_name).to  eq new_last_name }
       specify { expect(user.reload.email).to eq new_email }
+      it { should have_content(new_name) }
+      it { should have_content(new_last_name) }
+      it { should have_content(new_email) }
     end
 
     describe "with invalid information" do
-      before { click_button "Salvar Cambios" }
+      before { click_button "Guardar cambios" }
 
       it { should have_content('error') }
     end

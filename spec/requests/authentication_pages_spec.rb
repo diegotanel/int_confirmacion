@@ -10,8 +10,8 @@ describe "Authentication" do
 
     before { visit signin_path }
 
-    it { should have_content('Iniciar Sesion') }
-    it { should have_title('Iniciar Sesion') }
+    it { should have_content('Iniciar Sesión') }
+    it { should have_title("Iniciar Sesión") }
   end
 
   describe "signin" do
@@ -20,10 +20,10 @@ describe "Authentication" do
 
     describe "with invalid information" do
 
-      before {click_button "Iniciar Sesion"}
+      before {click_button "Iniciar Sesión"}
 
       it {should have_selector ('div.alert.alert-error')}
-      it {should have_title("Iniciar Sesion")}
+      it {should have_title("Iniciar Sesión")}
 
       describe "after visiting another page" do
         before { click_link "Home" }
@@ -37,21 +37,21 @@ describe "Authentication" do
       before do
         fill_in "Email",    with: user.email.upcase
         fill_in "Contraseña", with: user.password
-        click_button "Iniciar Sesion"
+        click_button "Iniciar Sesión"
       end
 
       it { should have_title("Convocatoria INT Presenta 2015") }
-      it { should have_link('Configuracion',    href: edit_user_path(user)) }
-      it { should have_link('Convocatoria INT Presenta 2015',     href: formularios_path) }
-      it { should have_link('Cerrar Sesion',    href: signout_path) }
-      it { should_not have_link('Iniciar Sesion', href: signin_path) }
+      it { should have_link('Configuración de la cuenta',    href: edit_user_path(user)) }
+      it { should have_link('Formulario convocatoria INT Presenta 2015',     href: formularios_path) }
+      it { should have_link('Cerrar Sesión',    href: signout_path) }
+      it { should_not have_link('Iniciar Sesión', href: signin_path) }
 
       describe "followed by signout" do
         before {
           visit formularios_path
-          click_link "Cerrar Sesion"
+          click_link "Cerrar Sesión"
         }
-        it { should have_link('Iniciar Sesion') }
+        it { should have_link('Iniciar Sesión') }
       end
     end
   end
@@ -64,7 +64,7 @@ describe "Authentication" do
       describe "in the Users controller" do
         describe "visiting the edit page" do
           before { visit edit_user_path(user) }
-          it { should have_title('Iniciar Sesion') }
+          it { should have_title('Iniciar Sesión') }
         end
 
         describe "submitting to the update action" do

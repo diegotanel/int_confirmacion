@@ -78,8 +78,8 @@ describe "Formulario" do
         end
         it {
           should have_selector("td", :text => "Datos Principales")
-          should have_selector("td", :text => "Datos generales del espectaculo")
-          should have_selector("td", :text => "Datos tecnicos del espectaculo")
+          should have_selector("td", :text => "Datos generales del espectáculo")
+          should have_selector("td", :text => "Datos técnicos del espectáculo")
           should have_selector("td", :text => "Datos del elenco en gira")
           should have_selector("td", :text => "Datos del responsable")
         }

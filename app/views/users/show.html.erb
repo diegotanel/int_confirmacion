@@ -1,9 +1,9 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, "Cuenta " + @user.name + ' ' + @user.last_name) %>
 <div class="row">
   <aside class="span4">
     <section>
       <h1>
-        Hola <%= @user.name %> <%= @user.last_name %>
+        <%= @user.name %> <%= @user.last_name %> <%= @user.email %>
       </h1>
     </section>
   </aside>

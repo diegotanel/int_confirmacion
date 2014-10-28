@@ -33,9 +33,9 @@ describe "ElencoEnGira" do
       it { should have_content('Elenco en gira') }
       it { should have_title(('Formulario de elenco en gira')) }
 
-      describe "links de actor" do
+      describe "links de interprete" do
         it {
-          should have_link('Nuevo actor', href: new_formulario_actor_path(elenco_en_gira.formulario))
+          should have_link('Nuevo interprete', href: new_formulario_actor_path(elenco_en_gira.formulario))
         }
 
         it {

@@ -9,6 +9,6 @@ def sign_in(user, options={})
     visit signin_path
     fill_in "Email",    with: user.email
     fill_in "Contraseña", with: user.password
-    click_button "Iniciar Sesion"
+    click_button "Iniciar Sesión"
   end
 end

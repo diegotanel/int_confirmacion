@@ -9,7 +9,7 @@ describe "Static pages" do
 
   	before {visit root_path}
 
-    it { should have_content('INT') }
+    it { should have_content('Bienvenido') }
 
     it { should have_title('Convocatoria INT Presenta 2015') }
   end
