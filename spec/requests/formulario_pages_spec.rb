@@ -33,7 +33,7 @@ describe "Formulario" do
           visit edit_formulario_path(principal.formulario)
         end
 
-        it { should have_link('Editar Datos principales') }
+        #it { should have_link('Datos Principales') }
       end
     end
 
@@ -76,9 +76,14 @@ describe "Formulario" do
         before do
           visit edit_formulario_path(datos_grupo.formulario)
         end
-
-        it { should have_link('Cargar Datos principales') }
-        it { should have_link('Editar Datos del grupo') }
+        it {
+          should have_selector("td", :text => "Datos Principales")
+          should have_selector("td", :text => "Datos generales del espectaculo")
+          should have_selector("td", :text => "Datos tecnicos del espectaculo")
+          should have_selector("td", :text => "Datos del elenco en gira")
+          should have_selector("td", :text => "Datos del responsable")
+        }
+        it { should have_link('Alta') }
       end
     end
   end
