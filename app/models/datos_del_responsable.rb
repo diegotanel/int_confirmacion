@@ -1,7 +1,7 @@
 class DatosDelResponsable < ActiveRecord::Base
 
 	belongs_to :formulario
-	belongs_to :responsable
+	has_one :responsable
 
 	validates :formulario, presence: true
 	validates :responsable, presence: true

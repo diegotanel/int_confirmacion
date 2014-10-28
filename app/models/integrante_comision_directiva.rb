@@ -1,4 +1,4 @@
-class IntegrantePersonaJuridica < ActiveRecord::Base
+class IntegranteComisionDirectiva < ActiveRecord::Base
 
 	belongs_to :localidad
   belongs_to :persona_juridica

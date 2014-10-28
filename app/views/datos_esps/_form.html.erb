@@ -20,7 +20,7 @@
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :duracion_espectaculo, "Duracion del espectaculo (en minutos) *" %>
+	    <%= f.label :duracion_espectaculo, "Duración del espectáculo (en minutos) *" %>
 	    <%= f.text_field :duracion_espectaculo %>
 	  </div>
 
@@ -30,17 +30,17 @@
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :directores_espectaculo, "Cantidad de directores del espectaculo *" %>
+	    <%= f.label :directores_espectaculo, "Cantidad de directores del espectáculo *" %>
 	    <%= f.text_field :directores_espectaculo %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :sinopsis_obra, "Sinopsis del espectaculo *" %><p>(no mas de 700 caracteres, los espacios cuentan como caracteres)</p>
+	    <%= f.label :sinopsis_obra, "Sinopsis del espectáculo *" %><p>(no mas de 700 caracteres, los espacios cuentan como caracteres)</p>
 	    <%= f.text_area :sinopsis_obra %>
 	  </div>
 
 	  <div class="field">
-  		<br/><%= label_tag :gen_esp, "Generos del espectaculo *" %><p>(Tildar al menos uno)</p>
+  		<br/><%= label_tag :gen_esp, "Géneros del espectáculo *" %><p>(Tildar al menos uno)</p>
     	<%= hidden_field_tag "datos_esp[gen_esp_ids][]", nil %>
       <% GenEsp.all.each do |gen_esp| %>
     		<tr>
@@ -51,7 +51,7 @@
   	</div>
 
 	  <div class="field">
-  		<br/><%= label_tag :publ_exp, "Publicos por experiencia *" %><p>(Tildar al menos uno)</p>
+  		<br/><%= label_tag :publ_exp, "Públicos por experiencia *" %><p>(Tildar al menos uno)</p>
     	<%= hidden_field_tag "datos_esp[publ_exp_ids][]", nil %>
       <% PublExp.all.each do |publ_exp| %>
     		<tr>
@@ -62,7 +62,7 @@
   	</div>
 
 	  <div class="field">
-  		<br/><%= label_tag :publ_edad, "Publico por edad *" %><p>(Tildar al menos uno)</p>
+  		<br/><%= label_tag :publ_edad, "Públicos por edad *" %><p>(Tildar al menos uno)</p>
     	<%= hidden_field_tag "datos_esp[publ_edad_ids][]", nil %>
       <% PublEdad.all.each do |publ_edad| %>
     		<tr>
@@ -73,7 +73,7 @@
   	</div>
 
   	<div class="field">
-  		<br/><%= label_tag :formato, "Formato del espectaculo *" %><p>(Tildar al menos uno)</p>
+  		<br/><%= label_tag :formato, "Formato del espectáculo *" %><p>(Tildar al menos uno)</p>
     	<%= hidden_field_tag "datos_esp[formato_ids][]", nil %>
       <% Formato.all.each do |formato| %>
     		<tr>
@@ -116,7 +116,7 @@
 	  </div>
 
     <div class="actions">
-    	<%= f.submit "Guardar datos y abrir ficha artistica", class: "btn btn-large btn-primary" %>
+    	<%= f.submit "Guardar datos y abrir ficha artística", class: "btn btn-large btn-primary" %>
   	</div>
   <% end %>
 

@@ -11,20 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024171946) do
+ActiveRecord::Schema.define(version: 20141027173625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "datos_del_responsables", force: true do |t|
-    t.integer  "formulario_id",  null: false
-    t.integer  "responsable_id", null: false
+    t.integer  "formulario_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "datos_del_responsables", ["formulario_id"], name: "index_datos_del_responsables_on_formulario_id", using: :btree
-  add_index "datos_del_responsables", ["responsable_id"], name: "index_datos_del_responsables_on_responsable_id", using: :btree
 
   create_table "datos_esps", force: true do |t|
     t.integer  "formulario_id",          null: false
@@ -172,6 +170,29 @@ ActiveRecord::Schema.define(version: 20141024171946) do
     t.datetime "updated_at"
   end
 
+  create_table "integrantes_comision_directiva", force: true do |t|
+    t.string   "cargo",               null: false
+    t.string   "nombre",              null: false
+    t.string   "apellido",            null: false
+    t.string   "cuil_cuit",           null: false
+    t.datetime "fecha_de_nacimiento", null: false
+    t.string   "calle",               null: false
+    t.string   "altura_calle",        null: false
+    t.string   "piso"
+    t.string   "depto"
+    t.integer  "localidad_id",        null: false
+    t.string   "codigo_postal",       null: false
+    t.string   "tel_particular"
+    t.string   "tel_celular"
+    t.string   "email",               null: false
+    t.integer  "persona_juridica_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "integrantes_comision_directiva", ["localidad_id"], name: "index_integrantes_comision_directiva_on_localidad_id", using: :btree
+  add_index "integrantes_comision_directiva", ["persona_juridica_id"], name: "index_integrantes_comision_directiva_on_persona_juridica_id", using: :btree
+
   create_table "integrantes_de_elenco_en_gira", force: true do |t|
     t.string   "type",                null: false
     t.string   "nombre",              null: false
@@ -204,8 +225,17 @@ ActiveRecord::Schema.define(version: 20141024171946) do
     t.datetime "updated_at"
   end
 
-  create_table "integrantes_persona_juridica", force: true do |t|
-    t.string   "cargo",               null: false
+  create_table "localidades", force: true do |t|
+    t.string   "codigo",       null: false
+    t.string   "detalle",      null: false
+    t.integer  "provincia_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "localidades", ["provincia_id"], name: "index_localidades_on_provincia_id", using: :btree
+
+  create_table "personas", force: true do |t|
     t.string   "nombre",              null: false
     t.string   "apellido",            null: false
     t.string   "cuil_cuit",           null: false
@@ -219,70 +249,51 @@ ActiveRecord::Schema.define(version: 20141024171946) do
     t.string   "tel_particular"
     t.string   "tel_celular"
     t.string   "email",               null: false
-    t.integer  "persona_juridica_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "integrantes_persona_juridica", ["localidad_id"], name: "index_integrantes_persona_juridica_on_localidad_id", using: :btree
-  add_index "integrantes_persona_juridica", ["persona_juridica_id"], name: "index_integrantes_persona_juridica_on_persona_juridica_id", using: :btree
-
-  create_table "localidades", force: true do |t|
-    t.string   "codigo",       null: false
-    t.string   "detalle",      null: false
-    t.integer  "provincia_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "localidades", ["provincia_id"], name: "index_localidades_on_provincia_id", using: :btree
+  add_index "personas", ["localidad_id"], name: "index_personas_on_localidad_id", using: :btree
 
   create_table "personas_fisicas_e", force: true do |t|
+    t.integer  "integrante_de_elenco_en_gira_id", null: false
+    t.integer  "responsable_id",                  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "personas_fisicas_e", ["integrante_de_elenco_en_gira_id"], name: "index_personas_fisicas_e_on_integrante_de_elenco_en_gira_id", using: :btree
+  add_index "personas_fisicas_e", ["responsable_id"], name: "index_personas_fisicas_e_on_responsable_id", using: :btree
 
   create_table "personas_fisicas_n", force: true do |t|
-    t.string   "nombre_per_fisica",        null: false
-    t.string   "apellido_per_fisica",      null: false
-    t.string   "cuil_cuit_per_fisica",     null: false
-    t.datetime "fecha_de_nacimiento",      null: false
-    t.string   "calle",                    null: false
-    t.string   "altura_calle",             null: false
-    t.string   "piso"
-    t.string   "depto"
-    t.integer  "localidad_id",             null: false
-    t.string   "codigo_postal",            null: false
-    t.string   "tel_particular"
-    t.string   "tel_celular",              null: false
-    t.string   "email",                    null: false
-    t.integer  "datos_del_responsable_id", null: false
+    t.integer  "persona_id",     null: false
+    t.integer  "responsable_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "personas_fisicas_n", ["datos_del_responsable_id"], name: "index_personas_fisicas_n_on_datos_del_responsable_id", using: :btree
-  add_index "personas_fisicas_n", ["localidad_id"], name: "index_personas_fisicas_n_on_localidad_id", using: :btree
+  add_index "personas_fisicas_n", ["persona_id"], name: "index_personas_fisicas_n_on_persona_id", using: :btree
+  add_index "personas_fisicas_n", ["responsable_id"], name: "index_personas_fisicas_n_on_responsable_id", using: :btree
 
   create_table "personas_juridicas", force: true do |t|
-    t.string   "nombre_per_juridica",      null: false
-    t.string   "num_cuit",                 null: false
-    t.string   "num_per_juridica",         null: false
-    t.string   "calle",                    null: false
-    t.string   "altura_calle",             null: false
+    t.string   "nombre_per_juridica", null: false
+    t.string   "num_cuit",            null: false
+    t.string   "num_per_juridica",    null: false
+    t.string   "calle",               null: false
+    t.string   "altura_calle",        null: false
     t.string   "piso"
     t.string   "depto"
-    t.integer  "localidad_id",             null: false
-    t.string   "codigo_postal",            null: false
+    t.integer  "localidad_id",        null: false
+    t.string   "codigo_postal",       null: false
     t.string   "tel_entidad"
-    t.string   "email_entidad",            null: false
-    t.integer  "datos_del_responsable_id", null: false
+    t.string   "email_entidad",       null: false
+    t.integer  "responsable_id",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "personas_juridicas", ["datos_del_responsable_id"], name: "index_personas_juridicas_on_datos_del_responsable_id", using: :btree
   add_index "personas_juridicas", ["localidad_id"], name: "index_personas_juridicas_on_localidad_id", using: :btree
+  add_index "personas_juridicas", ["responsable_id"], name: "index_personas_juridicas_on_responsable_id", using: :btree
 
   create_table "principals", force: true do |t|
     t.integer  "formulario_id", null: false
@@ -327,10 +338,15 @@ ActiveRecord::Schema.define(version: 20141024171946) do
   end
 
   create_table "responsables", force: true do |t|
-    t.string   "detalle",    null: false
+    t.string   "type",                     null: false
+    t.string   "detalle",                  null: false
+    t.integer  "datos_del_responsable_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "responsables", ["datos_del_responsable_id"], name: "index_responsables_on_datos_del_responsable_id", using: :btree
+  add_index "responsables", ["type"], name: "index_responsables_on_type", using: :btree
 
   create_table "super_vistas", force: true do |t|
     t.integer  "formulario_id", null: false
@@ -348,6 +364,7 @@ ActiveRecord::Schema.define(version: 20141024171946) do
 
   create_table "users", force: true do |t|
     t.string   "name",           null: false
+    t.string   "last_name",      null: false
     t.string   "email",          null: false
     t.string   "password",       null: false
     t.datetime "created_at"

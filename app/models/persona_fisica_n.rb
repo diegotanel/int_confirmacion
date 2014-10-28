@@ -1,7 +1,7 @@
 class PersonaFisicaN < ActiveRecord::Base
 
 	belongs_to :localidad
-  belongs_to :datos_del_responsable
+  belongs_to :responsable
 
   before_save { self.email = email.downcase }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i

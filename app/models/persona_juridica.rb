@@ -1,8 +1,8 @@
 class PersonaJuridica < ActiveRecord::Base
 
 	belongs_to :localidad
-  belongs_to :datos_del_responsable
-  has_many :integrantes_persona_juridica
+  belongs_to :responsable
+  has_many :integrantes_comision_directiva
 
   before_save { self.email_entidad = email_entidad.downcase }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
