@@ -1,8 +1,7 @@
 class DatosGruposController < ApplicationController
-before_action :inicializar_variables, only: [:new, :edit]
-before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
+  before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
 
-	def new
+  def new
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @datos_grupo = DatosGrupo.new
   end
@@ -13,8 +12,8 @@ before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
   end
 
   def create
-  	@formulario = Formulario.find_by_id(params[:formulario_id])
-  	@datos_grupo = @formulario.build_datos_grupo(datos_grupo_params)
+    @formulario = Formulario.find_by_id(params[:formulario_id])
+    @datos_grupo = @formulario.build_datos_grupo(datos_grupo_params)
     if @datos_grupo.save
       flash[:success] = "Datos del grupo correctamente creados"
       redirect_to formulario_datos_grupo_path(@formulario, @datos_grupo)
@@ -24,12 +23,12 @@ before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
   end
 
   def edit
-  	@formulario = Formulario.find_by_id(params[:formulario_id])
+    @formulario = Formulario.find_by_id(params[:formulario_id])
     @datos_grupo = DatosGrupo.find(params[:id])
   end
 
   def update
-  	@formulario = Formulario.find_by_id(params[:formulario_id])
+    @formulario = Formulario.find_by_id(params[:formulario_id])
     @datos_grupo = DatosGrupo.find(params[:id])
     if @datos_grupo.update_attributes(datos_grupo_params)
       flash[:success] = "Datos del grupo actualizados"
@@ -41,7 +40,7 @@ before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
 
   private
 
-	  def datos_grupo_params
-	    params.require(:datos_grupo).permit(:nombre_grupo, :historia)
-	  end
+  def datos_grupo_params
+    params.require(:datos_grupo).permit(:nombre_grupo, :historia)
+  end
 end

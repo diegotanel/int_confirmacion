@@ -40,15 +40,17 @@ describe "Authentication" do
         click_button "Iniciar Sesion"
       end
 
-      it { should have_title(user.name) }
-      it { should have_link('Perfil',     href: user_path(user)) }
+      it { should have_title("Convocatoria INT Presenta 2015") }
       it { should have_link('Configuracion',    href: edit_user_path(user)) }
-      it { should have_link('Inscripcion al INT',     href: formularios_path) }
+      it { should have_link('Convocatoria INT Presenta 2015',     href: formularios_path) }
       it { should have_link('Cerrar Sesion',    href: signout_path) }
       it { should_not have_link('Iniciar Sesion', href: signin_path) }
 
       describe "followed by signout" do
-        before { click_link "Cerrar Sesion" }
+        before {
+          visit formularios_path
+          click_link "Cerrar Sesion"
+        }
         it { should have_link('Iniciar Sesion') }
       end
     end

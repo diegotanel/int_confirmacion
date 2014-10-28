@@ -114,6 +114,11 @@ describe IntegranteDeElencoEnGira do
       }
     end
 
+    describe "cuil_cuit no se peude repetir" do
+      before {@nuevo_integrante = elenco_en_gira.integrantes_de_elenco_en_gira.build(params.merge(email: "fruta@fruta.com"))}
+      it {@nuevo_integrante.should_not be_valid}
+    end
+
     describe "when fecha_de_nacimiento is not present" do
       before { @integrante_de_elenco_en_gira.fecha_de_nacimiento = " " }
       it { should_not be_valid }
@@ -179,7 +184,7 @@ describe IntegranteDeElencoEnGira do
       }
 
       it {
-        @director = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com"))
+        @director = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "45324567891"))
         elenco_en_gira.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should == @director.id
         elenco_en_gira.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should_not == @integrante_de_elenco_en_gira.id
       }
@@ -188,8 +193,8 @@ describe IntegranteDeElencoEnGira do
       let(:elenco_en_gira2) {FactoryGirl.create(:elenco_en_gira, id: 2, formulario: formulario2)}
 
       it {
-        @director = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com"))
-        @director2 = elenco_en_gira2.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Lucas", apellido: "Capo", email: "lucas.capo@gmail.com"))
+        @director = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "45324567893"))
+        @director2 = elenco_en_gira2.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Lucas", apellido: "Capo", email: "lucas.capo@gmail.com", cuil_cuit: "45324567895"))
         elenco_en_gira.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should == @director.id
         elenco_en_gira2.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should_not == @director.id
         elenco_en_gira2.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should == @director2.id

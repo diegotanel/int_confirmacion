@@ -20,8 +20,8 @@ describe "ElencoEnGira" do
     describe "listar integrantes" do
       before do
         @actor = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params)
-        @director = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com"))
-        @tecnico = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Tecnico', nombre: "Lucas", apellido: "Capo", email: "lucas.capo@gmail.com"))
+        @director = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "12345678442"))
+        @tecnico = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Tecnico', nombre: "Lucas", apellido: "Capo", email: "lucas.capo@gmail.com", cuil_cuit: "12345678445"))
         visit formulario_elencos_en_gira_path(elenco_en_gira.formulario)
       end
 

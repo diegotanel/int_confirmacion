@@ -11,7 +11,7 @@ describe "Static pages" do
 
     it { should have_content('INT') }
 
-    it { should have_title('Home') }
+    it { should have_title('Convocatoria INT Presenta 2015') }
   end
 
   it "should have the right links on the layout" do
@@ -20,7 +20,6 @@ describe "Static pages" do
     click_link "Registrarse!"
     expect(page).to have_title ('Registrarse')
     click_link "INT"
-    expect(page).to have_title ('Home')
   end
 end
 
