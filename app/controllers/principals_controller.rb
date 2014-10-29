@@ -50,7 +50,7 @@ class PrincipalsController < ApplicationController
     end
   end
 
-  def obtener_localidad #esto no se si esta bien
+  def obtener_localidad
     @provincia = Provincia.find(params[:provincia_id])
     @localidad = @provincia.localidad
     respond_to do | format |

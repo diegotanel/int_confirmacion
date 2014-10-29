@@ -16,14 +16,6 @@ ActiveRecord::Schema.define(version: 20141027173625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "datos_del_responsables", force: true do |t|
-    t.integer  "formulario_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "datos_del_responsables", ["formulario_id"], name: "index_datos_del_responsables_on_formulario_id", using: :btree
-
   create_table "datos_esps", force: true do |t|
     t.integer  "formulario_id",          null: false
     t.date     "fecha_de_estreno",       null: false
@@ -266,12 +258,26 @@ ActiveRecord::Schema.define(version: 20141027173625) do
   add_index "personas_fisicas_e", ["responsable_id"], name: "index_personas_fisicas_e_on_responsable_id", using: :btree
 
   create_table "personas_fisicas_n", force: true do |t|
-    t.integer  "persona_id",     null: false
-    t.integer  "responsable_id", null: false
+    t.integer  "persona_id",          null: false
+    t.integer  "responsable_id",      null: false
+    t.string   "nombre",              null: false
+    t.string   "apellido",            null: false
+    t.string   "cuil_cuit",           null: false
+    t.datetime "fecha_de_nacimiento", null: false
+    t.string   "calle",               null: false
+    t.string   "altura_calle",        null: false
+    t.string   "piso"
+    t.string   "depto"
+    t.integer  "localidad_id",        null: false
+    t.string   "codigo_postal",       null: false
+    t.string   "tel_particular"
+    t.string   "tel_celular"
+    t.string   "email",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "personas_fisicas_n", ["localidad_id"], name: "index_personas_fisicas_n_on_localidad_id", using: :btree
   add_index "personas_fisicas_n", ["persona_id"], name: "index_personas_fisicas_n_on_persona_id", using: :btree
   add_index "personas_fisicas_n", ["responsable_id"], name: "index_personas_fisicas_n_on_responsable_id", using: :btree
 
@@ -338,15 +344,13 @@ ActiveRecord::Schema.define(version: 20141027173625) do
   end
 
   create_table "responsables", force: true do |t|
-    t.string   "type",                     null: false
-    t.string   "detalle",                  null: false
-    t.integer  "datos_del_responsable_id", null: false
+    t.string   "detalle",       null: false
+    t.integer  "formulario_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "responsables", ["datos_del_responsable_id"], name: "index_responsables_on_datos_del_responsable_id", using: :btree
-  add_index "responsables", ["type"], name: "index_responsables_on_type", using: :btree
+  add_index "responsables", ["formulario_id"], name: "index_responsables_on_formulario_id", using: :btree
 
   create_table "super_vistas", force: true do |t|
     t.integer  "formulario_id", null: false
