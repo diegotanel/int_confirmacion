@@ -22,6 +22,7 @@
     <td><%= link_to t("Vista previa"), formulario_super_vistas_path(formulario) %></td>
     <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_path(formulario) %></td>
     <td><%= link_to t("scaffoldi18n.destroy"), formulario_path(formulario), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
+    <td><%= link_to "Imprimir remito", imprimir_remito_formulario_path(formulario) %></td>
     
   <% end %>
 </table>

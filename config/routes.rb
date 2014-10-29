@@ -19,6 +19,9 @@ Int::Application.routes.draw do
     resources :personas_fisicas_e, only: [:new, :create, :show]
     resources :ficha_artisticas, only: [:new, :create, :show, :edit, :update, :index, :destroy]
     resources :super_vistas, ony: [:index]
+    member do
+      get :imprimir_remito
+    end
   end
   get "principals/obtener_region", :defaults => {:format => :js}
   get "personas_fisicas_e/buscar_integrante_por_cuil_cuit"
