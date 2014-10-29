@@ -1,3 +1,4 @@
+#encoding: utf-8
 require '../lib/odf-report'
 
 report = ODFReport::Report.new("./plantillas/REMITO_INT_PRESENTA.odt") do |r|
