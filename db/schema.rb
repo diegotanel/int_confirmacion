@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027173625) do
+ActiveRecord::Schema.define(version: 20141024171946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,26 +224,6 @@ ActiveRecord::Schema.define(version: 20141027173625) do
 
   add_index "localidades", ["provincia_id"], name: "index_localidades_on_provincia_id", using: :btree
 
-  create_table "personas", force: true do |t|
-    t.string   "nombre",              null: false
-    t.string   "apellido",            null: false
-    t.string   "cuil_cuit",           null: false
-    t.datetime "fecha_de_nacimiento", null: false
-    t.string   "calle",               null: false
-    t.string   "altura_calle",        null: false
-    t.string   "piso"
-    t.string   "depto"
-    t.integer  "localidad_id",        null: false
-    t.string   "codigo_postal",       null: false
-    t.string   "tel_particular"
-    t.string   "tel_celular"
-    t.string   "email",               null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "personas", ["localidad_id"], name: "index_personas_on_localidad_id", using: :btree
-
   create_table "personas_fisicas_e", force: true do |t|
     t.integer  "integrante_de_elenco_en_gira_id", null: false
     t.integer  "responsable_id",                  null: false
@@ -255,7 +235,6 @@ ActiveRecord::Schema.define(version: 20141027173625) do
   add_index "personas_fisicas_e", ["responsable_id"], name: "index_personas_fisicas_e_on_responsable_id", using: :btree
 
   create_table "personas_fisicas_n", force: true do |t|
-    t.integer  "persona_id",          null: false
     t.integer  "responsable_id",      null: false
     t.string   "nombre",              null: false
     t.string   "apellido",            null: false
@@ -275,7 +254,6 @@ ActiveRecord::Schema.define(version: 20141027173625) do
   end
 
   add_index "personas_fisicas_n", ["localidad_id"], name: "index_personas_fisicas_n_on_localidad_id", using: :btree
-  add_index "personas_fisicas_n", ["persona_id"], name: "index_personas_fisicas_n_on_persona_id", using: :btree
   add_index "personas_fisicas_n", ["responsable_id"], name: "index_personas_fisicas_n_on_responsable_id", using: :btree
 
   create_table "personas_juridicas", force: true do |t|

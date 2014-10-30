@@ -92,7 +92,7 @@
 
       <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_responsable_path(@formulario, @formulario.responsable)  %></td>
     <% else %>
-      <td><%= link_to t("scaffoldi18n.new"), new_formulario_responsable_path(@formulario) %></td>
+      <td><%= link_to t("scaffoldi18n.new"), formulario_responsables_path(@formulario) %></td>
       <td></td>
     <% end %>
   </tr>
