@@ -15,6 +15,7 @@
   def create
   	@formulario = Formulario.find_by_id(params[:formulario_id])
   	@datos_tec = @formulario.build_datos_tec(datos_tec_params)
+    @datos_tec.saltear_validaciones_de_presencia = true
     if @datos_tec.save
       flash[:success] = "Datos tecnicos del espectaculo correctamente creados"
       redirect_to formulario_datos_tec_path(@formulario, @datos_tec)
@@ -32,6 +33,7 @@
   def update
   	@formulario = Formulario.find_by_id(params[:formulario_id])
     @datos_tec = DatosTec.find(params[:id])
+    @datos_tec.saltear_validaciones_de_presencia = true
     if @datos_tec.update_attributes(datos_tec_params)
       flash[:success] = "Datos tecnicos del espectaculo actualizados"
       redirect_to formulario_datos_tec_path(@formulario, @datos_tec)
