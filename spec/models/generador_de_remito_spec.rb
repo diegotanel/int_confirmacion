@@ -5,6 +5,9 @@ describe GeneradorDeRemito do
   let(:fecha_impresion_remito) { Time.zone.local(2014, 4, 14, 12, 41, 32) }
   let(:fecha_de_creacion_del_tramite) { Time.zone.local(2014, 4, 10, 22, 46, 56) }
   let(:formulario) { FactoryGirl.create(:formulario, :created_at => fecha_de_creacion_del_tramite) }
+  let(:ruta_archivo_odt) { Rails.root.join("public/remitos/remito_convocatoria_2015_20140414124132.odt") }
+  let(:ruta_archivo_pdf) { Rails.root.join("public/remitos/remito_convocatoria_2015_20140414124132.pdf") }
+
 
   before do
     Timecop.freeze(fecha_impresion_remito) do
@@ -36,8 +39,6 @@ describe GeneradorDeRemito do
   describe "verificar si se genera el archivo odt" do
     it {
       Timecop.freeze(fecha_impresion_remito) do
-        ruta_archivo_odt = Rails.root.join("public/remitos/remito_convocatoria_2015_los_chaqueños_20140414124132.odt")
-        ruta_archivo_pdf = Rails.root.join("public/remitos/remito_convocatoria_2015_los_chaqueños_20140414124132.pdf")
         File.delete(ruta_archivo_odt) if File.exist?(ruta_archivo_odt)
         datos = subject.generar_pdf(formulario)
         odt = File.read(ruta_archivo_odt)
@@ -50,7 +51,6 @@ describe GeneradorDeRemito do
   describe "verificar si se genera el archivo pdf" do
     it {
       Timecop.freeze(fecha_impresion_remito) do
-        ruta_archivo_pdf = Rails.root.join("public/remitos/remito_convocatoria_2015_los_chaqueños_20140414124132.pdf")
         File.delete(ruta_archivo_pdf) if File.exist?(ruta_archivo_pdf)
         datos = subject.generar_pdf(formulario)
         pdf = File.read(ruta_archivo_pdf)
@@ -63,10 +63,6 @@ describe GeneradorDeRemito do
     it {
       Timecop.freeze(fecha_impresion_remito) do
         subject.generar_pdf(formulario)
-
-        ruta_archivo_pdf = Rails.root.join("public/remitos/remito_convocatoria_2015_los_chaqueños_20140414124132.pdf")
-        ruta_archivo_odt = Rails.root.join("public/remitos/remito_convocatoria_2015_los_chaqueños_20140414124132.odt")
-
         File.delete(ruta_archivo_odt) if File.exist?(ruta_archivo_odt)
         File.delete(ruta_archivo_pdf) if File.exist?(ruta_archivo_pdf)
         subject.generar_pdf(formulario)
