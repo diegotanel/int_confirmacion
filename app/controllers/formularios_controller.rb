@@ -45,10 +45,9 @@ class FormulariosController < ApplicationController
 
   def imprimir_remito
     @formulario = Formulario.find(params[:id])
-    data = @formulario
-    file = nombre_remito_pdf
-    File.open(file, "w"){ |f| f << data }
-    #send_data @formulario.id, :filename => nombre_remito_pdf, :type=>"application/pdf", :disposition => 'attachment'
+    gen_remito = GeneradorDeRemito.new()
+    gen_remito.generar_pdf(@formulario)
+    file = Rails.root.join("public/remitos/" + gen_remito.nombre_remito_pdf)
     send_file ( file )
   end
 
@@ -59,7 +58,7 @@ class FormulariosController < ApplicationController
       params.require(:formulario).permit(:principal_id)
     end
 
-    def nombre_remito_pdf
-      "remito_convocatoria_2015_" + @formulario.principal.nombre.squish.mb_chars.downcase.tr(" ","_").to_s + "_" + Time.zone.now.to_formatted_s(:number) + ".pdf"
-    end
+    # def nombre_remito_pdf
+    #   "remito_convocatoria_2015_" + @formulario.principal.nombre.squish.mb_chars.downcase.tr(" ","_").to_s + "_" + Time.zone.now.to_formatted_s(:number) + ".pdf"
+    # end
 end

@@ -12,6 +12,7 @@ gem 'odf-report'
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
+  gem 'pdf-reader'
 end
 
 group :test do
