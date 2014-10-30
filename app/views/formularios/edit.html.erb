@@ -2,15 +2,17 @@
 <% provide(:title, 'Editar formulario') %>
 
 <% if (@formulario.principal) %>
+  </br>
   <h1> Formulario <%=  @formulario.principal.nombre %></h1></br>
 <% else %>
-  <h1> Editar Formulario </h1>
+  </br>
+  <h1>Formulario</h1></br>
 <% end %>
 
 <table class="table table-striped">
   <tr>
 
-    <th>Tipo de datos</th>
+    <th>Campos de datos</th>
     <th></th>
     <th></th>
   </tr>
@@ -100,3 +102,4 @@
   </tr>
 
 </table>
+<p>Los 5 campos de datos se pueden completar parcialmente y seran guardados en un borrador. Asi mismo, se puede comenzar por cualquiera de ellos.</p></br>

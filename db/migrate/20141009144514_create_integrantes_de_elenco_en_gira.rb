@@ -4,7 +4,7 @@ class CreateIntegrantesDeElencoEnGira < ActiveRecord::Migration
       t.string :type, :null => false
       t.string :nombre, :null => false
       t.string :apellido, :null => false
-      t.string :cuil_cuit, :null => false, unique: true
+      t.string :cuil_cuit, :null => false
       t.datetime :fecha_de_nacimiento, :null => false
       t.string :calle, :null => false
       t.string :altura_calle, :null => false
@@ -14,7 +14,7 @@ class CreateIntegrantesDeElencoEnGira < ActiveRecord::Migration
       t.string :codigo_postal, :null => false
       t.string :tel_particular
       t.string :tel_celular
-      t.string :email, :null => false, unique: true
+      t.string :email, :null => false
       t.references :elenco_en_gira, index: true, :null => false
 
       t.timestamps

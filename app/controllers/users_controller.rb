@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user.save
     	sign_in @user
     	flash[:success] = "Bienvenido al INT"
-      redirect_to root_url
+      redirect_to home2_path
     else
       render 'new'
     end
@@ -44,6 +44,6 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      redirect_to(home2_path) unless current_user?(@user)
     end
 end

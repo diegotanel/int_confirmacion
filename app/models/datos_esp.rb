@@ -9,8 +9,6 @@ class DatosEsp < ActiveRecord::Base
 	has_and_belongs_to_many :formatos
 
 	validates :formulario, presence: true
-	validates :interpretes_escena, presence: true, numericality: { only_integer: true }
-	validates :directores_espectaculo, presence: true, numericality: { only_integer: true }
 	validates :fecha_de_estreno, presence: true
 	validates :nombre_autor, presence: true, length: {maximum: 100}
 	validates :nacionalidad_autor, presence: true, length: {maximum: 50}

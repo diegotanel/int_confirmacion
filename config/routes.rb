@@ -26,7 +26,8 @@ Int::Application.routes.draw do
   get "principals/obtener_region", :defaults => {:format => :js}
   get "personas_fisicas_e/buscar_integrante_por_cuil_cuit"
 
-  root  'static_pages#home'
+  root  'static_pages#home2'
+  match '/home2', to: 'static_pages#home', via: 'get'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
