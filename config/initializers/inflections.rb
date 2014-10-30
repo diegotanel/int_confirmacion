@@ -45,5 +45,5 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'persona_fisica_e', 'personas_fisicas_e'
 	inflect.irregular 'integrante_comision_directiva', 'integrantes_comision_directiva'
 	inflect.irregular 'super_vista', 'super_vistas'
-	inflect.irregular 'persona', 'personas'
+	inflect.irregular 'formulario_terminado', 'formularios_terminados'
 end

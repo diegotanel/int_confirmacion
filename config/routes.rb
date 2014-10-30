@@ -19,6 +19,7 @@ Int::Application.routes.draw do
     resources :personas_fisicas_e, only: [:new, :create, :show]
     resources :ficha_artisticas, only: [:new, :create, :show, :edit, :update, :index, :destroy]
     resources :super_vistas, only: [:index]
+    resources :formularios_terminados, only: [:index]
     member do
       get :imprimir_remito
     end

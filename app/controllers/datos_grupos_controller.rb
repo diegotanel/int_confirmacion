@@ -14,6 +14,7 @@ class DatosGruposController < ApplicationController
   def create
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @datos_grupo = @formulario.build_datos_grupo(datos_grupo_params)
+    @datos_grupo.saltear_validaciones_de_presencia = true
     if @datos_grupo.save
       flash[:success] = "Datos del grupo correctamente creados"
       redirect_to formulario_datos_grupo_path(@formulario, @datos_grupo)
@@ -30,6 +31,7 @@ class DatosGruposController < ApplicationController
   def update
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @datos_grupo = DatosGrupo.find(params[:id])
+    @datos_grupo.saltear_validaciones_de_presencia = true
     if @datos_grupo.update_attributes(datos_grupo_params)
       flash[:success] = "Datos del grupo actualizados"
       redirect_to formulario_datos_grupo_path(@formulario, @datos_grupo)

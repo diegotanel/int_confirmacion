@@ -18,7 +18,7 @@ class DatosEsp < ActiveRecord::Base
 	validates :nacionalidad_autor, presence: true, unless: :saltear_validaciones_de_presencia
 	validates :nacionalidad_autor, length: {maximum: 50}
 	validates :duracion_espectaculo, presence: true, unless: :saltear_validaciones_de_presencia
-	validates :duracion_espectaculo, numericality: { only_integer: true } 
+	validates :duracion_espectaculo, numericality: { only_integer: true }
 	validates :sinopsis_obra, presence: true, unless: :saltear_validaciones_de_presencia
 	validates :sinopsis_obra, length: {maximum: 700}
 	validates :gen_esps, presence: true, unless: :saltear_validaciones_de_presencia
