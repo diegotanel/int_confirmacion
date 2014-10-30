@@ -3,23 +3,13 @@
 <div class="center hero-unit">
 
   <% if signed_in? %>
-  	<h2>Bienvenido <%= current_user.name %> <%= current_user.last_name %> </h2></br>
-  	<p>El Instituto Nacional del Teatro abre la Convocatoria para el Programa INT Presenta, destinada a elegir los espectáculos teatrales que formarán parte del Catálogo 2015 del Programa. La inscripción  permanecerá abierta desde el lunes 3 de noviembre hasta el lunes 1° de diciembre inclusive. Se podrán presentar espectáculos de todo el país, ya estrenados y con disponibilidad para realizar funciones fuera de su provincia.</br>
-  	</br>
-
-		Consultas: coordinacion@inteatro.gov.ar, TEL: 54 911 48156661 (interno 152)</br>  
-
-		</br>
- 		Sobre el Programa: El Programa INT Presenta es una de las mayores acciones de promoción de las artes escénicas que desarrolla el Instituto Nacional del Teatro. Incluye a los Subprogramas El Teatro Invita y El Teatro Festeja y está conformado por un Catálogo de espectáculos oriundos de todas las provincias del país. El Programa va sumando nuevas producciones de gran calidad artística año a año, promoviendo el crecimiento de la actividad teatral, su circulación por el territorio argentino y permitiendo nuevos encuentros entre los creadores y los espectadores.</p></br>
 		<%= link_to "Formulario convocatoria INT Presenta 2015", formularios_path, class: "btn btn-large btn-medium" %></br>
 		</br>
 		<%= link_to "Configuración de la cuenta", edit_user_path(current_user), class: "btn btn-large btn-medium" %></br>
 		</br>
 		<%= link_to "Cerrar Sesion", signout_path, method: "delete", class: "btn btn-large btn-medium" %></br>
 		</br>
-
   <% else %>
-  	<h2>Bienvenido</h2></br>
   	<%= link_to "Registrarse!", signup_path, class: "btn btn-large btn-medium" %></br>
   	</br>
   	<%= link_to "Iniciar Sesión", signin_path, class: "btn btn-large btn-medium" %>

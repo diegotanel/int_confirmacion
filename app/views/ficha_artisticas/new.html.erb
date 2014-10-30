@@ -14,9 +14,12 @@
       <%= f.text_field :apellido_artista %>
 
       <%= f.label :rol_artista, "Rol *" %>
-      <%= f.text_field :rol_artista %>
+      <%= f.text_field :rol_artista %></br>
 
-      <%= f.submit "Cargar Datos", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Guardar Datos", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
+</br>
+</br>
+<%= link_to t('Volver a campos de datos'), edit_formulario_path(@formulario) %>
