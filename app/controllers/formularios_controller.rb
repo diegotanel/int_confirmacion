@@ -1,3 +1,4 @@
+#encoding: utf-8
 class FormulariosController < ApplicationController
 	before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
 

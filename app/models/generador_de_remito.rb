@@ -45,7 +45,7 @@ class GeneradorDeRemito
   end
 
   def nombre_remito
-    "remito_convocatoria_2015_" + @formulario.principal.nombre.squish.mb_chars.downcase.tr(" ","_").to_s + "_" + @fecha_inicializacion
+    "remito_convocatoria_2015_" + "_" + @fecha_inicializacion
   end
 
 end
