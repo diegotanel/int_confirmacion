@@ -114,10 +114,10 @@ describe IntegranteDeElencoEnGira do
       }
     end
 
-    describe "cuil_cuit no se peude repetir" do
-      before {@nuevo_integrante = elenco_en_gira.integrantes_de_elenco_en_gira.build(params.merge(email: "fruta@fruta.com"))}
-      it {@nuevo_integrante.should_not be_valid}
-    end
+    # describe "cuil_cuit no se peude repetir" do
+    #   before {@nuevo_integrante = elenco_en_gira.integrantes_de_elenco_en_gira.build(params.merge(email: "fruta@fruta.com"))}
+    #   it {@nuevo_integrante.should_not be_valid}
+    # end
 
     describe "when fecha_de_nacimiento is not present" do
       before { @integrante_de_elenco_en_gira.fecha_de_nacimiento = " " }

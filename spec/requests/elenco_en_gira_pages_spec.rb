@@ -35,7 +35,7 @@ describe "ElencoEnGira" do
 
       describe "links de interprete" do
         it {
-          should have_link('Nuevo interprete', href: new_formulario_actor_path(elenco_en_gira.formulario))
+          should have_link('Nuevo intérprete', href: new_formulario_actor_path(elenco_en_gira.formulario))
         }
 
         it {
