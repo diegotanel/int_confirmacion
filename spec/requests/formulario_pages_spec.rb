@@ -33,7 +33,16 @@ describe "Formulario" do
           visit edit_formulario_path(principal.formulario)
         end
 
-        #it { should have_link('Datos Principales') }
+        it { should have_selector("td", :text => "incompleto")}
+        it "debe mostrar el estado incompleto" do
+        end
+
+      end
+
+      describe "debe mostrar el estado de los campos" do
+        it "estado incompleto" do
+
+        end
       end
     end
 

@@ -16,6 +16,20 @@
   <tr>
     <td>Datos Principales</td>
 
+      <% unless (@formulario.principal) %>
+        <td>Campo incompleto</td>
+      <% end %>
+
+      <% if (@formulario.principal) %>
+        <% unless (@formulario.principal.valid?) %>
+          <td>Campo incompleto</td>
+        <% end %>
+      <% end %>
+
+       <% if (@formulario.principal) && (@formulario.principal.valid?) %>
+        <td>Campo completo</td>
+      <% end %>
+
     <% if (@formulario.principal) %>
 
     	<td><%= link_to t("scaffoldi18n.ver"), formulario_principal_path(@formulario, @formulario.principal)  %></td>
@@ -28,6 +42,20 @@
 
   <tr>
     <td>Datos generales del espectáculo</td>
+
+      <% unless (@formulario.datos_esp) %>
+        <td>Campo incompleto</td>
+      <% end %>
+
+      <% if (@formulario.datos_esp) %>
+        <% unless (@formulario.datos_esp.valid?) %>
+          <td>Campo incompleto</td>
+        <% end %>
+      <% end %>
+
+       <% if (@formulario.datos_esp) && (@formulario.datos_esp.valid?) %>
+        <td>Campo completo</td>
+      <% end %>
 
     <% if (@formulario.datos_esp) %>
 
@@ -42,6 +70,19 @@
   <tr>
     <td>Datos técnicos del espectáculo</td>
 
+      <% unless (@formulario.datos_tec) %>
+        <td>Campo incompleto</td>
+      <% end %>
+
+      <% if (@formulario.datos_tec) %>
+        <% unless (@formulario.datos_tec.valid?) %>
+          <td>Campo incompleto</td>
+        <% end %>
+      <% end %>
+
+       <% if (@formulario.datos_tec) && (@formulario.datos_tec.valid?) %>
+        <td>Campo completo</td>
+      <% end %>
 
     <% if (@formulario.datos_tec) %>
 
@@ -56,6 +97,20 @@
 
   <tr>
   <td>Datos del elenco en gira</td>
+
+      <% unless (@formulario.elenco_en_gira) %>
+        <td>Campo incompleto</td>
+      <% end %>
+
+      <% if (@formulario.elenco_en_gira) %>
+        <% @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.each do |integrante| %>
+          <% unless (integrante.valid?) %>
+            <td>Campo incompleto</td>
+          <% else %>
+            <td>Campo completo</td>
+          <% end %>
+        <% end %>
+      <% end %>
 
   <% if (@formulario.elenco_en_gira) %>
     <td></td>
@@ -85,6 +140,20 @@
 
   <tr>
     <td>Datos del responsable</td>
+
+      <% unless (@formulario.responsable) %>
+        <td>Campo incompleto</td>
+      <% end %>
+
+      <% if (@formulario.responsable) %>
+        <% unless (@formulario.responsable.valid?) %>
+          <td>Campo incompleto</td>
+        <% end %>
+      <% end %>
+
+       <% if (@formulario.responsable) && (@formulario.responsable.valid?) %>
+        <td>Campo completo</td>
+      <% end %>
 
     <% if (@formulario.responsable) %>
 
