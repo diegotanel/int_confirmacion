@@ -15,7 +15,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
     #   flash[:error] = "No puede tener mas de 2 tecnicos en gira"
     #   redirect_to formulario_elencos_en_gira_path
     # end
-    # if (params[:type] == 'Director' || params[:type] == 'Tecnico') && ((@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').count + 
+    # if (params[:type] == 'Director' || params[:type] == 'Tecnico') && ((@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').count +
     #   @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count) == 3)
     #   flash[:error] = "No puede tener mas de 3 personas que no sean actores en la gira"
     #   redirect_to formulario_elencos_en_gira_path
@@ -33,6 +33,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @integrante = IntegranteDeElencoEnGira.new(integrante_de_elenco_en_gira_params)
     @integrante.type = params[:type]
+    @integrante.saltear_validaciones_de_presencia = true
     if @formulario.elenco_en_gira.integrantes_de_elenco_en_gira << @integrante
       flash[:success] = "Se ha creado un integrante correctamente"
       redirect_to formulario_elencos_en_gira_path
@@ -45,6 +46,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
   def update
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @integrante = IntegranteDeElencoEnGira.find(params[:id])
+    @integrante.saltear_validaciones_de_presencia = true
     if @integrante.update(integrante_de_elenco_en_gira_params)
       flash[:success] = "Se ha actualizado un integrante correctamente"
       redirect_to formulario_elencos_en_gira_path
@@ -83,7 +85,8 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
   end
 
   def type
-    IntegranteDeElencoEnGira.descendants.map {|c| c.to_s}.sort.include?(params[:type]) ? params[:type] : nil
+    #IntegranteDeElencoEnGira.descendants.map {|c| c.to_s}.sort.include?(params[:type]) ? params[:type] : nil
+     IntegranteDeElencoEnGira.select(:type).map(&:type).uniq.sort.include?(params[:type]) ? params[:type] : nil
   end
 
 end

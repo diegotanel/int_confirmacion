@@ -15,6 +15,7 @@ class DatosEspsController < ApplicationController
   def create
   	@formulario = Formulario.find_by_id(params[:formulario_id])
   	@datos_esp = @formulario.build_datos_esp(datos_esp_params)
+    @datos_esp.saltear_validaciones_de_presencia = true
     if @datos_esp.save
       flash[:success] = "Datos del espectaculo correctamente creados"
       redirect_to formulario_ficha_artisticas_path
@@ -32,6 +33,7 @@ class DatosEspsController < ApplicationController
   def update
   	@formulario = Formulario.find_by_id(params[:formulario_id])
     @datos_esp = DatosEsp.find(params[:id])
+    @datos_tec.saltear_validaciones_de_presencia = true
     if @datos_esp.update_attributes(datos_esp_params)
       flash[:success] = "Datos del espectaculo actualizados"
       redirect_to formulario_ficha_artisticas_path
