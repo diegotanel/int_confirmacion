@@ -5,7 +5,7 @@ class Formulario < ActiveRecord::Base
 	has_one :datos_grupo, dependent: :destroy
 	has_one :datos_esp, dependent: :destroy
 	has_one :datos_tec, dependent: :destroy
-	has_one :datos_del_responsable, dependent: :destroy
+	has_one :responsable, dependent: :destroy
 	has_one :super_vista, dependent: :destroy
 
 	default_scope -> { order('created_at DESC') }

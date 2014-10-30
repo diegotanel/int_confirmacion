@@ -88,13 +88,13 @@
   <tr>
     <td>Datos del responsable</td>
 
-    <% if (@formulario.datos_del_responsable) %>
+    <% if (@formulario.responsable) %>
 
-    	<td><%= link_to t("scaffoldi18n.ver"), formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable)  %></td>
+    	<td><%= link_to t("scaffoldi18n.ver"), formulario_responsable_path(@formulario, @formulario.responsable)  %></td>
 
-      <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_del_responsable_path(@formulario, @formulario.datos_del_responsable)  %></td>
+      <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_responsable_path(@formulario, @formulario.responsable)  %></td>
     <% else %>
-      <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_del_responsable_path(@formulario) %></td>
+      <td><%= link_to t("scaffoldi18n.new"), new_formulario_responsable_path(@formulario) %></td>
       <td></td>
     <% end %>
   </tr>

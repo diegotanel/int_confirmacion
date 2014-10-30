@@ -12,11 +12,11 @@ Int::Application.routes.draw do
     resources :datos_grupos, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :datos_esps, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :datos_tecs, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :datos_del_responsables, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :persona_juridica, only: [:new, :create, :show, :edit, :update, :index]
-    resources :integrantes_persona_juridica, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :persona_fisica_n, only: [:new, :create, :show, :edit, :update]
-    resources :persona_fisica_e, only: [:new, :create, :show, :edit, :update]
+    resources :responsables, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :personas_juridicas, only: [:new, :create, :show, :edit, :update, :index]
+    resources :integrantes_comision_directiva, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :personas_fisicas_n, only: [:new, :create, :show, :edit, :update]
+    resources :personas_fisicas_e, only: [:new, :create, :show]
     resources :ficha_artisticas, only: [:new, :create, :show, :edit, :update, :index, :destroy]
     resources :super_vistas, ony: [:index]
     member do
@@ -24,6 +24,7 @@ Int::Application.routes.draw do
     end
   end
   get "principals/obtener_region", :defaults => {:format => :js}
+  get "personas_fisicas_e/buscar_integrante_por_cuil_cuit"
 
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

@@ -18,6 +18,6 @@ class PersonaJuridica < ActiveRecord::Base
   validates :localidad, presence: true
   validates :codigo_postal, presence: true
   validates :email_entidad, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
-  validates :datos_del_responsable, presence: true
+  validates :responsable, presence: true
   validates :tel_entidad, numericality: { only_integer: true }, allow_blank: true
 end
