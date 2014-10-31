@@ -8,13 +8,18 @@ class PersonasFisicasEController < ApplicationController
   end
 
   def buscar_integrante_por_cuil_cuit
-  	@buscado = IntegranteDeElencoEnGira.find_by_cuil_cuit(params[:numero_cuil_cuit])
-    @formulario.responsable.persona_fisica_e = @buscado
+    @formulario = Formulario.find_by_id(params[:formulario_id])
+    @buscado = IntegranteDeElencoEnGira.find_by_cuil_cuit(params[:numero_cuil_cuit])
+    if @buscado.nil?
+      flash[:error] = "No se encontro a ninguna persona con ese cuil o cuit"
+    else
+      #Mandar a una vista de show
+    end
   end
-  
+
   def create
-  	@formulario = Formulario.find_by_id(params[:formulario_id])
-  	@formulario.responsable.persona_fisica_e = @buscado
+    @formulario = Formulario.find_by_id(params[:formulario_id])
+    @buscado = @formulario.responsable.build_persona_fisica_e()
   end
 
   private

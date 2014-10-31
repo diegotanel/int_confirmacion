@@ -14,7 +14,8 @@ class PersonasFisicasNController < ApplicationController
 
   def create
   	@formulario = Formulario.find_by_id(params[:formulario_id])
-  	@persona_fisica_n = @formulario.responsable.build_persona_fisica_n(persona_fisica_n_params)
+    @responsable = @formulario.responsable
+  	@persona_fisica_n = @responsable.build_persona_fisica_n(persona_fisica_n_params)
     if @persona_fisica_n.save
       flash[:success] = "Datos de la persona fisica correctamente creados"
       redirect_to formulario_persona_fisica_n_path

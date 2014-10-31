@@ -11,17 +11,17 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
 
   def new
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    if params[:type] == 'Tecnico' && (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count == 2)
-      flash[:error] = "No puede tener mas de 2 tecnicos en gira"
-      redirect_to formulario_elencos_en_gira_path
-    end
-    if (params[:type] == 'Director' || params[:type] == 'Tecnico') && ((@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').count +
-                                                                        @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count) == 3)
-      flash[:error] = "No puede tener mas de 3 personas que no sean actores en la gira"
-      redirect_to formulario_elencos_en_gira_path
-    else
+    # if params[:type] == 'Tecnico' && (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count == 2)
+    #   flash[:error] = "No puede tener mas de 2 tecnicos en gira"
+    #   redirect_to formulario_elencos_en_gira_path
+    # end
+    # if (params[:type] == 'Director' || params[:type] == 'Tecnico') && ((@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').count +
+    #                                                                     @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count) == 3)
+    #   flash[:error] = "No puede tener mas de 3 personas que no sean actores en la gira"
+    #   redirect_to formulario_elencos_en_gira_path
+    # else
       @integrante = IntegranteDeElencoEnGira.new(type: params[:type])
-    end
+    #end
   end
 
   def edit
@@ -32,12 +32,13 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
   def create
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @integrante = IntegranteDeElencoEnGira.new(integrante_de_elenco_en_gira_params)
-    @integrante.type = params[:type]
+    #@integrante.type = params[:type]
     @integrante.saltear_validaciones_de_presencia = true
     if @formulario.elenco_en_gira.integrantes_de_elenco_en_gira << @integrante
       flash[:success] = "Se ha creado un integrante correctamente"
       redirect_to formulario_elencos_en_gira_path
     else
+      set_type
       inicializar_variables
       render 'new'
     end
@@ -51,6 +52,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
       flash[:success] = "Se ha actualizado un integrante correctamente"
       redirect_to formulario_elencos_en_gira_path
     else
+      set_type
       inicializar_variables
       render 'edit'
     end
@@ -71,7 +73,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
   private
 
   def integrante_de_elenco_en_gira_params
-    params.require(type.underscore.to_sym).permit(:type, :provincia_id, :localidad_id, :nombre, :apellido, :cuil_cuit, "fecha_de_nacimiento(3i)", "fecha_de_nacimiento(2i)", "fecha_de_nacimiento(1i)", :calle, :altura_calle, :piso, :depto, :codigo_postal, :tel_particular, :tel_celular, :email)
+    params.require(@type.underscore.to_sym).permit(:type, :provincia_id, :localidad_id, :nombre, :apellido, :cuil_cuit, "fecha_de_nacimiento(3i)", "fecha_de_nacimiento(2i)", "fecha_de_nacimiento(1i)", :calle, :altura_calle, :piso, :depto, :codigo_postal, :tel_particular, :tel_celular, :email)
   end
 
   def inicializar_variables
@@ -81,10 +83,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
   end
 
   def set_type
-    @type = type
+    @type = params[:type]
   end
 
-  def type
-    IntegranteDeElencoEnGira.descendants.map {|c| c.to_s}.sort.include?(params[:type]) ? params[:type] : nil
-  end
 end

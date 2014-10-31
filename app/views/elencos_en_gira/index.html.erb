@@ -118,44 +118,10 @@
 <%= link_to "Nuevo técnico", new_formulario_tecnico_path(@formulario), class: "btn btn-medium btn-primary" %></br>
 </br>
 </br>
-
-
-<br />
+<%= link_to "Finalizar elenco en gira", edit_formulario_path(@formulario), class: "btn btn-medium btn-primary" %>
 </br>
-<h4>Ir a:</h4>
-<% if (@formulario.principal) %>
-    <%= link_to t("datos principales"), edit_formulario_principal_path(@formulario, @formulario.principal) %></br>
-<% else %>
-    <%= link_to t("Alta datos principales"), new_formulario_principal_path(@formulario) %></br>
-<% end %>
 
-<% if (@formulario.datos_esp) %>
-      <%= link_to t("Datos del espectáculo"), edit_formulario_datos_esp_path(@formulario, @formulario.datos_esp) %></br>
-<% else %>
-      <%= link_to t("Alta datos del espectáculo"), new_formulario_datos_esp_path(@formulario) %></br>
-<% end %>
-
-<% if (@formulario.datos_tec) %>
-  <%= link_to t("datos técnicos del espectáculo"), edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec) %></br>
-<% else %>
-<%= link_to t("Alta datos técnicos del espectáculo"), new_formulario_datos_tec_path(@formulario) %></br>
-<% end %>
-
-<% if (@formulario.datos_grupo) %>
-  <%= link_to t("datos del grupo"), edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo) %></br>
-<% else %>
-  <% if (@formulario.principal) %>
-    <% if (@formulario.principal.grupo.codigo == "a" ) %>
-      <%= link_to t("Alta datos del grupo"), new_formulario_datos_grupo_path(@formulario) %></br>
-    <% end %>
-  <% end %>
-<% end %>
-
-<% if (@formulario.responsable) %>
-  <%= link_to t("datos del responsable"), edit_formulario_responsable_path(@formulario, @formulario.responsable) %></br>
-<% else %>
-  <%= link_to t("Alta datos del responsable"), new_formulario_responsable_path(@formulario) %></br>
-<% end %>
+</br>
 
 <%= link_to t('Volver a campos de datos'), edit_formulario_path(@formulario) %>
 

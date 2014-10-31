@@ -10,8 +10,8 @@
 <% end %>
 
 <h3>Campos de datos</h3><p>(Los campos de datos se pueden completar parcialmente y serán guardados en un borrador. Así mismo, se puede comenzar por cualquiera de ellos.)</p>
-<table class="table table-striped">
 
+<table class="table table-striped">
 
   <tr>
     <td>Datos Principales</td>
@@ -103,12 +103,18 @@
       <% end %>
 
       <% if (@formulario.elenco_en_gira) %>
+        <% @es_invalido = nil %>
         <% @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.each do |integrante| %>
-          <% unless (integrante.valid?) %>
-            <td>Campo incompleto</td>
-          <% else %>
-            <td>Campo completo</td>
+          <%  unless integrante.valid? %>
+            <% @es_invalido = true 
+              break %>
           <% end %>
+        <% end %>
+
+        <% if (@es_invalido) %>
+          <td>Campo incompleto</td>
+        <% else %>
+          <td>Campo completo</td>
         <% end %>
       <% end %>
 
@@ -117,7 +123,7 @@
     <td><%= link_to t("scaffoldi18n.edit"), formulario_elencos_en_gira_path(@formulario) %></td>
   	</tr>
   <% else %>
-  	<td><%= link_to t("scaffoldi18n.new"), formulario_elencos_en_gira_path(@formulario, @formulario.datos_tec)  %></td>
+  	<td><%= link_to t("scaffoldi18n.new"), formulario_elencos_en_gira_path(@formulario, @formulario.elenco_en_gira)  %></td>
   	<td></td>
   <% end %>
 
@@ -125,6 +131,20 @@
     <% if (@formulario.principal.grupo.codigo == "a" ) %>
       <tr>
         <td>Datos del grupo</td>
+
+        <% unless (@formulario.datos_grupo) %>
+          <td>Campo incompleto</td>
+        <% end %>
+
+        <% if (@formulario.datos_grupo) %>
+          <% unless (@formulario.datos_grupo.valid?) %>
+            <td>Campo incompleto</td>
+          <% end %>
+        <% end %>
+
+        <% if (@formulario.datos_grupo) && (@formulario.datos_grupo.valid?) %>
+          <td>Campo completo</td>
+        <% end %>
 
         <% if (@formulario.datos_grupo) %>
 
@@ -161,9 +181,23 @@
 
       <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_responsable_path(@formulario, @formulario.responsable)  %></td>
     <% else %>
-      <td><%= link_to t("scaffoldi18n.new"), new_formulario_responsable_path(@formulario) %></td>
+      <td><%= link_to t("scaffoldi18n.new"), formulario_responsables_path(@formulario) %></td>
       <td></td>
     <% end %>
   </tr>
 
 </table>
+
+<% if (@formulario.principal) && (@formulario.principal.valid?) %>
+  <% if (@formulario.datos_esp) && (@formulario.datos_esp.valid?) %>
+    <% if (@formulario.datos_tec) && (@formulario.datos_tec.valid?) %>
+      <% if (@formulario.elenco_en_gira) && (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Actor').count >= 1) %>
+        <% if (@formulario.datos_grupo) && (@formulario.datos_grupo.valid?) %>
+          <% if (@formulario.responsable) && (@formulario.responsable.valid?) %>
+            <%= link_to "Enviar Formulario", formulario_formularios_terminados_path(@formulario), class: "btn btn-medium btn-primary" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

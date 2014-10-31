@@ -17,7 +17,7 @@ class PersonasJuridicasController < ApplicationController
   	@persona_juridica = @formulario.responsable.build_persona_juridica(persona_juridica_params)
     if @persona_juridica.save
       flash[:success] = "Datos de la persona juridica correctamente creados"
-      redirect_to formulario_persona_juridica_path(@formulario, @persona_juridica)
+      redirect_to formulario_integrantes_comision_directiva_path
     else
       inicializar_variables
       render 'new'
@@ -34,7 +34,7 @@ class PersonasJuridicasController < ApplicationController
     @persona_juridica = PersonaJuridica.find(params[:id])
     if @persona_juridica.update_attributes(persona_juridica_params)
       flash[:success] = "Datos de la persona juridica actualizados"
-      redirect_to formulario_persona_juridica_path(@formulario, @persona_juridica)
+      redirect_to formulario_integrantes_comision_directiva_path
     else
       render 'edit'
     end

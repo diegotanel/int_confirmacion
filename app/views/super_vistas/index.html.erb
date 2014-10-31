@@ -24,7 +24,6 @@
 		<%= @formulario.principal.nombre %>
 	</p>
 <% end %>
-</br>
 <h3>Datos generales del espectáculo</h3>
 <% if (@formulario.datos_esp) %>
 	<p>
@@ -70,9 +69,19 @@
 	<p>
 	  <b>Formatos:</b>
 	  <%= @formulario.datos_esp.formatos.map { |e| e.detalle }.join(", ") %>
-	</p></br>
+	</p>
 <% end %>
-</br>
+<% if (@formulario.datos_esp) %>
+	<h3>Ficha Artística</h3>
+	<h4>Artístas</h4>
+	<% @artistas = @formulario.datos_esp.ficha_artisticas.all %>
+	<% @artistas.each do |artista| %>
+		<%= artista.nombre_artista %>
+		<%= artista.apellido_artista %>
+		<%= artista.rol_artista %>
+		</br>
+	<% end %>
+<% end %>
 <h3>Datos técnicos del espectáculo</h3>
 <% if (@formulario.datos_tec) %>
 	<p>
@@ -139,8 +148,40 @@
 	  <b>Otras necesidades:</b>
 	  <%= @formulario.datos_tec.otras_necesidades %>
 	</p></br>
-	</br>
 <% end %>
+<% if (@formulario.elenco_en_gira) %>
+	<h3>Datos del elenco en gira</h3>
+	<h4>Intérpretes</h4>
+	<% @actores = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Actor').all %>
+	<% @actores.each do |actor| %>
+		<%= actor.nombre %>
+		<%= actor.apellido %>
+		<%= actor.cuil_cuit %>
+		<%= actor.email %>
+		<%= actor.fecha_de_nacimiento %></br>
+	<% end %>
+	</br>
+	<h4>Directores</h4>
+	<% @directores = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').all %>
+	<% @directores.each do |director| %>
+		<%= director.nombre %>
+		<%= director.apellido %>
+		<%= director.cuil_cuit %>
+		<%= director.email %>
+		<%= director.fecha_de_nacimiento %></br>
+	<% end %>
+	</br>
+	<h4>Técnicos</h4>
+	<% @tecnicos = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').all %>
+	<% @tecnicos.each do |tecnico| %>
+		<%= tecnico.nombre %>
+		<%= tecnico.apellido %>
+		<%= tecnico.cuil_cuit %>
+		<%= tecnico.email %>
+		<%= tecnico.fecha_de_nacimiento %></br>
+	<% end %>
+<% end %>
+
 <% if (@formulario.principal) %>
     <% if (@formulario.principal.grupo.codigo == "a" ) %>
 			<h3>Datos del grupo</h3>
@@ -158,7 +199,6 @@
 			<% end %>
 		<% end %>
 <% end %>
-</br>
 <h3>Datos del responsable</h3>
 <% if (@formulario.responsable) %>
 	<p>Holaaaaaa</p>

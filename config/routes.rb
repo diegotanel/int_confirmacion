@@ -3,6 +3,9 @@ Int::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_recovers, only: [:new, :create]
   resources :formularios, only: [:new, :create, :edit, :update, :index, :destroy] do
+    member do
+      get :imprimir_remito
+    end
     resources :principals, only: [:new, :create, :show, :edit, :update]
     resources :elencos_en_gira, only: [:index]
     resources :integrantes_de_elenco_en_gira, only: [:new, :create, :show, :edit, :update, :destroy]
@@ -12,26 +15,28 @@ Int::Application.routes.draw do
     resources :datos_grupos, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :datos_esps, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :datos_tecs, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :responsables, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :responsables, only: [:new, :create, :show, :edit, :update, :destroy, :index]
     resources :personas_juridicas, only: [:new, :create, :show, :edit, :update, :index]
     resources :integrantes_comision_directiva, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :personas_fisicas_n, only: [:new, :create, :show, :edit, :update]
     resources :personas_fisicas_e, only: [:new, :create, :show]
     resources :ficha_artisticas, only: [:new, :create, :show, :edit, :update, :index, :destroy]
     resources :super_vistas, only: [:index]
-    member do
-      get :imprimir_remito
+    resources :formularios_terminados, only: [:index]
+    resources :personas_fisicas_e do
+      member do
+        post :buscar_integrante_por_cuil_cuit
+      end
     end
   end
   get "principals/obtener_region", :defaults => {:format => :js}
-  get "personas_fisicas_e/buscar_integrante_por_cuil_cuit"
+  #post "personas_fisicas_e/buscar_integrante_por_cuil_cuit"
 
   root  'static_pages#home2'
   match '/home2', to: 'static_pages#home', via: 'get'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
-  # match '/password_recover', to: 'password_recovers#new', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

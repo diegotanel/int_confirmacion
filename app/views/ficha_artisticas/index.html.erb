@@ -30,39 +30,10 @@
   <% end %>
 </table>
 <%= link_to "Nuevo Artista", new_formulario_ficha_artistica_path(@formulario), class: "btn btn-medium btn-primary" %>
+<%= link_to "Finalizar ficha artística", edit_formulario_path(@formulario), class: "btn btn-medium btn-primary" %>
 
 <br />
-<br />
-
-<% if (@formulario.principal) %>
-    <%= link_to t("Editar datos principales"), edit_formulario_principal_path(@formulario, @formulario.principal) %></br>
-<% else %>
-    <%= link_to t("Alta datos principales"), new_formulario_principal_path(@formulario) %></br>
-<% end %>
-
-<% if (@formulario.datos_tec) %>
-  <%= link_to t("Editar datos técnicos del espectáculo"), edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec) %></br>
-<% else %>
-  <%= link_to t("Alta datos técnicos del espectáculo"), new_formulario_datos_tec_path(@formulario) %></br>
-<% end %>
-
-<%= link_to t("Alta datos de elenco en gira"), formulario_elencos_en_gira_path(@formulario) %></br>
-
-<% if (@formulario.datos_grupo) %>
-  <%= link_to t("Editar datos del grupo"), edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo) %></br>
-<% else %>
-  <% if (@formulario.principal) %>
-    <% if (@formulario.principal.grupo.codigo == "a" ) %>
-      <%= link_to t("Alta datos del grupo"), new_formulario_datos_grupo_path(@formulario) %></br>
-    <% end %>
-  <% end %>
-<% end %>
-
-<% if (@formulario.responsable) %>
-  <%= link_to t("datos del responsable"), edit_formulario_responsable_path(@formulario, @formulario.responsable) %></br>
-<% else %>
-  <%= link_to t("Alta datos del responsable"), new_formulario_responsable_path(@formulario) %></br>
-<% end %>
-<%= link_to t('scaffoldi18n.back'), edit_formulario_path(@formulario) %>
+</br>
+<%= link_to t('Volver a campos de datos'), edit_formulario_path(@formulario) %>
 
 </div>
