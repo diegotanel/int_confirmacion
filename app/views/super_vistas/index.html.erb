@@ -75,12 +75,21 @@
 	<h3>Ficha Artística</h3>
 	<h4>Artístas</h4>
 	<% @artistas = @formulario.datos_esp.ficha_artisticas.all %>
-	<% @artistas.each do |artista| %>
-		<%= artista.nombre_artista %>
-		<%= artista.apellido_artista %>
-		<%= artista.rol_artista %>
-		</br>
-	<% end %>
+	<table class="table table-striped">
+  <tr>
+
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Rol</th>
+  </tr>
+
+  <%= content_tag_for(:tr, @artistas) do |artista| %>
+
+    <td><%= artista.nombre_artista %></td>
+    <td><%= artista.apellido_artista %></td>
+    <td><%= artista.rol_artista %></td>
+  <% end %>
+	</table>
 <% end %>
 <h3>Datos técnicos del espectáculo</h3>
 <% if (@formulario.datos_tec) %>
@@ -147,38 +156,78 @@
 	<p>
 	  <b>Otras necesidades:</b>
 	  <%= @formulario.datos_tec.otras_necesidades %>
-	</p></br>
+	</p>
 <% end %>
 <% if (@formulario.elenco_en_gira) %>
 	<h3>Datos del elenco en gira</h3>
 	<h4>Intérpretes</h4>
 	<% @actores = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Actor').all %>
-	<% @actores.each do |actor| %>
-		<%= actor.nombre %>
-		<%= actor.apellido %>
-		<%= actor.cuil_cuit %>
-		<%= actor.email %>
-		<%= actor.fecha_de_nacimiento %></br>
+	<table class="table table-striped">
+  <tr>
+
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>CUIL / CUIT</th>
+    <th>Email</th>
+    <th>Fecha de Nacimiento</th>
+    <th></th>
+  </tr>
+
+  <%= content_tag_for(:tr, @actores) do |actor| %>
+
+    <td><%= actor.nombre %></td>
+    <td><%= actor.apellido %></td>
+    <td><%= actor.cuil_cuit %></td>
+    <td><%= actor.email %></td>
+    <td><%= I18n.l(actor.fecha_de_nacimiento) %></td>
+    <th></th>
+	</table>
 	<% end %>
-	</br>
 	<h4>Directores</h4>
 	<% @directores = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').all %>
-	<% @directores.each do |director| %>
-		<%= director.nombre %>
-		<%= director.apellido %>
-		<%= director.cuil_cuit %>
-		<%= director.email %>
-		<%= director.fecha_de_nacimiento %></br>
+	<table class="table table-striped">
+  <tr>
+
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>CUIL / CUIT</th>
+    <th>Email</th>
+    <th>Fecha de Nacimiento</th>
+    <th></th>
+  </tr>
+
+  <%= content_tag_for(:tr, @directores) do |director| %>
+
+    <td><%= director.nombre %></td>
+    <td><%= director.apellido %></td>
+    <td><%= director.cuil_cuit %></td>
+    <td><%= director.email %></td>
+    <td><%= I18n.l(director.fecha_de_nacimiento) %></td>
+    <th></th>
+	</table>
 	<% end %>
-	</br>
 	<h4>Técnicos</h4>
 	<% @tecnicos = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').all %>
-	<% @tecnicos.each do |tecnico| %>
-		<%= tecnico.nombre %>
-		<%= tecnico.apellido %>
-		<%= tecnico.cuil_cuit %>
-		<%= tecnico.email %>
-		<%= tecnico.fecha_de_nacimiento %></br>
+	<table class="table table-striped">
+  <tr>
+
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>CUIL / CUIT</th>
+    <th>Email</th>
+    <th>Fecha de Nacimiento</th>
+    <th></th>
+  </tr>
+
+  <%= content_tag_for(:tr, @tecnicos) do |tecnico| %>
+
+    <td><%= tecnico.nombre %></td>
+    <td><%= tecnico.apellido %></td>
+    <td><%= tecnico.cuil_cuit %></td>
+    <td><%= tecnico.email %></td>
+    <td><%= I18n.l(tecnico.fecha_de_nacimiento) %></td>
+    <th></th>
+	</table>
 	<% end %>
 <% end %>
 
@@ -195,7 +244,6 @@
 	  			<b>Historia del grupo:</b>
 	  			<%= @formulario.datos_grupo.historia %>
 				</p></br>
-				</br>
 			<% end %>
 		<% end %>
 <% end %>
@@ -204,4 +252,4 @@
 	<p>Holaaaaaa</p>
 <% end %>
 </br>
-<%= link_to t('Volver a campos de datos'), edit_formulario_path(@formulario) %>
+<%= link_to t('Volver a formularios'), formularios_path %>

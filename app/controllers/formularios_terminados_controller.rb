@@ -3,6 +3,6 @@ class PersonasFisicasEController < ApplicationController
 
   def index
    @formulario = Formulario.find_by_id(params[:formulario_id])
-   @formulario.estado = :final
+   @formulario.estado = 1
   end
 end
