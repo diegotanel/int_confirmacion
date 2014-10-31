@@ -175,15 +175,8 @@
         <td>Campo completo</td>
       <% end %>
 
-    <% if (@formulario.responsable) %>
-
-    	<td><%= link_to t("scaffoldi18n.ver"), formulario_responsable_path(@formulario, @formulario.responsable)  %></td>
-
-      <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_responsable_path(@formulario, @formulario.responsable)  %></td>
-    <% else %>
       <td><%= link_to t("scaffoldi18n.new"), formulario_responsables_path(@formulario) %></td>
       <td></td>
-    <% end %>
   </tr>
 
 </table>
@@ -194,7 +187,7 @@
       <% if (@formulario.elenco_en_gira) && (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Actor').count >= 1) %>
         <% if (@formulario.datos_grupo) && (@formulario.datos_grupo.valid?) %>
           <% if (@formulario.responsable) && (@formulario.responsable.valid?) %>
-            <%= link_to "Enviar Formulario", formulario_formularios_terminados_path(@formulario), class: "btn btn-medium btn-primary" %>
+            <%= link_to "Enviar Formulario", formulario_formularios_terminados_path(@formulario), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, class: "btn btn-medium btn-primary" %>
           <% end %>
         <% end %>
       <% end %>

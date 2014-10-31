@@ -4,7 +4,6 @@ class Responsable < ActiveRecord::Base
 	has_one :persona_juridica
 	has_one :persona_fisica_n
 	has_one :persona_fisica_e
-
-	validates :detalle, presence: true
+	
 	validates :formulario, presence: true
 end

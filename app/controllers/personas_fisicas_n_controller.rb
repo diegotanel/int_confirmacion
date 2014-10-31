@@ -18,7 +18,7 @@ class PersonasFisicasNController < ApplicationController
   	@persona_fisica_n = @responsable.build_persona_fisica_n(persona_fisica_n_params)
     if @persona_fisica_n.save
       flash[:success] = "Datos de la persona fisica correctamente creados"
-      redirect_to formulario_persona_fisica_n_path
+      redirect_to formulario_persona_fisica_n_path(@formulario, @persona_fisica_n)
     else
       inicializar_variables
       render 'new'

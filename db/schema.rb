@@ -319,7 +319,6 @@ ActiveRecord::Schema.define(version: 20141024171946) do
   end
 
   create_table "responsables", force: true do |t|
-    t.string   "detalle",       null: false
     t.integer  "formulario_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"

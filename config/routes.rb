@@ -17,7 +17,7 @@ Int::Application.routes.draw do
     resources :datos_tecs, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :responsables, only: [:new, :create, :show, :edit, :update, :destroy, :index]
     resources :personas_juridicas, only: [:new, :create, :show, :edit, :update, :index]
-    resources :integrantes_comision_directiva, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :integrantes_comision_directiva, only: [:new, :create, :show, :edit, :update, :index, :destroy]
     resources :personas_fisicas_n, only: [:new, :create, :show, :edit, :update]
     resources :personas_fisicas_e, only: [:new, :create, :show]
     resources :ficha_artisticas, only: [:new, :create, :show, :edit, :update, :index, :destroy]
@@ -30,7 +30,6 @@ Int::Application.routes.draw do
     end
   end
   get "principals/obtener_region", :defaults => {:format => :js}
-  #post "personas_fisicas_e/buscar_integrante_por_cuil_cuit"
 
   root  'static_pages#home2'
   match '/home2', to: 'static_pages#home', via: 'get'

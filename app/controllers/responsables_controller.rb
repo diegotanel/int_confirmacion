@@ -9,10 +9,6 @@ class ResponsablesController < ApplicationController
   def index
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @formulario.create_responsable() unless @formulario.responsable
-    @fisica_existente = @formulario.responsable.persona_fisica_e
-    @fisica_nueva = @formulario.responsable.persona_fisica_n
-    @juridica = @formulario.responsable.persona_juridica
-    flash[:success] = "Datos del responsable creados"
   end
 
   def edit
