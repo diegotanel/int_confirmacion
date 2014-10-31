@@ -86,9 +86,6 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
 
   def type
     IntegranteDeElencoEnGira.descendants.map {|c| c.to_s}.sort.include?(params[:type]) ? params[:type] : nil
-<<<<<<< HEAD
     #IntegranteDeElencoEnGira.select(:type).map(&:type).uniq.sort.include?(params[:type]) ? params[:type] : nil
-=======
->>>>>>> 4eaf35ee86ed6ddcb6291079c6e9fd43ec3c52f2
   end
 end

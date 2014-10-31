@@ -165,7 +165,7 @@
         <% end %>
       <% end %>
 
-       <% if (@formulario.responsable) && (@formulario.responsable.valid?) %>
+      <% if (@formulario.responsable) && (@formulario.responsable.valid?) %>
         <td>Campo completo</td>
       <% end %>
 
@@ -195,3 +195,4 @@
     <% end %>
   <% end %>
 <% end %>
+<%= link_to "Volver a los formularios", formularios_path %>

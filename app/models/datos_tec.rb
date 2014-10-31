@@ -22,9 +22,7 @@ class DatosTec < ActiveRecord::Base
   validates :listado_sonido, length: {maximum: 500}
   validates :otros_equipamientos, length: {maximum: 500}
   validates :peso_total, presence: true, unless: :saltear_validaciones_de_presencia
-  validates :peso_total, numericality: { only_integer: true }
   validates :volumen_total, presence: true, unless: :saltear_validaciones_de_presencia
-  validates :volumen_total, numericality: { only_integer: true }
   validates :otras_necesidades, length: {maximum: 500}
   validates :descripcion_espacio, presence: true, unless: :saltear_validaciones_de_presencia
   validates :descripcion_espacio, length: {maximum: 500}
