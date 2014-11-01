@@ -58,7 +58,4 @@ class FormulariosController < ApplicationController
       params.require(:formulario).permit(:principal_id)
     end
 
-    # def nombre_remito_pdf
-    #   "remito_convocatoria_2015_" + @formulario.principal.nombre.squish.mb_chars.downcase.tr(" ","_").to_s + "_" + Time.zone.now.to_formatted_s(:number) + ".pdf"
-    # end
 end

@@ -181,17 +181,47 @@
 
 </table>
 
+
+<% @completo = false %>
+
 <% if (@formulario.principal) && (@formulario.principal.valid?) %>
-  <% if (@formulario.datos_esp) && (@formulario.datos_esp.valid?) %>
-    <% if (@formulario.datos_tec) && (@formulario.datos_tec.valid?) %>
-      <% if (@formulario.elenco_en_gira) && (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Actor').count >= 1) %>
-        <% if (@formulario.datos_grupo) && (@formulario.datos_grupo.valid?) %>
-          <% if (@formulario.responsable) && (@formulario.responsable.valid?) %>
-            <%= link_to "Enviar Formulario", formulario_formularios_terminados_path(@formulario), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, class: "btn btn-medium btn-primary" %>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
+  <% @completo = true %>
+<% end %>
+
+<% if @completo && (@formulario.datos_esp) && (@formulario.datos_esp.valid?) %>
+  <% @completo = true %>
+<% else %>
+  <% @completo = false %>
+<% end %>
+
+<% if @completo && (@formulario.datos_tec) && (@formulario.datos_tec.valid?) %>
+  <% @completo = true %>
+<% else %>
+  <% @completo = false %>
+<% end %>
+
+<% if @completo && (@formulario.elenco_en_gira) && (@formulario.elenco_en_gira.valid?) %>
+  <% @completo = true %>
+<% else %>
+  <% @completo = false %>
+<% end %>
+
+<% if @completo && (@formulario.responsable) && (@formulario.responsable.valid?) %>
+  <% @completo = true %>
+<% else %>
+  <% @completo = false %>
+<% end %>
+
+<% if @completo && @formulario.principal && @formulario.principal.grupo.codigo == 'a' %>
+  <% if (@formulario.datos_grupo) && (@formulario.datos_grupo.valid?) %>
+    <% @completo = true %>
+  <% else %>
+    <% @completo = false %>
   <% end %>
 <% end %>
+
+  <% if @completo %>
+   <%= link_to "Enviar Formulario", formulario_formularios_terminados_path(@formulario), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, class: "btn btn-medium btn-primary" %>
+  <% end %></br></br>
+
 <%= link_to "Volver a los formularios", formularios_path %>

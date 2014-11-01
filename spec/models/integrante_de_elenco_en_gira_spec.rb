@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe IntegranteDeElencoEnGira do
 
-  let(:elenco_en_gira) { FactoryGirl.create(:elenco_en_gira) }
+  let(:elenco_en_gira) { FactoryGirl.build(:elenco_en_gira) }
   let(:localidad) { FactoryGirl.create(:localidad) }
 
   def params
@@ -13,6 +13,8 @@ describe IntegranteDeElencoEnGira do
   describe "fallido" do
     describe "siempre debe guardarse con una instancia de una clase hijo" do
       before {
+        elenco_en_gira.saltear_validaciones_de_presencia = true
+        elenco_en_gira.save!
         @integrante_de_elenco_en_gira = elenco_en_gira.integrantes_de_elenco_en_gira.build(params.merge(type: nil))
       }
       it {
@@ -23,6 +25,8 @@ describe IntegranteDeElencoEnGira do
 
   describe "exitoso" do
     before do
+      elenco_en_gira.saltear_validaciones_de_presencia = true
+      elenco_en_gira.save!
       @integrante_de_elenco_en_gira = elenco_en_gira.integrantes_de_elenco_en_gira.create(params)
     end
 
@@ -190,11 +194,15 @@ describe IntegranteDeElencoEnGira do
       }
 
       let(:formulario2) {FactoryGirl.create(:formulario, id: 2, user: elenco_en_gira.formulario.user)}
-      let(:elenco_en_gira2) {FactoryGirl.create(:elenco_en_gira, id: 2, formulario: formulario2)}
+      let(:elenco_en_gira2) {FactoryGirl.build(:elenco_en_gira, id: 2, formulario: formulario2)}
 
       it {
         @director = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "45324567893"))
+        
+        elenco_en_gira2.saltear_validaciones_de_presencia = true
+        elenco_en_gira2.save!
         @director2 = elenco_en_gira2.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Lucas", apellido: "Capo", email: "lucas.capo@gmail.com", cuil_cuit: "45324567895"))
+
         elenco_en_gira.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should == @director.id
         elenco_en_gira2.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should_not == @director.id
         elenco_en_gira2.integrantes_de_elenco_en_gira.find_by(type: 'Director').id.should == @director2.id

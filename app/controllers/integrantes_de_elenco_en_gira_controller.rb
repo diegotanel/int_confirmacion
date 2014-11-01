@@ -32,7 +32,9 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
   def create
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @integrante = IntegranteDeElencoEnGira.new(integrante_de_elenco_en_gira_params)
-    #@integrante.type = params[:type]
+    @elenco = @formulario.build_elenco_en_gira
+    @elenco.saltear_validaciones_de_presencia = true
+    @elenco.save!
     @integrante.saltear_validaciones_de_presencia = true
     if @formulario.elenco_en_gira.integrantes_de_elenco_en_gira << @integrante
       flash[:success] = "Se ha creado un integrante correctamente"
@@ -47,6 +49,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
   def update
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @integrante = IntegranteDeElencoEnGira.find(params[:id])
+    @formulario.elenco_en_gira.saltear_validaciones_de_presencia = true
     @integrante.saltear_validaciones_de_presencia = true
     if @integrante.update(integrante_de_elenco_en_gira_params)
       flash[:success] = "Se ha actualizado un integrante correctamente"
@@ -60,6 +63,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
 
   def destroy
     @formulario = Formulario.find_by_id(params[:formulario_id])
+    @formulario.elenco_en_gira.saltear_validaciones_de_presencia = true
     @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.destroy(params[:id])
     if @formulario.elenco_en_gira.save
       flash[:success] = "Se ha eliminado el integrante correctamente"

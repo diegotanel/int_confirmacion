@@ -6,7 +6,7 @@ describe "ElencoEnGira" do
   subject { page }
 
   describe "lista de integrantes" do
-    let(:elenco_en_gira) { FactoryGirl.create(:elenco_en_gira) }
+    let(:elenco_en_gira) { FactoryGirl.build(:elenco_en_gira) }
     let(:localidad) { FactoryGirl.create(:localidad) }
 
     def params
@@ -14,6 +14,8 @@ describe "ElencoEnGira" do
     end
 
     before do
+      elenco_en_gira.saltear_validaciones_de_presencia = true
+      elenco_en_gira.save!
       sign_in elenco_en_gira.formulario.user
     end
 
