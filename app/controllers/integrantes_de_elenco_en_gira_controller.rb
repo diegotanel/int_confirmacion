@@ -20,7 +20,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
     #   flash[:error] = "No puede tener mas de 3 personas que no sean actores en la gira"
     #   redirect_to formulario_elencos_en_gira_path
     # else
-      @integrante = IntegranteDeElencoEnGira.new(type: params[:type])
+    @integrante = IntegranteDeElencoEnGira.new(type: params[:type])
     #end
   end
 
@@ -32,9 +32,11 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
   def create
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @integrante = IntegranteDeElencoEnGira.new(integrante_de_elenco_en_gira_params)
-    @elenco = @formulario.build_elenco_en_gira
-    @elenco.saltear_validaciones_de_presencia = true
-    @elenco.save!
+    unless @formulario.elenco_en_gira
+      @elenco = @formulario.build_elenco_en_gira
+      @elenco.saltear_validaciones_de_presencia = true
+      @elenco.save!
+    end
     @integrante.saltear_validaciones_de_presencia = true
     if @formulario.elenco_en_gira.integrantes_de_elenco_en_gira << @integrante
       flash[:success] = "Se ha creado un integrante correctamente"

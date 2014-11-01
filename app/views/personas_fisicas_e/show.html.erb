@@ -72,5 +72,5 @@
 </p>
 </br>
 <p>Es la persona que buscaba?</p>
-<%= link_to "Si", formulario_personas_fisicas_e_path(@formulario), method: :post, class: "btn btn-large btn-medium" %>
+<%= link_to "Si", formulario_personas_fisicas_e_path(@formulario, @buscado), method: :post, class: "btn btn-large btn-medium" %>
 <%= link_to "No", new_formulario_persona_fisica_e_path(@formulario), class: "btn btn-large btn-medium" %>

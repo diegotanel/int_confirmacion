@@ -14,7 +14,11 @@ class PersonasJuridicasController < ApplicationController
 
   def create
   	@formulario = Formulario.find_by_id(params[:formulario_id])
-  	@persona_juridica = @formulario.responsable.build_persona_juridica(persona_juridica_params)
+  	if @formulario.responsable.persona_juridica
+      @formulario.responsable.persona_juridica.destroy
+    end
+
+    @persona_juridica = @formulario.responsable.build_persona_juridica(persona_juridica_params)
     if @persona_juridica.save
       flash[:success] = "Datos de la persona juridica correctamente creados"
       redirect_to formulario_integrantes_comision_directiva_path

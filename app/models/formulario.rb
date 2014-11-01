@@ -13,6 +13,7 @@ class Formulario < ActiveRecord::Base
 	validates :estado, presence: true
 
 	ESTADOS = {:enviado => 1, :borrador => 2 }
+	validates :estado, :presence => true, :inclusion => { :in => self::ESTADOS.values }
 
 	private
 		after_initialize do

@@ -1,4 +1,6 @@
 Int::Application.routes.draw do
+  
+  post "formularios/:formulario_id/personas_fisicas_e/:id" => "personas_fisicas_e#create", as: :formulario_personas_fisicas_e
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_recovers, only: [:new, :create]
@@ -23,13 +25,15 @@ Int::Application.routes.draw do
     resources :ficha_artisticas, only: [:new, :create, :show, :edit, :update, :index, :destroy]
     resources :super_vistas, only: [:index]
     resources :formularios_terminados, only: [:index]
-    resources :personas_fisicas_e do
+    resources :personas_fisicas_e, only: [:new, :show, :index] do
       member do
         post :buscar_integrante_por_cuil_cuit
       end
     end
   end
   get "principals/obtener_region", :defaults => {:format => :js}
+  
+
 
   root  'static_pages#home2'
   match '/home2', to: 'static_pages#home', via: 'get'

@@ -9,7 +9,10 @@ class PersonasFisicasEController < ApplicationController
 
   def buscar_integrante_por_cuil_cuit
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    @buscado = IntegranteDeElencoEnGira.where(cuil_cuit: params[:numero_cuil_cuit])[0]
+    @buscado = nil
+    if @formulario.elenco_en_gira
+      @buscado = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(cuil_cuit: params[:numero_cuil_cuit])[0]
+    end
     if @buscado.nil?
       flash[:error] = "No se encontro a ninguna persona con ese cuil o cuit"
       render 'new'
@@ -21,13 +24,17 @@ class PersonasFisicasEController < ApplicationController
 
   def show
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    @buscado = IntegranteDeElencoEnGira.where(id: params[:id])[0]
+    @buscado = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(id: params[:id])[0]
   end
 
   def create
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    @buscado = IntegranteDeElencoEnGira.where(id: params[:id])[0]
-    @persona_fisica_e = @formulario.responsable.build_persona_fisica_e(@buscado)
+    @buscado = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(id: params[:id])[0]
+    if @formulario.responsable.persona_fisica_e
+      @formulario.responsable.persona_fisica_e.destroy
+    end
+     @persona_fisica_e = @formulario.responsable.build_persona_fisica_e(integrante_de_elenco_en_gira_id: @buscado.id)
+    @responsable = @formulario.responsable
     if @persona_fisica_e.save!
       flash[:success] = "Datos de la persona fisica correctamente creados"
       redirect_to formulario_responsable_path(@formulario, @responsable)
