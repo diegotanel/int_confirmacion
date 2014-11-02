@@ -19,6 +19,7 @@ class PersonasJuridicasController < ApplicationController
     end
 
     @persona_juridica = @formulario.responsable.build_persona_juridica(persona_juridica_params)
+    @persona_juridica.saltear_validaciones_de_presencia = true
     if @persona_juridica.save
       flash[:success] = "Datos de la persona juridica correctamente creados"
       redirect_to formulario_integrantes_comision_directiva_path

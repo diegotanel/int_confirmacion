@@ -33,7 +33,7 @@ class PersonasFisicasEController < ApplicationController
     if @formulario.responsable.persona_fisica_e
       @formulario.responsable.persona_fisica_e.destroy
     end
-     @persona_fisica_e = @formulario.responsable.build_persona_fisica_e(integrante_de_elenco_en_gira_id: @buscado.id)
+    @persona_fisica_e = @formulario.responsable.build_persona_fisica_e(integrante_de_elenco_en_gira_id: @buscado.id)
     @responsable = @formulario.responsable
     if @persona_fisica_e.save!
       flash[:success] = "Datos de la persona fisica correctamente creados"

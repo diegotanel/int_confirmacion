@@ -1,5 +1,6 @@
 class IntegranteComisionDirectiva < ActiveRecord::Base
 
+  attr_accessor :saltear_validaciones_de_presencia
 	belongs_to :localidad
   belongs_to :persona_juridica
 
@@ -9,16 +10,21 @@ class IntegranteComisionDirectiva < ActiveRecord::Base
   delegate :provincia, to: :localidad
   delegate :provincia_id, to: :localidad
 
-  validates :nombre, presence: true, length: {maximum: 70}
-  validates :apellido, presence: true, length: {maximum: 70}
-  validates :cargo, presence: true
-  validates :cuil_cuit, presence: true, length: {maximum: 11, minimum: 11}, numericality: { only_integer: true }, uniqueness: { case_sensitive: false }
+  validates :nombre, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :nombre, length: {maximum: 70}
+  validates :apellido, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :apellido, length: {maximum: 70}
+  validates :cargo, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :cuil_cuit, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :cuil_cuit, length: {maximum: 11, minimum: 11}, numericality: { only_integer: true }, uniqueness: { case_sensitive: false }
   validates :fecha_de_nacimiento, presence: true
-  validates :calle, presence: true
-  validates :altura_calle, presence: true, numericality: { only_integer: true }
-  validates :localidad, presence: true
-  validates :codigo_postal, presence: true
-  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
+  validates :calle, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :altura_calle, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :altura_calle, numericality: { only_integer: true }
+  validates :localidad, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :codigo_postal, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :email, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :email, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
   validates :persona_juridica, presence: true
   validates :tel_particular, numericality: { only_integer: true }, allow_blank: true
   validates :tel_celular, numericality: { only_integer: true }, allow_blank: true

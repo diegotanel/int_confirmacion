@@ -33,6 +33,7 @@ class IntegrantesComisionDirectivaController < ApplicationController
   def create
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @integrante = IntegranteComisionDirectiva.new(integrante_comision_directiva_params)
+    @integrante.saltear_validaciones_de_presencia = true
     if @formulario.responsable.persona_juridica.integrantes_comision_directiva << @integrante
       flash[:success] = "Se ha creado un nuevo integrante a la comision correctamente"
       redirect_to formulario_integrantes_comision_directiva_path

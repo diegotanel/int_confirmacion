@@ -1,5 +1,5 @@
 class ElencosEnGiraController < ApplicationController
-  before_action :signed_in_user, only: [:index]
+  before_action :signed_in_user, only: [:index, :show]
 
   def index
     @formulario = Formulario.find_by_id(params[:formulario_id])
@@ -10,8 +10,8 @@ class ElencosEnGiraController < ApplicationController
     @tecnicos = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico')
   end
 
-  def edit
-    
+  def show
+    @formulario = Formulario.find_by_id(params[:formulario_id])
   end
 
   private

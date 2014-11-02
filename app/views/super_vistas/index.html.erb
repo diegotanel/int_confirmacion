@@ -181,8 +181,9 @@
     <td><%= actor.email %></td>
     <td><%= I18n.l(actor.fecha_de_nacimiento) %></td>
     <th></th>
+  <% end %>
 	</table>
-	<% end %>
+
 	<h4>Directores</h4>
 	<% @directores = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').all %>
 	<table class="table table-striped">
@@ -204,8 +205,9 @@
     <td><%= director.email %></td>
     <td><%= I18n.l(director.fecha_de_nacimiento) %></td>
     <th></th>
+  <% end %>
 	</table>
-	<% end %>
+
 	<h4>Técnicos</h4>
 	<% @tecnicos = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').all %>
 	<table class="table table-striped">
@@ -227,8 +229,8 @@
     <td><%= tecnico.email %></td>
     <td><%= I18n.l(tecnico.fecha_de_nacimiento) %></td>
     <th></th>
+  <% end %>
 	</table>
-	<% end %>
 <% end %>
 
 <% if (@formulario.principal) %>
@@ -243,7 +245,7 @@
 				<p>
 	  			<b>Historia del grupo:</b>
 	  			<%= @formulario.datos_grupo.historia %>
-				</p></br>
+				</p>
 			<% end %>
 		<% end %>
 <% end %>
