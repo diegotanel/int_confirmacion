@@ -33,9 +33,9 @@ class PersonaJuridica < ActiveRecord::Base
 
   def validacion_digitoverificador_de_cuit_cuil!
     @validador = ValidadorCuitCuil.new
-    if cuil_cuit.presence
-      unless @validador.validardigitoverificador(self.cuil_cuit)
-        errors[:cuil_cuit] << "debe estar formado correctamente"
+    if num_cuit.presence
+      unless @validador.validardigitoverificador(self.num_cuit)
+        errors[:num_cuit] << "debe estar formado correctamente"
         return false
       else
         true
