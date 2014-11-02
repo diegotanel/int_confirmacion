@@ -31,12 +31,3 @@
 
 }).call(this);
 
-  $(document).ready(function(){
-    var type
-    if ($('#actor_type').length) { type = 'actor' }
-    if ($('#director_type').length) { type = 'director' }
-    if ($('#tecnico_type').length) { type = 'tecnico' }
-    if (type != null) {
-    var integrante_id = type.concat("_fecha_de_nacimiento");
-    }
-
