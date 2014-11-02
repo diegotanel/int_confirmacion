@@ -20,7 +20,7 @@ class PersonasJuridicasController < ApplicationController
 
     @persona_juridica = @formulario.responsable.build_persona_juridica(persona_juridica_params)
     if @persona_juridica.save
-      flash[:success] = "Datos de la persona juridica correctamente creados"
+      #flash[:success] = "Datos de la persona juridica correctamente creados"
       redirect_to formulario_integrantes_comision_directiva_path
     else
       inicializar_variables

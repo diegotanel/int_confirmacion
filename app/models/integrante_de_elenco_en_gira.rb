@@ -1,4 +1,6 @@
+#encoding: utf-8
 class IntegranteDeElencoEnGira < ActiveRecord::Base
+  before_save :validacion_digitoverificador_de_cuit_cuil
 
   attr_accessor :saltear_validaciones_de_presencia
 
@@ -20,13 +22,33 @@ class IntegranteDeElencoEnGira < ActiveRecord::Base
   validates :fecha_de_nacimiento, presence: true, unless: :saltear_validaciones_de_presencia
   validates :calle, presence: true, unless: :saltear_validaciones_de_presencia
   validates :altura_calle, presence: true, unless: :saltear_validaciones_de_presencia
-  validates :altura_calle, numericality: { only_integer: true }
+  validates :altura_calle, numericality: { only_integer: true }, allow_blank: true
   validates :localidad, presence: true
   validates :codigo_postal, presence: true, unless: :saltear_validaciones_de_presencia
   validates :email, presence: true, unless: :saltear_validaciones_de_presencia
   validates :email, format: {with: VALID_EMAIL_REGEX}
   validates :elenco_en_gira, presence: true
-  validates :tel_particular, numericality: { only_integer: true }, allow_blank: true
-  validates :tel_celular, presence: true, unless: :saltear_validaciones_de_presencia
-  validates :tel_celular, numericality: { only_integer: true }
+  #validates :tel_particular, numericality: { only_integer: true }, allow_blank: true
+  #validates :tel_celular, presence: true, unless: :saltear_validaciones_de_presencia
+  #validates :tel_celular, numericality: { only_integer: true }
+
+  validate :validacion_tel_particular_tel_celular
+
+  def validacion_digitoverificador_de_cuit_cuil
+    @validador = ValidadorCuitCuil.new
+    if cuil_cuit.presence
+      errors[:cuil_cuit] << "debe estar formado correctamente" unless @validador.validardigitoverificador(self.cuil_cuit)
+    end
+  end
+
+  def validacion_tel_particular_tel_celular
+    @es_valido = nil
+    tel_particular.blank? ? @es_valido = false : @es_valido = true
+
+    unless @es_valido
+      if tel_celular.blank?
+        errors[:base] << "Debe completarse el teléfono particular o el teléfono celular"
+      end
+    end
+  end
 end

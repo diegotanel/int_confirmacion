@@ -1,6 +1,7 @@
 class PersonaFisicaN < ActiveRecord::Base
-
-	belongs_to :localidad
+  before_save :validacion_digitoverificador_de_cuit_cuil
+  
+  belongs_to :localidad
   belongs_to :responsable
 
   before_save { self.email = email.downcase }
@@ -8,6 +9,8 @@ class PersonaFisicaN < ActiveRecord::Base
 
   delegate :provincia, to: :localidad
   delegate :provincia_id, to: :localidad
+
+  validate :validacion_tel_particular_tel_celular
 
   validates :nombre, presence: true, length: {maximum: 70}
   validates :apellido, presence: true, length: {maximum: 70}
@@ -21,4 +24,23 @@ class PersonaFisicaN < ActiveRecord::Base
   validates :responsable, presence: true
   validates :tel_particular, numericality: { only_integer: true }, allow_blank: true
   validates :tel_celular, presence: true, numericality: { only_integer: true }
+
+  def validacion_digitoverificador_de_cuit_cuil
+    @validador = ValidadorCuitCuil.new
+    if cuil_cuit.presence
+      errors[:cuil_cuit] << "debe estar formado correctamente" unless @validador.validardigitoverificador(self.cuil_cuit)
+    end
+  end
+
+  def validacion_tel_particular_tel_celular
+    @es_valido = nil
+    tel_particular.blank? ? @es_valido = false : @es_valido = true
+
+    unless @es_valido
+      if tel_celular.blank?
+        errors[:base] << "Debe completarse el teléfono particular o el teléfono celular"
+      end
+    end
+  end
+
 end

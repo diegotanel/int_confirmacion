@@ -103,12 +103,18 @@
       <% end %>
 
       <% if (@formulario.elenco_en_gira) %>
+        
         <% @es_invalido = nil %>
-        <% @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.each do |integrante| %>
-          <%  unless integrante.valid? %>
-            <% @es_invalido = true 
-              break %>
-          <% end %>
+
+        <% if (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.count > 0) %>
+            <% @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.each do |integrante| %>
+              <%  unless integrante.valid? %>
+                <% @es_invalido = true 
+                  break %>
+              <% end %>
+            <% end %>
+        <% else %>
+          <% @es_invalido = true %>
         <% end %>
 
         <% if (@es_invalido) %>

@@ -1,6 +1,8 @@
 class PersonaJuridica < ActiveRecord::Base
 
-	belongs_to :localidad
+  before_save :validacion_digitoverificador_de_cuit_cuil
+
+  belongs_to :localidad
   belongs_to :responsable
   has_many :integrantes_comision_directiva
 
@@ -20,4 +22,13 @@ class PersonaJuridica < ActiveRecord::Base
   validates :email_entidad, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
   validates :responsable, presence: true
   validates :tel_entidad, numericality: { only_integer: true }, allow_blank: true
+
+
+  def validacion_digitoverificador_de_cuit_cuil
+    @validador = ValidadorCuitCuil.new
+    if num_cuit.presence
+      errors[:num_cuit] << "debe estar formado correctamente" unless @validador.validardigitoverificador(self.num_cuit)
+    end
+  end
+
 end

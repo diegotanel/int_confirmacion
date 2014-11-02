@@ -21,7 +21,7 @@
 
     <div class="field">
     <%= f.label :fecha_de_nacimiento, "Fecha de nacimiento *" %>
-    <%= f.date_select :fecha_de_nacimiento, start_year: 1900, end_year: 2014, order: [:day, :month, :year] %>
+    <%= f.date_select :fecha_de_nacimiento, start_year: 1900, end_year: 2014, order: [:day, :month, :year], :include_blank => true %>
     </div>
 
     <div class="field">
@@ -59,13 +59,14 @@
     <%= f.text_field :codigo_postal %>
     </div>
 
+    <p>Se debe completar al menos un teléfono</p>
     <div class="field">
     <%= f.label :tel_particular, "Teléfono Particular (sin guiones ni puntos)" %>
     <%= f.text_field :tel_particular %>
     </div>
 
     <div class="field">
-    <%= f.label :tel_celular, "Teléfono Celular * (sin guiones ni puntos)" %>
+    <%= f.label :tel_celular, "Teléfono Celular (sin guiones ni puntos)" %>
     <%= f.text_field :tel_celular %>
     </div>
 

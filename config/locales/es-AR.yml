@@ -22,6 +22,10 @@ es-AR:
           gen_esps: "Géneros del espectáculo"
           publs_edad: "Públicos por edad"
           publs_exp: "Públicos por experiencia"
+        persona_juridica:
+          num_cuit: "Número de CUIT"
+          num_per_juridica: "Número de personería jurídica"
+          nombre_per_juridica: "Nombre de persona jurídica"
     errors:
         models:
           esps_esp: "Espacios del espéctaculo"

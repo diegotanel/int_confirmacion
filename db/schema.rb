@@ -187,7 +187,7 @@ ActiveRecord::Schema.define(version: 20141024171946) do
     t.string   "nombre",              null: false
     t.string   "apellido",            null: false
     t.string   "cuil_cuit",           null: false
-    t.date     "fecha_de_nacimiento", null: false
+    t.date     "fecha_de_nacimiento"
     t.string   "calle",               null: false
     t.string   "altura_calle",        null: false
     t.string   "piso"

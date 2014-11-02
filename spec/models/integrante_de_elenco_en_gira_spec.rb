@@ -7,7 +7,7 @@ describe IntegranteDeElencoEnGira do
   let(:localidad) { FactoryGirl.create(:localidad) }
 
   def params
-    {type: 'Actor', nombre: "Pedro", apellido: "Gomez", email: "pedro.gomez@gmail.com", cuil_cuit: "12345678912", fecha_de_nacimiento: DateTime.now, calle: "Santa Fe", altura_calle: "1000", localidad: localidad, codigo_postal: "1406", tel_celular: "5345345", tel_particular: ''}
+    {type: 'Actor', nombre: "Pedro", apellido: "Gomez", email: "pedro.gomez@gmail.com", cuil_cuit: "20284635486", fecha_de_nacimiento: DateTime.now, calle: "Santa Fe", altura_calle: "1000", localidad: localidad, codigo_postal: "1406", tel_celular: "5345345", tel_particular: ''}
   end
 
   describe "fallido" do
@@ -123,6 +123,11 @@ describe IntegranteDeElencoEnGira do
     #   it {@nuevo_integrante.should_not be_valid}
     # end
 
+    describe "cuil_cuit debe verificar el digitoverificador" do
+      before {@integrante_de_elenco_en_gira.cuil_cuit = '90123456789'}
+      it {should_not be_valid}
+    end
+
     describe "when fecha_de_nacimiento is not present" do
       before { @integrante_de_elenco_en_gira.fecha_de_nacimiento = " " }
       it { should_not be_valid }
@@ -143,9 +148,19 @@ describe IntegranteDeElencoEnGira do
       it { should_not be_valid }
     end
 
-    describe "when codigo_postal is not present" do
-      before { @integrante_de_elenco_en_gira.codigo_postal = " " }
-      it { should_not be_valid }
+    # describe "when codigo_postal is not present" do
+    #   before { @integrante_de_elenco_en_gira.codigo_postal = " " }
+    #   it { should_not be_valid }
+    # end
+
+    describe "el tel_particular o el tel_celular deben completarse" do
+      before { @integrante_de_elenco_en_gira.tel_celular = "" }
+      it { 
+        should_not be_valid 
+        @integrante_de_elenco_en_gira.tel_particular = '1321'
+        should be_valid
+      }
+
     end
 
     describe "tel_particular debe ser numérico" do
@@ -155,10 +170,10 @@ describe IntegranteDeElencoEnGira do
 
 
     describe "tel_celular" do
-      describe "When tel_celular is not present" do
-        before {@integrante_de_elenco_en_gira.tel_celular = ''}
-        it { should_not be_valid }
-      end
+    #   describe "When tel_celular is not present" do
+    #     before {@integrante_de_elenco_en_gira.tel_celular = ''}
+    #     it { should_not be_valid }
+    #   end
 
       describe "tel_celular debe ser numérico" do
         before {@integrante_de_elenco_en_gira.tel_celular = 'asdfas'}
@@ -198,7 +213,7 @@ describe IntegranteDeElencoEnGira do
 
       it {
         @director = elenco_en_gira.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Roberto", apellido: "Carlos", email: "roberto.carlos@gmail.com", cuil_cuit: "45324567893"))
-        
+
         elenco_en_gira2.saltear_validaciones_de_presencia = true
         elenco_en_gira2.save!
         @director2 = elenco_en_gira2.integrantes_de_elenco_en_gira.create!(params.merge(type: 'Director', nombre: "Lucas", apellido: "Capo", email: "lucas.capo@gmail.com", cuil_cuit: "45324567895"))
