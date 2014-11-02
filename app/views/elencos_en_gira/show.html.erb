@@ -18,7 +18,7 @@
     <td><%= actor.apellido %></td>
     <td><%= actor.cuil_cuit %></td>
     <td><%= actor.email %></td>
-    <td><%= I18n.l(actor.fecha_de_nacimiento) %></td>
+    <td><%= I18n.l(actor.fecha_de_nacimiento) if integrante.fecha_de_nacimiento%></td>
     <th></th>
   <% end %>
 	</table>

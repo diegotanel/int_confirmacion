@@ -24,7 +24,7 @@ class IntegranteComisionDirectiva < ActiveRecord::Base
   validates :calle, presence: true, unless: :saltear_validaciones_de_presencia
   validates :altura_calle, presence: true, unless: :saltear_validaciones_de_presencia
   validates :altura_calle, numericality: { only_integer: true }, allow_blank: true
-  validates :localidad, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :localidad, presence: true
   validates :codigo_postal, presence: true, unless: :saltear_validaciones_de_presencia
   validates :email, presence: true, unless: :saltear_validaciones_de_presencia
   validates :email, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }

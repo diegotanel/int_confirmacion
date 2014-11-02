@@ -56,8 +56,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
   def destroy
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @formulario.elenco_en_gira.saltear_validaciones_de_presencia = true
-    @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.destroy(params[:id])
-    if @formulario.elenco_en_gira.save
+    if @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.destroy(params[:id])
       flash[:success] = "Se ha eliminado el integrante correctamente"
       redirect_to formulario_elencos_en_gira_path
     else

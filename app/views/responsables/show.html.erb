@@ -7,72 +7,72 @@
     </br>
     <p>
       <b>Nombre:</b>
-      <%= @persona_fisica_n.nombre %>
+      <%= @persona_fisica_n.nombre if @persona_fisica_n.nombre  %>
     </p>
 
     <p>
       <b>Apellido:</b>
-      <%= @persona_fisica_n.apellido %>
+      <%= @persona_fisica_n.apellido if @persona_fisica_n.apellido %>
     </p>
 
     <p>
       <b>CUIL / CUIT:</b>
-      <%= @persona_fisica_n.cuil_cuit %>
+      <%= @persona_fisica_n.cuil_cuit if @persona_fisica_n.cuil_cuit %>
     </p>
 
     <p>
       <b>Fecha de nacimiento:</b>
-      <%= I18n.l(@persona_fisica_n.fecha_de_nacimiento) %>
+      <%= I18n.l(@persona_fisica_n.fecha_de_nacimiento) if @persona_fisica_n.fecha_de_nacimiento%>
     </p>
 
     <p>
       <b>Calle:</b>
-      <%= @persona_fisica_n.calle %>
+      <%= @persona_fisica_n.calle if @persona_fisica_n.calle %>
     </p>
 
     <p>
       <b>Numero de calle:</b>
-      <%= @persona_fisica_n.altura_calle %>
+      <%= @persona_fisica_n.altura_calle if @persona_fisica_n.altura_calle %>
     </p>
 
     <p>
       <b>Piso:</b>
-      <%= @persona_fisica_n.piso %>
+      <%= @persona_fisica_n.piso if @persona_fisica_n.piso %>
     </p>
 
     <p>
       <b>Departamento:</b>
-      <%= @persona_fisica_n.depto %>
+      <%= @persona_fisica_n.depto if @persona_fisica_n.depto %>
     </p>
 
     <p>
       <b>Provincia:</b>
-      <%= @persona_fisica_n.provincia.detalle %>
+      <%= @persona_fisica_n.provincia.detalle if @persona_fisica_n.provincia.detalle %>
     </p>
 
     <p>
       <b>Localidad:</b>
-      <%= @persona_fisica_n.localidad.detalle %>
+      <%= @persona_fisica_n.localidad.detalle if @persona_fisica_n.localidad.detalle %>
     </p>
 
     <p>
       <b>Código postal:</b>
-      <%= @persona_fisica_n.codigo_postal %>
+      <%= @persona_fisica_n.codigo_postal if @persona_fisica_n.codigo_postal %>
     </p>
 
     <p>
       <b>Teléfono particular:</b>
-      <%= @persona_fisica_n.tel_particular %>
+      <%= @persona_fisica_n.tel_particular if @persona_fisica_n.tel_particular %>
     </p>
 
     <p>
       <b>Teléfono celular:</b>
-      <%= @persona_fisica_n.tel_celular %>
+      <%= @persona_fisica_n.tel_celular if @persona_fisica_n.tel_celular%>
     </p>
 
     <p>
       <b>Email:</b>
-      <%= @persona_fisica_n.email %>
+      <%= @persona_fisica_n.email if @persona_fisica_n.email %>
     </p></br>
   <% end %>
   <% if @formulario.responsable.persona_juridica %>
@@ -80,62 +80,62 @@
     </br>
     <p>
       <b>Nombre:</b>
-      <%= @persona_juridica.nombre_per_juridica %>
+      <%= @persona_juridica.nombre_per_juridica if @persona_juridica.nombre_per_juridica %>
     </p>
 
     <p>
       <b>CUIT:</b>
-      <%= @persona_juridica.num_cuit %>
+      <%= @persona_juridica.num_cuit if @persona_juridica.num_cuit %>
     </p>
 
     <p>
       <b>Numero persona jurídica:</b>
-      <%= @persona_juridica.num_per_juridica %>
+      <%= @persona_juridica.num_per_juridica if @persona_juridica.num_per_juridica %>
     </p>
 
     <p>
       <b>Calle:</b>
-      <%= @persona_juridica.calle %>
+      <%= @persona_juridica.calle if @persona_juridica.calle %>
     </p>
 
     <p>
       <b>Numero de calle:</b>
-      <%= @persona_juridica.altura_calle %>
+      <%= @persona_juridica.altura_calle if @persona_juridica.altura_calle  %>
     </p>
 
     <p>
       <b>Piso:</b>
-      <%= @persona_juridica.piso %>
+      <%= @persona_juridica.piso if @persona_juridica.piso %>
     </p>
 
     <p>
       <b>Departamento:</b>
-      <%= @persona_juridica.depto %>
+      <%= @persona_juridica.depto if @persona_juridica.depto %>
     </p>
 
     <p>
       <b>Provincia:</b>
-      <%= @persona_juridica.provincia.detalle %>
+      <%= @persona_juridica.provincia.detalle if  @persona_juridica.provincia.detalle %>
     </p>
 
     <p>
       <b>Localidad:</b>
-      <%= @persona_juridica.localidad.detalle %>
+      <%= @persona_juridica.localidad.detalle if @persona_juridica.localidad.detalle  %>
     </p>
 
     <p>
       <b>Código postal:</b>
-      <%= @persona_juridica.codigo_postal %>
+      <%= @persona_juridica.codigo_postal if @persona_juridica.codigo_postal %>
     </p>
 
     <p>
       <b>Teléfono entidad:</b>
-      <%= @persona_juridica.tel_entidad %>
+      <%= @persona_juridica.tel_entidad if @persona_juridica.tel_entidad %>
     </p>
 
     <p>
       <b>Email entidad:</b>
-      <%= @persona_juridica.email_entidad %>
+      <%= @persona_juridica.email_entidad if @persona_juridica.email_entidad %>
     </p></br>
 
     <h4>Comisión Directiva</h4>
@@ -168,42 +168,44 @@
     </br>
     <p>
       <b>Nombre:</b>
-      <%= @responsable.persona_fisica_e.nombre %>
+      <% if @responsable.persona_fisica_e %>
+        <%= @responsable.persona_fisica_e.nombre if @responsable.persona_fisica_e.nombre %>
+      <% end %>
     </p>
 
     <p>
       <b>Apellido:</b>
-      <%= @persona_fisica_e.apellido %>
+      <%= @persona_fisica_e.apellido if @persona_fisica_e.apellido %>
     </p>
 
     <p>
       <b>CUIL / CUIT:</b>
-      <%= @persona_fisica_e.cuil_cuit %>
+      <%= @persona_fisica_e.cuil_cuit if @persona_fisica_e.cuil_cuit %>
     </p>
 
     <p>
       <b>Fecha de nacimiento:</b>
-      <%= @persona_fisica_e.fecha_de_nacimiento %>
+      <%= @persona_fisica_e.fecha_de_nacimiento if @persona_fisica_e.fecha_de_nacimiento %>
     </p>
 
     <p>
       <b>Calle:</b>
-      <%= @persona_fisica_e.calle %>
+      <%= @persona_fisica_e.calle if @persona_fisica_e.calle %>
     </p>
 
     <p>
       <b>Numero de calle:</b>
-      <%= @persona_fisica_e.altura_calle %>
+      <%= @persona_fisica_e.altura_calle if @persona_fisica_e.altura_calle %>
     </p>
 
     <p>
       <b>Piso:</b>
-      <%= @persona_fisica_e.piso %>
+      <%= @persona_fisica_e.piso if  @persona_fisica_e.piso  %>
     </p>
 
     <p>
       <b>Departamento:</b>
-      <%= @persona_fisica_e.depto %>
+      <%= @persona_fisica_e.depto  if @persona_fisica_e.depto%>
     </p>
 
     <p>
@@ -218,22 +220,22 @@
 
     <p>
       <b>Código postal:</b>
-      <%= @persona_fisica_e.codigo_postal %>
+      <%= @persona_fisica_e.codigo_postal if @persona_fisica_e.codigo_postal %>
     </p>
 
     <p>
       <b>Teléfono particular:</b>
-      <%= @persona_fisica_e.tel_particular %>
+      <%= @persona_fisica_e.tel_particular if @persona_fisica_e.tel_particular%>
     </p>
 
     <p>
       <b>Teléfono celular:</b>
-      <%= @persona_fisica_e.tel_celular %>
+      <%= @persona_fisica_e.tel_celular if @persona_fisica_e.tel_celular %>
     </p>
 
     <p>
       <b>Email:</b>
-      <%= @persona_fisica_e.email %>
+      <%= @persona_fisica_e.email if @persona_fisica_e.email %>
     </p>
   <% end %>
 <% end %>

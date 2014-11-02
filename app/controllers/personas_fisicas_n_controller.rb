@@ -29,15 +29,18 @@ class PersonasFisicasNController < ApplicationController
   def edit
   	@formulario = Formulario.find_by_id(params[:formulario_id])
     @persona_fisica_n = PersonaFisicaN.find(params[:id])
+
   end
 
   def update
   	@formulario = Formulario.find_by_id(params[:formulario_id])
     @persona_fisica_n = PersonaFisicaN.find(params[:id])
+    @persona_fisica_n.saltear_validaciones_de_presencia = true
     if @persona_fisica_n.update_attributes(persona_fisica_n_params)
       flash[:success] = "Datos de la persona fisica actualizados"
       redirect_to formulario_persona_fisica_n_path
     else
+      inicializar_variables
       render 'edit'
     end
   end

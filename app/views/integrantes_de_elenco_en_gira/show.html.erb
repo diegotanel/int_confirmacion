@@ -20,7 +20,7 @@
 
 <p>
   <b>Fecha de nacimiento:</b>
-  <%= I18n.l(@integrante.fecha_de_nacimiento) %>
+  <%= I18n.l(@integrante.fecha_de_nacimiento) if @integrante.fecha_de_nacimiento %>
 </p>
 
 <p>

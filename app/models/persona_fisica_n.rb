@@ -1,3 +1,4 @@
+#encoding: utf-8
 class PersonaFisicaN < ActiveRecord::Base
 
   attr_accessor :saltear_validaciones_de_presencia
@@ -18,11 +19,11 @@ class PersonaFisicaN < ActiveRecord::Base
   validates :apellido, length: {maximum: 70}
   validates :cuil_cuit, presence: true, unless: :saltear_validaciones_de_presencia
   validates :cuil_cuit, length: {maximum: 11, minimum: 11}, numericality: { only_integer: true }
-  validates :fecha_de_nacimiento, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :fecha_de_nacimiento, presence: true
   validates :calle, presence: true, unless: :saltear_validaciones_de_presencia
   validates :altura_calle, presence: true, unless: :saltear_validaciones_de_presencia
   validates :altura_calle, numericality: { only_integer: true }, allow_blank: true
-  validates :localidad, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :localidad, presence: true
   validates :codigo_postal, presence: true, unless: :saltear_validaciones_de_presencia
   validates :email, presence: true, unless: :saltear_validaciones_de_presencia
   validates :email, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }

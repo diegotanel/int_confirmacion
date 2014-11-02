@@ -23,7 +23,7 @@ class PersonaJuridica < ActiveRecord::Base
   validates :calle, presence: true, unless: :saltear_validaciones_de_presencia
   validates :altura_calle, presence: true, unless: :saltear_validaciones_de_presencia
   validates :altura_calle, numericality: { only_integer: true }
-  validates :localidad, presence: true, unless: :saltear_validaciones_de_presencia
+  validates :localidad, presence: true
   validates :codigo_postal, presence: true, unless: :saltear_validaciones_de_presencia
   validates :email_entidad, presence: true, unless: :saltear_validaciones_de_presencia
   validates :email_entidad, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
