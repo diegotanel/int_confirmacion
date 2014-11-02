@@ -32,6 +32,18 @@ class PersonaFisicaN < ActiveRecord::Base
   validates :tel_particular, numericality: { only_integer: true }, allow_blank: true
   validates :tel_celular, numericality: { only_integer: true }, allow_blank: true
 
+  validate :validacion_es_menor?
+
+  def validacion_es_menor?
+    errors[:fecha_de_nacimiento] << "el responsable no puede ser menor" if es_menor?
+  end
+
+  def es_menor?
+    if fecha_de_nacimiento.presence
+      18.years.ago < self.fecha_de_nacimiento
+    end
+  end
+
   def validacion_digitoverificador_de_cuit_cuil!
     @validador = ValidadorCuitCuil.new
     if cuil_cuit.presence

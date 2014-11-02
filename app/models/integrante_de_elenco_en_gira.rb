@@ -34,6 +34,10 @@ class IntegranteDeElencoEnGira < ActiveRecord::Base
   #validates :tel_celular, presence: true, unless: :saltear_validaciones_de_presencia
   validates :tel_celular, numericality: { only_integer: true }, allow_blank: true
 
+  def es_menor?
+    18.years.ago < self.fecha_de_nacimiento
+  end
+
   def validacion_digitoverificador_de_cuit_cuil!
     @validador = ValidadorCuitCuil.new
     if cuil_cuit.presence

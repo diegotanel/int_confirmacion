@@ -17,8 +17,13 @@ class PersonasFisicasEController < ApplicationController
       flash[:error] = "No se encontro a ninguna persona con ese cuil o cuit"
       render 'new'
     else
-      flash[:success] = "Se encontro a un integrante con ese cuil/cuit"
-      redirect_to formulario_persona_fisica_e_path(@formulario, @buscado)
+      if @buscado.es_menor?
+        flash[:error] = "No es posiblie seleccionar el integrante por ser menor"
+        render 'new'
+      else
+        flash[:success] = "Se encontro a un integrante con ese cuil/cuit"
+        redirect_to formulario_persona_fisica_e_path(@formulario, @buscado)
+      end
     end
   end
 

@@ -48,8 +48,16 @@ describe IntegranteDeElencoEnGira do
     it { should respond_to(:type) }
     it { should respond_to(:tel_particular) }
     it { should respond_to(:tel_celular) }
+    it { should respond_to(:es_menor?) }
     it { should be_valid }
 
+    describe "se verifica si el integrante es menor" do
+      it {
+        @integrante_de_elenco_en_gira.es_menor?.should be_true
+        @integrante_de_elenco_en_gira.fecha_de_nacimiento = Date.new(1980,10,29)
+        @integrante_de_elenco_en_gira.es_menor?.should be_false
+      }
+    end
 
     describe "When nombre is not present" do
       before {@integrante_de_elenco_en_gira.nombre = ' '}
