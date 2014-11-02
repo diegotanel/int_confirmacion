@@ -23,17 +23,3 @@
   });
 
 }).call(this);
-
-
-$(document).ready(function(){
-    $('#persona_fisica_n_fecha_de_nacimiento').datepicker({
-      format: "dd/mm/yyyy",
-      todayHighlight: true,
-      todayBtn: 'linked',
-      autoclose: true,
-      language: "es",
-      changeMonth: true,
-      changeYear: true,
-      yearRange: '1900:2020'
-    });
-  });
