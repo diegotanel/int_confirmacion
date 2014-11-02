@@ -1,6 +1,8 @@
 #encoding: utf-8
 class IntegranteDeElencoEnGira < ActiveRecord::Base
-  #before_save :validacion_digitoverificador_de_cuit_cuil!#, :validacion_tel_particular_tel_celular!
+
+  before_save :validacion_tel_particular_tel_celular!
+  before_save :validacion_digitoverificador_de_cuit_cuil!
 
   attr_accessor :saltear_validaciones_de_presencia
 
@@ -35,8 +37,12 @@ class IntegranteDeElencoEnGira < ActiveRecord::Base
   def validacion_digitoverificador_de_cuit_cuil!
     @validador = ValidadorCuitCuil.new
     if cuil_cuit.presence
-      errors[:cuil_cuit] << "debe estar formado correctamente" unless @validador.validardigitoverificador(self.cuil_cuit)
-      return false
+      unless @validador.validardigitoverificador(self.cuil_cuit)
+        errors[:cuil_cuit] << "debe estar formado correctamente"
+        return false
+      else
+        true
+      end
     end
   end
 
@@ -47,6 +53,7 @@ class IntegranteDeElencoEnGira < ActiveRecord::Base
     unless @es_valido
       if tel_celular.blank?
         errors[:base] << "Debe completarse el teléfono particular o el teléfono celular"
+        return false
       end
     end
   end

@@ -1,6 +1,8 @@
+#encoding: utf-8
 class IntegranteComisionDirectiva < ActiveRecord::Base
 
-  before_save :validacion_digitoverificador_de_cuit_cuil, :validacion_tel_particular_tel_celular
+  before_save :validacion_tel_particular_tel_celular!
+  before_save :validacion_digitoverificador_de_cuit_cuil!
 
   attr_accessor :saltear_validaciones_de_presencia
   belongs_to :localidad
@@ -32,20 +34,26 @@ class IntegranteComisionDirectiva < ActiveRecord::Base
   validates :tel_particular, numericality: { only_integer: true }, allow_blank: true
   validates :tel_celular, numericality: { only_integer: true }, allow_blank: true
 
-  def validacion_digitoverificador_de_cuit_cuil
+  def validacion_digitoverificador_de_cuit_cuil!
     @validador = ValidadorCuitCuil.new
     if cuil_cuit.presence
-      errors[:cuil_cuit] << "debe estar formado correctamente" unless @validador.validardigitoverificador(self.cuil_cuit)
+      unless @validador.validardigitoverificador(self.cuil_cuit)
+        errors[:cuil_cuit] << "debe estar formado correctamente"
+        return false
+      else
+        true
+      end
     end
   end
 
-  def validacion_tel_particular_tel_celular
+  def validacion_tel_particular_tel_celular!
     @es_valido = nil
     tel_particular.blank? ? @es_valido = false : @es_valido = true
 
     unless @es_valido
       if tel_celular.blank?
         errors[:base] << "Debe completarse el teléfono particular o el teléfono celular"
+        return false
       end
     end
   end

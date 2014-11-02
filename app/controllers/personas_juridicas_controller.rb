@@ -37,10 +37,12 @@ class PersonasJuridicasController < ApplicationController
   def update
   	@formulario = Formulario.find_by_id(params[:formulario_id])
     @persona_juridica = PersonaJuridica.find(params[:id])
+    @persona_juridica.saltear_validaciones_de_presencia = true
     if @persona_juridica.update_attributes(persona_juridica_params)
       flash[:success] = "Datos de la persona juridica actualizados"
       redirect_to formulario_integrantes_comision_directiva_path
     else
+      inicializar_variables
       render 'edit'
     end
   end

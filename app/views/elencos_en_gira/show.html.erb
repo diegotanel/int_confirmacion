@@ -18,7 +18,7 @@
     <td><%= actor.apellido %></td>
     <td><%= actor.cuil_cuit %></td>
     <td><%= actor.email %></td>
-    <td><%= I18n.l(actor.fecha_de_nacimiento) if integrante.fecha_de_nacimiento%></td>
+    <td><%= I18n.l(actor.fecha_de_nacimiento) if actor.fecha_de_nacimiento %></td>
     <th></th>
   <% end %>
 	</table>
@@ -42,7 +42,7 @@
     <td><%= director.apellido %></td>
     <td><%= director.cuil_cuit %></td>
     <td><%= director.email %></td>
-    <td><%= I18n.l(director.fecha_de_nacimiento) %></td>
+    <td><%= I18n.l(director.fecha_de_nacimiento) if director.fecha_de_nacimiento %></td>
     <th></th>
   <% end %>
 	</table>
@@ -66,7 +66,7 @@
     <td><%= tecnico.apellido %></td>
     <td><%= tecnico.cuil_cuit %></td>
     <td><%= tecnico.email %></td>
-    <td><%= I18n.l(tecnico.fecha_de_nacimiento) %></td>
+    <td><%= I18n.l(tecnico.fecha_de_nacimiento) if tecnico.fecha_de_nacimiento %></td>
     <th></th>
   <% end %>
 	</table>

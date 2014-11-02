@@ -1,8 +1,8 @@
 class PersonaJuridica < ActiveRecord::Base
-  
+
   attr_accessor :saltear_validaciones_de_presencia
 
-  before_save :validacion_digitoverificador_de_cuit_cuil
+  before_save :validacion_digitoverificador_de_cuit_cuil!
 
   belongs_to :localidad
   belongs_to :responsable
@@ -31,10 +31,15 @@ class PersonaJuridica < ActiveRecord::Base
   validates :tel_entidad, numericality: { only_integer: true }, allow_blank: true
 
 
-  def validacion_digitoverificador_de_cuit_cuil
+  def validacion_digitoverificador_de_cuit_cuil!
     @validador = ValidadorCuitCuil.new
-    if num_cuit.presence
-      errors[:num_cuit] << "debe estar formado correctamente" unless @validador.validardigitoverificador(self.num_cuit)
+    if cuil_cuit.presence
+      unless @validador.validardigitoverificador(self.cuil_cuit)
+        errors[:cuil_cuit] << "debe estar formado correctamente"
+        return false
+      else
+        true
+      end
     end
   end
 
