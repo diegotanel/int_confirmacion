@@ -9,7 +9,7 @@ Int::Application.routes.draw do
       get :imprimir_remito
     end
     resources :principals, only: [:new, :create, :show, :edit, :update]
-    resources :elencos_en_gira, only: [:index]
+    resources :elencos_en_gira, only: [:index, :show]
     resources :integrantes_de_elenco_en_gira, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :actores, controller: 'integrantes_de_elenco_en_gira', type: 'Actor'
     resources :directores, controller: 'integrantes_de_elenco_en_gira', type: 'Director'

@@ -46,8 +46,26 @@
 <p>
   <b>Formatos:</b>
   <%= @datos_esp.formatos.map { |e| e.detalle }.join(", ") %>
-</p></br>
+</p>
 
+<h3>Ficha Artística</h3>
+  <h4>Artístas</h4>
+  <% @artistas = @formulario.datos_esp.ficha_artisticas.all %>
+  <table class="table table-striped">
+  <tr>
+
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Rol</th>
+  </tr>
+
+  <%= content_tag_for(:tr, @artistas) do |artista| %>
+
+    <td><%= artista.nombre_artista %></td>
+    <td><%= artista.apellido_artista %></td>
+    <td><%= artista.rol_artista %></td>
+  <% end %>
+  </table>
 </br>
 
 <%= link_to t('Volver a campos de datos'), edit_formulario_path(@formulario) %>

@@ -1,6 +1,6 @@
 #encoding: utf-8
 class IntegranteDeElencoEnGira < ActiveRecord::Base
-  before_save :validacion_digitoverificador_de_cuit_cuil
+  before_save :validacion_digitoverificador_de_cuit_cuil, :validacion_tel_particular_tel_celular
 
   attr_accessor :saltear_validaciones_de_presencia
 
@@ -28,11 +28,9 @@ class IntegranteDeElencoEnGira < ActiveRecord::Base
   validates :email, presence: true, unless: :saltear_validaciones_de_presencia
   validates :email, format: {with: VALID_EMAIL_REGEX}
   validates :elenco_en_gira, presence: true
-  #validates :tel_particular, numericality: { only_integer: true }, allow_blank: true
+  validates :tel_particular, numericality: { only_integer: true }, allow_blank: true
   #validates :tel_celular, presence: true, unless: :saltear_validaciones_de_presencia
-  #validates :tel_celular, numericality: { only_integer: true }
-
-  validate :validacion_tel_particular_tel_celular
+  validates :tel_celular, numericality: { only_integer: true }
 
   def validacion_digitoverificador_de_cuit_cuil
     @validador = ValidadorCuitCuil.new
