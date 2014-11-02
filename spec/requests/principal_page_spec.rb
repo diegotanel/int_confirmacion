@@ -39,7 +39,7 @@ describe "Principal" do
       #should have_selector("select#principal_grupo_id") do |n|
       FactoryGirl.create(:grupo)
       visit new_formulario_principal_path(formulario)
-      should have_selector('option[value=""]', :text => "Seleccione un si es grupo o espectáculo concertado...")
+      should have_selector('option[value=""]', :text => "Seleccione si es grupo o espectáculo concertado...")
       should have_selector('option[value="1"]', :text => "Grupo")
       #end
     }

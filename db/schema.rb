@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20141024171946) do
 
   create_table "datos_esps", force: true do |t|
     t.integer  "formulario_id",        null: false
-    t.date     "fecha_de_estreno",     null: false
+    t.date     "fecha_de_estreno"
     t.string   "nombre_autor",         null: false
     t.string   "nacionalidad_autor",   null: false
     t.string   "duracion_espectaculo", null: false
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20141024171946) do
     t.string   "nombre",              null: false
     t.string   "apellido",            null: false
     t.string   "cuil_cuit",           null: false
-    t.datetime "fecha_de_nacimiento", null: false
+    t.date     "fecha_de_nacimiento", null: false
     t.string   "calle",               null: false
     t.string   "altura_calle",        null: false
     t.string   "piso"
@@ -187,7 +187,7 @@ ActiveRecord::Schema.define(version: 20141024171946) do
     t.string   "nombre",              null: false
     t.string   "apellido",            null: false
     t.string   "cuil_cuit",           null: false
-    t.datetime "fecha_de_nacimiento", null: false
+    t.date     "fecha_de_nacimiento", null: false
     t.string   "calle",               null: false
     t.string   "altura_calle",        null: false
     t.string   "piso"
@@ -239,7 +239,7 @@ ActiveRecord::Schema.define(version: 20141024171946) do
     t.string   "nombre",              null: false
     t.string   "apellido",            null: false
     t.string   "cuil_cuit",           null: false
-    t.datetime "fecha_de_nacimiento", null: false
+    t.date     "fecha_de_nacimiento", null: false
     t.string   "calle",               null: false
     t.string   "altura_calle",        null: false
     t.string   "piso"

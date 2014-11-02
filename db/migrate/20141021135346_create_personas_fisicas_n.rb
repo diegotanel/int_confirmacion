@@ -6,7 +6,7 @@ class CreatePersonasFisicasN < ActiveRecord::Migration
       t.string :nombre, :null => false
       t.string :apellido, :null => false
       t.string :cuil_cuit, :null => false, unique: true
-      t.datetime :fecha_de_nacimiento, :null => false
+      t.date :fecha_de_nacimiento, :null => false
       t.string :calle, :null => false
       t.string :altura_calle, :null => false
       t.string :piso

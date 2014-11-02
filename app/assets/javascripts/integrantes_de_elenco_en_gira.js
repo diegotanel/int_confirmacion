@@ -30,3 +30,25 @@
   });
 
 }).call(this);
+
+  $(document).ready(function(){
+    var type
+    if ($('#actor_type').length) { type = 'actor' }
+    if ($('#director_type').length) { type = 'director' }
+    if ($('#tecnico_type').length) { type = 'tecnico' }
+    if (type != null) {
+    var integrante_id = type.concat("_fecha_de_nacimiento");
+    }
+
+
+    $("#" + integrante_id).datepicker({
+      format: "dd/mm/yyyy",
+      todayHighlight: true,
+      todayBtn: 'linked',
+      autoclose: true,
+      language: "es",
+      changeMonth: true,
+      changeYear: true,
+      yearRange: '1900:2020'
+    });
+  });

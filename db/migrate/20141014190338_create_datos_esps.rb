@@ -2,7 +2,7 @@ class CreateDatosEsps < ActiveRecord::Migration
   def change
     create_table :datos_esps do |t|
     	t.references :formulario, :null => false
-    	t.date :fecha_de_estreno, :null => false
+    	t.date :fecha_de_estreno
     	t.string :nombre_autor, :null => false
     	t.string :nacionalidad_autor, :null => false
     	t.string :duracion_espectaculo, :null => false

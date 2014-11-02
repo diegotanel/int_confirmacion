@@ -26,7 +26,7 @@
 
     <div class="field">
     <%= f.label :fecha_de_nacimiento, "Fecha de nacimiento *" %>
-    <%= f.date_select :fecha_de_nacimiento %>
+    <%= f.text_field :fecha_de_nacimiento, :value => (f.object.fecha_de_nacimiento ? I18n.l(f.object.fecha_de_nacimiento) : '') %>
     </div>
 
     <div class="field">

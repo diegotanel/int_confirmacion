@@ -59,9 +59,11 @@ describe "Formulario" do
     end
 
     describe "con instancia elenco_en_gira creada" do
-      let(:elenco_en_gira) { FactoryGirl.create(:elenco_en_gira) }
+      let(:elenco_en_gira) { FactoryGirl.build(:elenco_en_gira) }
 
       before do
+        elenco_en_gira.saltear_validaciones_de_presencia = true
+        elenco_en_gira.save!
         sign_in elenco_en_gira.formulario.user
         visit formularios_path
       end

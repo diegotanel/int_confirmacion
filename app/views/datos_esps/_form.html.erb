@@ -6,7 +6,7 @@
 
   	<div class="field">
 	  	<%= f.label :fecha_de_estreno, "Fecha de estreno *" %>
-	    <%= f.date_select :fecha_de_estreno %>
+	    <%= f.text_field :fecha_de_estreno, :value => (f.object.fecha_de_estreno ? I18n.l(f.object.fecha_de_estreno) : '') %>
 	  </div>
 
 	  <div class="field">

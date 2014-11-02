@@ -9,12 +9,18 @@ describe "Remito" do
     let(:fecha_impresion_remito) { Time.zone.local(2013, 9, 15, 22, 41) }
     let(:fecha_de_creacion_del_tramite) { Time.zone.local(2013, 9, 10, 22, 41) }
     let(:formulario) { FactoryGirl.create(:formulario, :created_at => fecha_de_creacion_del_tramite) }
+
     let(:ruta_archivo_odt) { Rails.root.join("public/remitos/remito_convocatoria_2015_20130915224100.odt") }
     let(:ruta_archivo_pdf) { Rails.root.join("public/remitos/remito_convocatoria_2015_20130915224100.pdf") }
 
-
     before do
       FactoryGirl.create(:principal, :formulario => formulario, nombre: "Los Chaqueños")
+      FactoryGirl.create(:datos_tec, formulario: formulario)
+      FactoryGirl.create(:datos_esp, formulario: formulario)
+      FactoryGirl.create(:responsable, formulario: formulario)
+      FactoryGirl.create(:elenco_en_gira, formulario: formulario)
+      FactoryGirl.create(:esps_esps, formulario: formulario)
+      
       sign_in formulario.user
       visit formularios_path
     end

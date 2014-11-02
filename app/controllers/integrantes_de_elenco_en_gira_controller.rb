@@ -79,7 +79,7 @@ class IntegrantesDeElencoEnGiraController < ApplicationController
   private
 
   def integrante_de_elenco_en_gira_params
-    params.require(@type.underscore.to_sym).permit(:type, :provincia_id, :localidad_id, :nombre, :apellido, :cuil_cuit, "fecha_de_nacimiento(3i)", "fecha_de_nacimiento(2i)", "fecha_de_nacimiento(1i)", :calle, :altura_calle, :piso, :depto, :codigo_postal, :tel_particular, :tel_celular, :email)
+    params.require(@type.underscore.to_sym).permit(:type, :provincia_id, :localidad_id, :nombre, :apellido, :cuil_cuit, "fecha_de_nacimiento(3i)", "fecha_de_nacimiento(2i)", "fecha_de_nacimiento(1i)", :fecha_de_nacimiento,:calle, :altura_calle, :piso, :depto, :codigo_postal, :tel_particular, :tel_celular, :email)
   end
 
   def inicializar_variables
