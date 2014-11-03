@@ -18,7 +18,7 @@ class PersonasFisicasEController < ApplicationController
       render 'new'
     else
       if @buscado.es_menor?
-        flash[:error] = "No es posiblie seleccionar el integrante por ser menor"
+        flash[:error] = "No es posible seleccionar el integrante por ser menor"
         render 'new'
       else
         flash[:success] = "Se encontro a un integrante con ese cuil/cuit"
@@ -42,7 +42,7 @@ class PersonasFisicasEController < ApplicationController
     @responsable = @formulario.responsable
     if @persona_fisica_e.save!
       flash[:success] = "Datos de la persona fisica correctamente creados"
-      redirect_to formulario_responsable_path(@formulario, @responsable)
+      redirect_to vista_formulario_persona_fisica_e_path(@formulario, @persona_fisica_e)
     else
       flash[:error] = "Hubo un problema, intentelo nuevamente"
       redirect_to new_formulario_persona_fisica_e_path(@formulario)
@@ -60,6 +60,12 @@ class PersonasFisicasEController < ApplicationController
       flash[:error] = "Hubo un problema, intentelo nuevamente"
       redirect_to new_formulario_persona_fisica_e_path(@formulario)
     end
+  end
+
+  def vista
+    @formulario = Formulario.find_by_id(params[:formulario_id])
+    @persona_fisica_e = @formulario.responsable.persona_fisica_e
+    @integrante = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(id: @persona_fisica_e.integrante_de_elenco_en_gira_id)[0]
   end
 
   private

@@ -3,7 +3,11 @@ class ResponsablesController < ApplicationController
 
   def show
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    @responsable = Responsable.find(params[:id])
+    @responsable = @formulario.responsable
+    if (@responsable.persona_fisica_e) && (@formulario.elenco_en_gira)
+      #@numero_de_id = @formulario.responsable.persona_fisica_e.integrante_de_elenco_en_gira_id
+      @integrante = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(params[:id])
+    end
   end
 
   def index

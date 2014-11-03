@@ -183,7 +183,7 @@
 
       <% if (@formulario.responsable) %>
         <% if (@formulario.responsable.persona_fisica_e) %>
-           <td><%= link_to t("scaffoldi18n.ver"), formulario_persona_fisica_e_path(@formulario, @formulario.responsable.persona_fisica_e)  %></td>
+           <td><%= link_to t("scaffoldi18n.ver"), vista_formulario_persona_fisica_e_path(@formulario, @formulario.responsable.persona_fisica_e)  %></td>
            <td><%= link_to t("scaffoldi18n.edit"), new_formulario_persona_fisica_e_path(@formulario)  %></td>
            <td><%= link_to t("scaffoldi18n.destroy"), formulario_responsable_path(@formulario, @formulario.responsable), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
         <% end %>
