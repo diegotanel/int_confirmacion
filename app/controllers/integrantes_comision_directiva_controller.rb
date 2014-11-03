@@ -70,7 +70,7 @@ class IntegrantesComisionDirectivaController < ApplicationController
   private
 
   def integrante_comision_directiva_params
-    params.require(:integrante_comision_directiva).permit(:cargo, :nombre, :apellido, :cuil_cuit, :fecha_de_nacimiento, :calle, :altura_calle, :localidad_id, :codigo_postal, :email)
+    params.require(:integrante_comision_directiva).permit(:cargo, :nombre, :apellido, :cuil_cuit, :fecha_de_nacimiento, :calle, :altura_calle, :localidad_id, :codigo_postal, :email, :tel_particular, :tel_celular)
   end
 
   def inicializar_variables
