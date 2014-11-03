@@ -28,6 +28,7 @@ Int::Application.routes.draw do
     resources :personas_fisicas_e, only: [:new, :show, :index] do
       member do
         post :buscar_integrante_por_cuil_cuit
+        get :vista
       end
     end
   end
