@@ -73,7 +73,7 @@
 
     <td><%= link_to "Modificar", edit_formulario_director_path(@formulario, integrante) %></td>
 
-    <td><%= link_to "Eliminar", formulario_director_path(@formulario, integrante) %></td>
+    <td><%= link_to t("scaffoldi18n.destroy"), formulario_director_path(@formulario, integrante), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
     
   <% end %>
 </table>
@@ -111,7 +111,8 @@
 
     <td><%= link_to "Modificar", edit_formulario_tecnico_path(@formulario, integrante) %></td>
 
-    <td><%= link_to "Eliminar", formulario_tecnico_path(@formulario, integrante) %></td>
+        <td><%= link_to t("scaffoldi18n.destroy"), formulario_tecnico_path(@formulario, integrante), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
+
     
   <% end %>
 </table>
