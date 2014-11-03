@@ -42,7 +42,7 @@ class PersonasFisicasEController < ApplicationController
     @responsable = @formulario.responsable
     if @persona_fisica_e.save!
       flash[:success] = "Datos de la persona fisica correctamente creados"
-      redirect_to vista_formulario_persona_fisica_e_path(@formulario, @persona_fisica_e)
+      redirect_to edit_formulario_path(@formulario)
     else
       flash[:error] = "Hubo un problema, intentelo nuevamente"
       redirect_to new_formulario_persona_fisica_e_path(@formulario)
