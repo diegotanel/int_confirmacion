@@ -2,7 +2,7 @@
 
 class UserMailer < ActionMailer::Base
 
-	default from: 'INT@example.com'
+	default from: 'intpresenta@inteatro.gov.ar'
 
   def password_recover(user)
   	@user = user
