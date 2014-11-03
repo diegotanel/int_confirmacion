@@ -35,6 +35,9 @@ class PersonasFisicasEController < ApplicationController
   def create
     @formulario = Formulario.find_by_id(params[:formulario_id])
     @buscado = @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(id: params[:id])[0]
+    @formulario.responsable.destroy if @formulario.responsable
+    @formulario.create_responsable
+
     if @formulario.responsable.persona_fisica_e
       @formulario.responsable.persona_fisica_e.destroy
     end

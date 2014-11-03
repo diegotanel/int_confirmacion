@@ -14,7 +14,9 @@ class PersonasJuridicasController < ApplicationController
 
   def create
   	@formulario = Formulario.find_by_id(params[:formulario_id])
-  	if @formulario.responsable.persona_juridica
+  	@formulario.responsable.destroy if @formulario.responsable
+    @formulario.create_responsable
+    if @formulario.responsable.persona_juridica
       @formulario.responsable.persona_juridica.destroy
     end
 

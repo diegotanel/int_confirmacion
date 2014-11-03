@@ -14,6 +14,9 @@ class PersonasFisicasNController < ApplicationController
 
   def create
   	@formulario = Formulario.find_by_id(params[:formulario_id])
+    @formulario.responsable.destroy if @formulario.responsable
+    @formulario.create_responsable
+
     @responsable = @formulario.responsable
   	@persona_fisica_n = @responsable.build_persona_fisica_n(persona_fisica_n_params)
     @persona_fisica_n.saltear_validaciones_de_presencia = true

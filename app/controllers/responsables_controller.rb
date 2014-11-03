@@ -12,7 +12,7 @@ class ResponsablesController < ApplicationController
 
   def index
     @formulario = Formulario.find_by_id(params[:formulario_id])
-    @formulario.create_responsable() unless @formulario.responsable
+    #@formulario.create_responsable() unless @formulario.responsable
   end
 
   def edit
