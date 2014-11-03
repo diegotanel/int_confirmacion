@@ -29,4 +29,6 @@ class DatosTec < ActiveRecord::Base
   validates :descripcion_espacio, presence: true, unless: :saltear_validaciones_de_presencia
   validates :descripcion_espacio, length: {maximum: 500}
 
+  has_attached_file :imagen, styles: { medium: '300x300>', thumb: '48x48>' }
+  validates_attachment_content_type :imagen, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif", 'application/pdf'], :size => { :less_than => 5.megabyte }
 end

@@ -46,7 +46,7 @@ class DatosEspsController < ApplicationController
 
 	 def datos_esp_params
 	  params.require(:datos_esp).permit(:fecha_de_estreno, :nombre_autor, :nacionalidad_autor, :duracion_espectaculo, :sinopsis_obra, 
-      :pagina_web, :facebook, :twitter, :blog, :youtube, :instagram, :gen_esp_ids => [], :publ_edad_ids => [], :publ_exp_ids => [], :formato_ids => [])
+      :pagina_web, :facebook, :twitter, :blog, :youtube, :instagram, :imagen, :autorizacion_del_autor, :gen_esp_ids => [], :publ_edad_ids => [], :publ_exp_ids => [], :formato_ids => [])
 	 end
 
   def inicializar_variables

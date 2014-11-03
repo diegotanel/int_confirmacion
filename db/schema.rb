@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024171946) do
+ActiveRecord::Schema.define(version: 20141103054547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "datos_esps", force: true do |t|
-    t.integer  "formulario_id",        null: false
+    t.integer  "formulario_id",                       null: false
     t.date     "fecha_de_estreno"
-    t.string   "nombre_autor",         null: false
-    t.string   "nacionalidad_autor",   null: false
-    t.string   "duracion_espectaculo", null: false
-    t.string   "sinopsis_obra",        null: false
+    t.string   "nombre_autor",                        null: false
+    t.string   "nacionalidad_autor",                  null: false
+    t.string   "duracion_espectaculo",                null: false
+    t.string   "sinopsis_obra",                       null: false
     t.string   "pagina_web"
     t.string   "facebook"
     t.string   "twitter"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20141024171946) do
     t.string   "instagram"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "autorizacion_del_autor_file_name"
+    t.string   "autorizacion_del_autor_content_type"
+    t.integer  "autorizacion_del_autor_file_size"
+    t.datetime "autorizacion_del_autor_updated_at"
+    t.string   "imagen_file_name"
+    t.string   "imagen_content_type"
+    t.integer  "imagen_file_size"
+    t.datetime "imagen_updated_at"
   end
 
   add_index "datos_esps", ["formulario_id"], name: "index_datos_esps_on_formulario_id", using: :btree
@@ -89,6 +97,10 @@ ActiveRecord::Schema.define(version: 20141024171946) do
     t.integer  "formulario_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "imagen_file_name"
+    t.string   "imagen_content_type"
+    t.integer  "imagen_file_size"
+    t.datetime "imagen_updated_at"
   end
 
   add_index "datos_tecs", ["formulario_id"], name: "index_datos_tecs_on_formulario_id", using: :btree

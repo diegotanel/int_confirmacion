@@ -1,5 +1,5 @@
 #encoding: utf-8
-  <%= form_for([@formulario, @datos_esp]) do |f| %>
+  <%= form_for([@formulario, @datos_esp], html: { multipart: true }) do |f| %>
   	<%= render 'shared/error_messages', :object => f.object %>
 
   	<p>Los campos marcados con * son obligatorios</p>
@@ -72,6 +72,30 @@
     		</tr>
     	<% end %>
   	</div></br>
+
+    <div class="field">
+      <%= f.label :autorizacion_del_autor, "Adjuntar autorización del autor" %>
+      <%= f.file_field :autorizacion_del_autor %>
+    </div>
+
+    <div class="field">
+    <% if @datos_esp.autorizacion_del_autor %>
+      <%= image_tag @datos_esp.autorizacion_del_autor.url(:medium) %>
+    <% end %>
+    </div>
+
+
+     <div class="field">
+      <%= f.label :imagen, "Adjuntar foto" %>
+      <%= f.file_field :imagen %>
+    </div>
+
+    <div class="field">
+    <% if @datos_esp.imagen %>
+      <%= image_tag @datos_esp.imagen.url(:medium) %>
+    <% end %>
+    </div>
+
 
     <p>Sitios Web:</p>
     <p>(Copiar el link)</p>

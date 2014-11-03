@@ -1,5 +1,5 @@
 #encoding: utf-8
-  <%= form_for([@formulario, @datos_tec]) do |f| %>
+  <%= form_for([@formulario, @datos_tec], html: { multipart: true }) do |f| %>
   	<%= render 'shared/error_messages', :object => f.object %>
 
     <p>Los campos marcados con * son obligatorios</p>
@@ -75,6 +75,17 @@
     <div class="field">
       <%= f.label :otras_necesidades, "Otras necesidades" %><p>(no mas de 500 caracteres, los espacios cuentan como caracteres)</p>
       <%= f.text_area :otras_necesidades %>
+    </div>
+
+    <div class="field">
+      <%= f.label :imagen, "Adjuntar planta de luces" %>
+      <%= f.file_field :imagen %>
+    </div>
+
+    <div class="field">
+    <% if @datos_tec.imagen %>
+      <%= image_tag @datos_tec.imagen.url(:medium) %>
+    <% end %>
     </div>
 
     <div class="actions">

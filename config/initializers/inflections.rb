@@ -46,4 +46,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'integrante_comision_directiva', 'integrantes_comision_directiva'
 	inflect.irregular 'super_vista', 'super_vistas'
 	inflect.irregular 'formulario_terminado', 'formularios_terminados'
+	inflect.irregular 'imagen', 'imagenes'
+	inflect.irregular 'autorizacion_del_autor', 'autorizaciones_del_autor'
+
 end
