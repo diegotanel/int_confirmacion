@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
     	sign_in @user
-    	flash[:success] = "Bienvenido al INT"
       redirect_to home2_path
     else
       render 'new'
