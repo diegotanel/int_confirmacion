@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104152054) do
+ActiveRecord::Schema.define(version: 20141104154430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20141104152054) do
     t.string   "nombre_autor",                        null: false
     t.string   "nacionalidad_autor",                  null: false
     t.string   "duracion_espectaculo",                null: false
-    t.string   "sinopsis_obra",                       null: false
+    t.text     "sinopsis_obra",                       null: false
     t.string   "pagina_web"
     t.string   "facebook"
     t.string   "twitter"
@@ -84,21 +84,21 @@ ActiveRecord::Schema.define(version: 20141104152054) do
   create_table "datos_tecs", force: true do |t|
     t.string   "duracion_montaje",             null: false
     t.string   "duracion_desmontaje",          null: false
-    t.string   "descripcion_espacio",          null: false
+    t.text     "descripcion_espacio",          null: false
     t.string   "ancho",                        null: false
     t.string   "alto",                         null: false
     t.string   "profundidad",                  null: false
-    t.string   "listado_artefactos_luminicos", null: false
-    t.string   "listado_sonido",               null: false
-    t.string   "otros_equipamientos"
+    t.text     "listado_artefactos_luminicos", null: false
+    t.text     "listado_sonido",               null: false
+    t.text     "otros_equipamientos"
     t.string   "peso_total",                   null: false
     t.string   "volumen_total",                null: false
-    t.string   "otras_necesidades"
+    t.text     "otras_necesidades"
     t.integer  "formulario_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "imagen_file_name"
-    t.string   "imagen_content_type"
+    t.text     "imagen_file_name"
+    t.text     "imagen_content_type"
     t.integer  "imagen_file_size"
     t.datetime "imagen_updated_at"
   end
