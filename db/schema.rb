@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103054547) do
+ActiveRecord::Schema.define(version: 20141104152054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,12 +31,12 @@ ActiveRecord::Schema.define(version: 20141103054547) do
     t.string   "instagram"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "autorizacion_del_autor_file_name"
-    t.string   "autorizacion_del_autor_content_type"
+    t.text     "autorizacion_del_autor_file_name"
+    t.text     "autorizacion_del_autor_content_type"
     t.integer  "autorizacion_del_autor_file_size"
     t.datetime "autorizacion_del_autor_updated_at"
-    t.string   "imagen_file_name"
-    t.string   "imagen_content_type"
+    t.text     "imagen_file_name"
+    t.text     "imagen_content_type"
     t.integer  "imagen_file_size"
     t.datetime "imagen_updated_at"
   end
