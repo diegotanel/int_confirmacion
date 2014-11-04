@@ -26,6 +26,12 @@ class DatosEsp < ActiveRecord::Base
 	validates :publs_edad, presence: true, unless: :saltear_validaciones_de_presencia
 	validates :publs_exp, presence: true, unless: :saltear_validaciones_de_presencia
 	validates :formatos, presence: true, unless: :saltear_validaciones_de_presencia
+	validates :pagina_web, length: {maximum: 700}
+	validates :facebook, length: {maximum: 700}
+	validates :twitter, length: {maximum: 700}
+	validates :blog, length: {maximum: 700}
+	validates :youtube, length: {maximum: 700}
+	validates :instagram, length: {maximum: 700}
 
 	has_attached_file :imagen, styles: { medium: '300x300>', thumb: '48x48>' }
 	validates_attachment_content_type :imagen, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif", 'application/pdf'], :size => { :less_than => 1.megabyte }
