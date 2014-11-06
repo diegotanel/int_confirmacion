@@ -34,10 +34,14 @@ class DatosEsp < ActiveRecord::Base
 	validates :instagram, length: {maximum: 700}
 
 	has_attached_file :imagen, styles: { medium: '300x300>', thumb: '48x48>' }
-	validates_attachment_content_type :imagen, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif", 'application/pdf'], :size => { :less_than => 1.megabyte }
+	validates_attachment :imagen, :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif", 'application/pdf'] },
+                                :size => { :less_than => 1.megabyte }
+  validates_attachment :imagen, presence: true, unless: :saltear_validaciones_de_presencia
 
   has_attached_file :autorizacion_del_autor, styles: { medium: '300x300>', thumb: '48x48>' }
-  validates_attachment_content_type :autorizacion_del_autor, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif", 'application/pdf'], :size => { :less_than => 1.megabyte }
+  validates_attachment :autorizacion_del_autor, :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif", 'application/pdf'] },
+                                :size => { :less_than => 1.megabyte }
+  validates_attachment :autorizacion_del_autor, presence: true, unless: :saltear_validaciones_de_presencia
 
 	def validacion_fecha_de_estreno_debe_ser_inferior_al_dia_actual
 		errors[:fecha_de_estreno] << "no puede ser superior al día actual" unless fecha_de_estreno_debe_ser_inferior_al_dia_actual

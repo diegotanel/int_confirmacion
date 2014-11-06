@@ -30,5 +30,6 @@ class DatosTec < ActiveRecord::Base
   validates :descripcion_espacio, length: {maximum: 500}
 
   has_attached_file :imagen, styles: { medium: '300x300>', thumb: '48x48>' }
-  validates_attachment_content_type :imagen, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif", 'application/pdf'], :size => { :less_than => 5.megabyte }
+  validates_attachment :imagen, :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif", 'application/pdf'] },
+                                :size => { :less_than => 1.megabyte }
 end
