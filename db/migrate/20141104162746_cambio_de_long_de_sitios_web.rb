@@ -1,5 +1,5 @@
 class CambioDeLongDeSitiosWeb < ActiveRecord::Migration
-def up
+  def up
     change_table :datos_esps do |t|
       t.change :pagina_web, :text
       t.change :facebook, :text
@@ -19,4 +19,5 @@ def up
       t.change :youtube, :string
       t.change :instagram, :string
     end
+  end
 end

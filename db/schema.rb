@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104154430) do
+ActiveRecord::Schema.define(version: 20141106122335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 20141104154430) do
     t.string   "nacionalidad_autor",                  null: false
     t.string   "duracion_espectaculo",                null: false
     t.text     "sinopsis_obra",                       null: false
-    t.string   "pagina_web"
-    t.string   "facebook"
-    t.string   "twitter"
-    t.string   "blog"
-    t.string   "youtube"
-    t.string   "instagram"
+    t.text     "pagina_web"
+    t.text     "facebook"
+    t.text     "twitter"
+    t.text     "blog"
+    t.text     "youtube"
+    t.text     "instagram"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "autorizacion_del_autor_file_name"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20141104154430) do
   add_index "datos_esps_publs_exp", ["publ_exp_id", "datos_esp_id"], name: "index_datos_esps_publs_exp_on_publ_exp_id_and_datos_esp_id", using: :btree
 
   create_table "datos_grupos", force: true do |t|
-    t.string   "nombre_grupo",  null: false
-    t.string   "historia",      null: false
+    t.text     "nombre_grupo",  null: false
+    t.text     "historia",      null: false
     t.integer  "formulario_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
