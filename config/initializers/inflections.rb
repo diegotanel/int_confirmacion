@@ -48,5 +48,5 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'formulario_terminado', 'formularios_terminados'
 	inflect.irregular 'imagen', 'imagenes'
 	inflect.irregular 'autorizacion_del_autor', 'autorizaciones_del_autor'
-
+	inflect.irregular 'vista_formulario', 'vista_formularios'
 end

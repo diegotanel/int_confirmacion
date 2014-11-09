@@ -4,6 +4,7 @@ Int::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_recovers, only: [:new, :create]
+  resources :ver_formularios, only: [:index]
   resources :formularios, only: [:new, :create, :edit, :update, :index, :destroy] do
     member do
       get :imprimir_remito

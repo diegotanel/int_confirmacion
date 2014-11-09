@@ -18,6 +18,8 @@ describe Principal do
   it { should respond_to(:nombre) }
   it { should respond_to(:provincia) }
   it { should respond_to(:provincia_id) }
+  it { should respond_to(:region) }
+  it { should respond_to(:region_id) }
   it { should respond_to(:localidad) }
   it { should respond_to(:grupo) }
   it {
@@ -47,6 +49,16 @@ describe Principal do
         @principal.localidad = nil
       end
       it { should_not be_valid }
+    end
+
+    describe "delegate provincia" do
+      it { @principal.provincia.codigo.should == localidad.provincia.codigo }
+      it { @principal.provincia.id.should == localidad.provincia.id }
+    end
+
+    describe "delegate region" do
+      it { @principal.region.codigo.should == localidad.provincia.region.codigo }
+      it { @principal.region.id.should == localidad.provincia.region.id }
     end
 
     describe "when grupo_id is not present" do

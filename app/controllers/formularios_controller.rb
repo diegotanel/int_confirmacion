@@ -1,9 +1,9 @@
 #encoding: utf-8
 class FormulariosController < ApplicationController
-	before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
 
-	def new
-  	@formulario = Formulario.new
+  def new
+    @formulario = Formulario.new
   end
 
   def show
@@ -11,7 +11,7 @@ class FormulariosController < ApplicationController
   end
 
   def index
-  	@formularios = current_user.formularios ? current_user.formularios : []
+    @formularios = current_user.formularios ? current_user.formularios : []
   end
 
   def create
@@ -23,11 +23,11 @@ class FormulariosController < ApplicationController
   end
 
   def edit
-  	@formulario = Formulario.find(params[:id])
+    @formulario = Formulario.find(params[:id])
   end
 
   def update
-  	@formulario = Formulario.find(params[:id])
+    @formulario = Formulario.find(params[:id])
     if @formulario.update_attributes(formulario_params)
       flash[:success] = "Formulario actualizado"
       redirect_to @formulario
@@ -51,11 +51,10 @@ class FormulariosController < ApplicationController
     send_file ( file )
   end
 
-
   private
 
-    def formulario_params
-      params.require(:formulario).permit(:principal_id)
-    end
+  def formulario_params
+    params.require(:formulario).permit(:principal_id)
+  end
 
 end

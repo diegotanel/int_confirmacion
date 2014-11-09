@@ -10,6 +10,7 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'odf-report'
 gem 'bootstrap-datepicker-rails'
 gem 'paperclip'
+gem 'ransack'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

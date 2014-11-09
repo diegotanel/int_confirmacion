@@ -35,3 +35,7 @@
 	<%= link_to t('Nuevo formulario'), new_formulario_path, class: "btn btn-large btn-small" %>
 <br />
 <br />
+  <% if current_user.admin? %>
+    <%= link_to t('Ver formularios terminados'), ver_formularios_path, class: "btn btn-large btn-primary" %>
+  <% end %>
+<br />

@@ -1,0 +1,42 @@
+#encoding: utf-8
+<% provide(:title, 'Formularios') %>
+<h1>Todos los Formularios</h1></br>
+
+
+<%= search_form_for @q, url: { :action=>"index" } do |f| %>
+
+	<%= f.label :principal_localidad_provincia_region_id_eq, "Region"%>
+  <%= f.collection_select :principal_localidad_provincia_region_id_eq, Region.all, :id, :detalle, include_blank: true %>
+
+  	<%= f.label :principal_localidad_provincia_id_eq, "Provincia"%>
+  	<%= f.grouped_collection_select("principal_localidad_provincia_id_eq", Region.all, "provincias", "detalle", "id", "detalle",include_blank: true) %>
+
+  <div class="actions">
+  	<%= f.submit "Buscar"%>
+  </div>
+<% end %>
+
+<% if @q.result %>
+	<table class="table table-striped">
+	  <tr>
+	    <th>Fecha</th>
+	    <th>Nombre del espectáculo</th>
+	    <th>Región</th>
+	    <th>Provincia</th>
+	    <th></th>
+	  </tr>
+
+	  <%= content_tag_for(:tr, @q.result) do |formulario| %>
+	  	<% if formulario.estado = Formulario::ESTADOS[:borrador] %>
+	    	<td><%= I18n.l(formulario.created_at) %></td>
+	    	<td><%= formulario.principal.nombre %></td>
+	    	<td><%= formulario.principal.region.detalle %></td>
+	    	<td><%= formulario.principal.provincia.detalle %></td>
+	    	<td><%= link_to "Vista previa", formulario_super_vistas_path(formulario) %></td>
+	    <% end %>
+	  <% end %>
+
+	</table>
+
+<p>Cantidad de registros: <%="#{@q.result.count}" %></p>
+<% end %>
