@@ -101,7 +101,6 @@ FactoryGirl.define do
     altura_calle "5200"
     localidad
     codigo_postal "1414"
-    tel_particular
     tel_celular "123144123"
     email "d@d.com"
     elenco_en_gira

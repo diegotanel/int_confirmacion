@@ -8,19 +8,25 @@ describe "Remito" do
   describe "Imprimir formulario" do
     let(:fecha_impresion_remito) { Time.zone.local(2013, 9, 15, 22, 41) }
     let(:fecha_de_creacion_del_tramite) { Time.zone.local(2013, 9, 10, 22, 41) }
-    let(:formulario) { FactoryGirl.create(:formulario, :created_at => fecha_de_creacion_del_tramite) }
-
+    let(:formulario) { FactoryGirl.create(:formulario, :created_at => fecha_de_creacion_del_tramite, :estado => 1) }
+    
     let(:ruta_archivo_odt) { Rails.root.join("public/remitos/remito_convocatoria_2015_20130915224100.odt") }
     let(:ruta_archivo_pdf) { Rails.root.join("public/remitos/remito_convocatoria_2015_20130915224100.pdf") }
 
     before do
-      FactoryGirl.create(:principal, :formulario => formulario, nombre: "Los Chaqueños")
-      FactoryGirl.create(:datos_tec, formulario: formulario)
-      FactoryGirl.create(:datos_esp, formulario: formulario)
-      FactoryGirl.create(:responsable, formulario: formulario)
-      FactoryGirl.create(:elenco_en_gira, formulario: formulario)
-      FactoryGirl.create(:esps_esps, formulario: formulario)
-      
+      @fecha = Date.today
+      @principal = FactoryGirl.create(:principal, :formulario => formulario, nombre: "Los Chaqueños")
+      paramsIntegrante = {type: 'Actor', nombre: "Pedro", apellido: "Gomez", email: "pedro.gomez@gmail.com", cuil_cuit: "20284635486", fecha_de_nacimiento: @fecha, calle: "Santa Fe", altura_calle: "1000", localidad: @principal.localidad, codigo_postal: "1406", tel_celular: "5345345", tel_particular: ''}
+      formulario.build_elenco_en_gira
+      formulario.elenco_en_gira.saltear_validaciones_de_presencia = true
+      formulario.elenco_en_gira.save!
+      @integrante_de_elenco_en_gira = formulario.elenco_en_gira.integrantes_de_elenco_en_gira.create!(paramsIntegrante)
+      formulario.create_responsable
+      @persona_fisica_e = formulario.responsable.build_persona_fisica_e(integrante_de_elenco_en_gira_id: @integrante_de_elenco_en_gira.id)
+      @persona_fisica_e.save!
+      formulario.estado = 1
+
+      formulario.save!
       sign_in formulario.user
       visit formularios_path
     end
@@ -56,7 +62,10 @@ describe "Remito" do
         @text.should include("Centro")
         @text.should include("1")
         @text.should include("10/09/2013 22:41:00")
-        @text.should include("fruta")
+        @text.should include("Pedro")
+        @text.should include("Gomez")
+        @text.should include("20284635486")
+        @text.should include(I18n.l(@fecha, format: :short))
         File.delete(ruta_archivo_odt)
         File.delete(ruta_archivo_pdf)
       end
