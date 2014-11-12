@@ -32,17 +32,17 @@
 
     <div class="field">
       <%= f.label :ancho, "Ancho (en Mts.) *" %>
-      <%= f.text_field :ancho %>
+      <%= f.text_field :ancho, :value => @datos_tec.ancho ? number_with_delimiter(f.object.ancho) : '' %>
     </div>
 
     <div class="field">
       <%= f.label :alto, "Alto (en Mts.) *" %>
-      <%= f.text_field :alto %>
+      <%= f.text_field :alto, :value => @datos_tec.alto ? number_with_delimiter(f.object.alto) : '' %>
     </div>
 
     <div class="field">
       <%= f.label :profundidad, "Profundidad (en Mts.) *" %>
-      <%= f.text_field :profundidad %>
+      <%= f.text_field :profundidad, :value => @datos_tec.profundidad ? number_with_delimiter(f.object.profundidad) : ''%>
     </div>
 
     <div class="field">
