@@ -8,6 +8,7 @@ Int::Application.routes.draw do
   resources :formularios, only: [:new, :create, :edit, :update, :index, :destroy] do
     member do
       get :imprimir_remito
+      get :imprimir_interno
     end
     resources :principals, only: [:new, :create, :show, :edit, :update]
     resources :elencos_en_gira, only: [:index, :show]

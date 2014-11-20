@@ -32,12 +32,12 @@ Int::Application.configure do
 
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
-  config.action_mailer.smtp_settings = {
-  address:              'mail.inteatro.gov.ar',
-  port:                  25,
-  domain:               'inteatro.gov.ar',
-  user_name:            'intpresenta@inteatro.gov.ar',
-  password:             'm8gip',
-  authentication:       'plain',
-  enable_starttls_auto: false  }
+  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
+
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[INT Presenta Excepciones] ",
+    :sender_address => %{"INT Presenta Excepciones" <intpresenta_excepcion@inteatro.gov.ar>},
+    :exception_recipients => %w{dtanel@gmail.com pereira.martin21@gmail.com}
+  }
 end

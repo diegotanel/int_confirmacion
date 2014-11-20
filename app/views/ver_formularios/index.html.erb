@@ -23,6 +23,7 @@
 	    <th>Nombre del espectáculo</th>
 	    <th>Región</th>
 	    <th>Provincia</th>
+      <th></th>
 	    <th></th>
 	  </tr>
 
@@ -33,6 +34,7 @@
 	    	<td><%= formulario.principal.region.detalle %></td>
 	    	<td><%= formulario.principal.provincia.detalle %></td>
 	    	<td><%= link_to "Vista previa", formulario_super_vistas_path(formulario) %></td>
+        <td><%= link_to "Imprimir formulario interno", imprimir_interno_formulario_path(formulario) %></td>
 	    <% end %>
 	  <% end %>
 

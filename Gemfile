@@ -11,6 +11,7 @@ gem 'odf-report'
 gem 'bootstrap-datepicker-rails'
 gem 'paperclip'
 gem 'ransack'
+gem 'exception_notification'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

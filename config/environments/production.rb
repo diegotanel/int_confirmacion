@@ -87,5 +87,22 @@ Int::Application.configure do
     user_name:            'intpresenta@inteatro.gov.ar',
     password:             'm8gip',
     authentication:       'plain',
-    enable_starttls_auto: false  }
+  enable_starttls_auto: false  }
+
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[INT Presenta Excepciones] ",
+    :sender_address => %{"INT Presenta Excepciones" <intpresenta_excepcion@inteatro.gov.ar>},
+    :exception_recipients => %w{dtanel@gmail.com pereira.martin21@gmail.com},
+    :smtp_settings => {
+      address: "mail.inteatro.gov.ar",
+      port: 25,
+      domain: "inteatro.gov.ar",
+      authentication: "plain",
+      enable_starttls_auto: false,
+      user_name: "intpresenta_excepcion@inteatro.gov.ar",
+      password: "mfn3tr"
+    }
+  }
+
 end
