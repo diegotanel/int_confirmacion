@@ -1,6 +1,5 @@
 #encoding: utf-8
 class SuperVistasController < ApplicationController
-
 	before_action :signed_in_user, only: [:index]
 
   def index

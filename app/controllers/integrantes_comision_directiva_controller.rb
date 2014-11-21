@@ -1,6 +1,6 @@
 #encoding: utf-8
 class IntegrantesComisionDirectivaController < ApplicationController
-  before_action :signed_in_user, only: [:show, :new, :edit, :create, :update, :destroy]
+  before_action :signed_in_user, only: [:show, :new, :edit, :create, :update, :destroy, :index]
   before_action :inicializar_variables, only: [:new, :edit]
 
   def show

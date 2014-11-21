@@ -1,5 +1,5 @@
 class ResponsablesController < ApplicationController
-  before_action :signed_in_user, only: [:show, :edit, :update, :index]
+  before_action :signed_in_user, only: [:show, :edit, :update, :index, :destroy]
 
   def show
     @formulario = Formulario.find_by_id(params[:formulario_id])

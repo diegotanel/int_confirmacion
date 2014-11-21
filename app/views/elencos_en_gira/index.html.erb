@@ -67,7 +67,7 @@
     <td><%= integrante.apellido %></td>
     <td><%= integrante.email %></td>
     <td><%= integrante.cuil_cuit %></td>
-    <td><%= I18n.l(integrante.fecha_de_nacimiento) %></td>
+    <td><%= I18n.l(integrante.fecha_de_nacimiento) if integrante.fecha_de_nacimiento %></td>
 
     <td><%= link_to "Ver", formulario_director_path(@formulario, integrante) %></td>
 
@@ -105,7 +105,7 @@
     <td><%= integrante.apellido %></td>
     <td><%= integrante.email %></td>
     <td><%= integrante.cuil_cuit %></td>
-    <td><%= I18n.l(integrante.fecha_de_nacimiento) %></td>
+    <td><%= I18n.l(integrante.fecha_de_nacimiento) if integrante.fecha_de_nacimiento %></td>
 
     <td><%= link_to "Ver", formulario_tecnico_path(@formulario, integrante) %></td>
 

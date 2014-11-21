@@ -37,6 +37,7 @@
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), new_formulario_principal_path(@formulario) %></td>
       <td></td>
+      <td></td>
     <% end %>
   </tr>
 
@@ -64,6 +65,7 @@
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_esp_path(@formulario) %></td>
       <td></td>
+      <td></td>
     <% end %>
   </tr>
 
@@ -90,6 +92,7 @@
       <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec)  %></td>
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_tec_path(@formulario) %></td>
+      <td></td>
       <td></td>
     <% end %>
 
@@ -131,6 +134,7 @@
   <% else %>
   	<td><%= link_to t("scaffoldi18n.new"), formulario_elencos_en_gira_path(@formulario, @formulario.elenco_en_gira)  %></td>
   	<td></td>
+    <td></td>
   <% end %>
 
   <% if (@formulario.principal) %>
@@ -159,6 +163,7 @@
         <% else %>
           <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_grupo_path(@formulario) %></td>
         	<td></td>
+          <td></td>
         <% end %>
       </tr>
     <% end %>
@@ -167,35 +172,74 @@
   <tr>
     <td>Datos del responsable</td>
     <% unless (@formulario.responsable) %>
-    <td>Campo incompleto</td>
+      <td>Campo incompleto</td>
     <% end %>
     <% if (@formulario.responsable) %>
-    <% unless (@formulario.responsable.valid?) %>
-    <td>Campo incompleto</td>
-    <% end %>
-    <% end %>
-    <% if (@formulario.responsable) && (@formulario.responsable.valid?) %>
-    <td>Campo completo</td>
+      <% unless (@formulario.responsable.valid?) %>
+        <td>Campo incompleto</td>
+      <% end %>
     <% end %>
     <% if (@formulario.responsable) %>
-    <% if (@formulario.responsable.persona_fisica_e) %>
-    <td><%= link_to t("scaffoldi18n.ver"), vista_formulario_persona_fisica_e_path(@formulario, @formulario.responsable.persona_fisica_e) %></td>
-    <td><%= link_to t("scaffoldi18n.edit"), new_formulario_persona_fisica_e_path(@formulario) %></td>
-    <td><%= link_to t("scaffoldi18n.destroy"), formulario_responsable_path(@formulario, @formulario.responsable), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
+      <% if (@formulario.responsable.valid?) %>
+        <% if (@formulario.responsable.persona_fisica_e) %>
+          <% if (@formulario.responsable.persona_fisica_e.valid?) %>
+            <td>Campo completo</td>
+          <% else %>
+            <td>Campo incompleto</td>
+          <% end %>
+        <% end %>
+        <% if (@formulario.responsable.persona_fisica_n) %>
+          <% if (@formulario.responsable.persona_fisica_n.valid?) %>
+            <td>Campo completo</td>
+          <% else %>
+            <td>Campo incompleto</td>
+          <% end %>
+        <% end %>
+        <% if (@formulario.responsable.persona_juridica) %>
+          <% if (@formulario.responsable.persona_juridica.valid?) %>
+            <% @es_invalid = nil %>
+
+            <% if (@formulario.responsable.persona_juridica.integrantes_comision_directiva.count > 0) %>
+                <% @formulario.responsable.persona_juridica.integrantes_comision_directiva.each do |integrant| %>
+                  <%  unless integrant.valid? %>
+                    <% @es_invalid = true 
+                      break %>
+                  <% end %>
+                <% end %>
+            <% else %>
+              <% @es_invalid = true %>
+            <% end %>
+
+            <% if (@es_invalid) %>
+              <td>Campo incompleto</td>
+            <% else %>
+              <td>Campo completo</td>
+            <% end %>
+          <% else %>
+            <td>Campo incompleto</td>
+          <% end %>
+        <% end %>
+      <% end %>
     <% end %>
-    <% if (@formulario.responsable.persona_fisica_n) %>
-    <td><%= link_to t("scaffoldi18n.ver"), formulario_persona_fisica_n_path(@formulario, @formulario.responsable.persona_fisica_n) %></td>
-    <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_persona_fisica_n_path(@formulario, @formulario.responsable.persona_fisica_n) %></td>
-    <td><%= link_to t("scaffoldi18n.destroy"), formulario_responsable_path(@formulario, @formulario.responsable), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
-    <% end %>
-    <% if (@formulario.responsable.persona_juridica) %>
-    <td><%= link_to t("scaffoldi18n.ver"), formulario_persona_juridica_path(@formulario, @formulario.responsable.persona_juridica) %></td>
-    <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_persona_juridica_path(@formulario, @formulario.responsable.persona_juridica) %></td>
-    <td><%= link_to t("scaffoldi18n.destroy"), formulario_responsable_path(@formulario, @formulario.responsable), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
-    <% end %>
+    <% if (@formulario.responsable) %>
+      <% if (@formulario.responsable.persona_fisica_e) %>
+      <td><%= link_to t("scaffoldi18n.ver"), vista_formulario_persona_fisica_e_path(@formulario, @formulario.responsable.persona_fisica_e) %></td>
+      <td><%= link_to t("scaffoldi18n.edit"), new_formulario_persona_fisica_e_path(@formulario) %></td>
+      <td><%= link_to t("scaffoldi18n.destroy"), formulario_responsable_path(@formulario, @formulario.responsable), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
+      <% end %>
+      <% if (@formulario.responsable.persona_fisica_n) %>
+      <td><%= link_to t("scaffoldi18n.ver"), formulario_persona_fisica_n_path(@formulario, @formulario.responsable.persona_fisica_n) %></td>
+      <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_persona_fisica_n_path(@formulario, @formulario.responsable.persona_fisica_n) %></td>
+      <td><%= link_to t("scaffoldi18n.destroy"), formulario_responsable_path(@formulario, @formulario.responsable), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
+      <% end %>
+      <% if (@formulario.responsable.persona_juridica) %>
+      <td><%= link_to t("scaffoldi18n.ver"), formulario_persona_juridica_path(@formulario, @formulario.responsable.persona_juridica) %></td>
+      <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_persona_juridica_path(@formulario, @formulario.responsable.persona_juridica) %></td>
+      <td><%= link_to t("scaffoldi18n.destroy"), formulario_responsable_path(@formulario, @formulario.responsable), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, method: :delete %></td>
+      <% end %>
     <% else %>
-    <td><%= link_to t("scaffoldi18n.new"), formulario_responsables_path(@formulario) %></td>
-    <td></td>
+      <td><%= link_to t("scaffoldi18n.new"), formulario_responsables_path(@formulario) %></td>
+      <td></td>
     <% end %>
   </tr>
 

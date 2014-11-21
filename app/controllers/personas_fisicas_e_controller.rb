@@ -1,5 +1,5 @@
 class PersonasFisicasEController < ApplicationController
-  before_action :signed_in_user, only: [:new, :show, :create, :edit, :update, :index]
+  before_action :signed_in_user, only: [:new, :show, :create, :edit, :update, :index, :vista]
   before_action :inicializar_variables, only: [:new, :create, :buscar_integrante_por_cuil_cuit]
 
   def new

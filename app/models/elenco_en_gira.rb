@@ -9,6 +9,7 @@ class ElencoEnGira < ActiveRecord::Base
   validates_associated :integrantes_de_elenco_en_gira
   validate :validacion_minimo_un_interprete, unless: :saltear_validaciones_de_presencia 
   validate :validacion_maximo_tres_directores, :validacion_maximo_dos_tecnicos, :validacion_combinacion_director_tecnico
+  
 
   def validacion_minimo_un_interprete
     errors[:base] << "Como mínimo se debe adicionar un intérprete en elenco en gira" unless minimo_un_interprete

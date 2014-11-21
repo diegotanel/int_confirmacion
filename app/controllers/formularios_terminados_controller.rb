@@ -1,5 +1,5 @@
 class FormulariosTerminadosController < ApplicationController
-  before_action :signed_in_user, only: [:new, :show, :create, :edit, :update]
+  before_action :signed_in_user, only: [:index]
 
   def index
    @formulario = Formulario.find_by_id(params[:formulario_id])
