@@ -34,6 +34,7 @@
 
     	<td><%= link_to t("scaffoldi18n.ver"), formulario_principal_path(@formulario, @formulario.principal)  %></td>
       <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_principal_path(@formulario, @formulario.principal)  %></td>
+      <td></td>
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), new_formulario_principal_path(@formulario) %></td>
       <td></td>
@@ -54,14 +55,30 @@
         <% end %>
       <% end %>
 
-       <% if (@formulario.datos_esp) && (@formulario.datos_esp.valid?) %>
-        <td>Campo completo</td>
+      <% if (@formulario.datos_esp) && (@formulario.datos_esp.valid?) %>
+        <% if (@formulario.datos_esp.ficha_artisticas.count > 0) %>
+          <% @formulario.datos_esp.ficha_artisticas.each do |ficha| %>
+              <%  unless ficha.valid? %>
+                <% @es_invali = true 
+                  break %>
+              <% end %>
+            <% end %>
+        <% else %>
+          <% @es_invali = true %>
+        <% end %>
+
+        <% if (@es_invali) %>
+          <td>Campo incompleto</td>
+        <% else %>
+          <td>Campo completo</td>
+        <% end %>
       <% end %>
 
     <% if (@formulario.datos_esp) %>
 
     	<td><%= link_to t("scaffoldi18n.ver"), formulario_datos_esp_path(@formulario, @formulario.datos_esp)  %></td>
       <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_esp_path(@formulario, @formulario.datos_esp)  %></td>
+      <td></td>
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_esp_path(@formulario) %></td>
       <td></td>
@@ -90,6 +107,7 @@
 
     	<td><%= link_to t("scaffoldi18n.ver"), formulario_datos_tec_path(@formulario, @formulario.datos_tec)  %></td>
       <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_tec_path(@formulario, @formulario.datos_tec)  %></td>
+      <td></td>
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_tec_path(@formulario) %></td>
       <td></td>
@@ -109,7 +127,7 @@
         
         <% @es_invalido = nil %>
 
-        <% if (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.count > 0) %>
+        <% if (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.count > 0) && (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').count < 4) && (@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count < 3) && ((@formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Director').count + @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.where(type: 'Tecnico').count) < 4) %>
             <% @formulario.elenco_en_gira.integrantes_de_elenco_en_gira.each do |integrante| %>
               <%  unless integrante.valid? %>
                 <% @es_invalido = true 

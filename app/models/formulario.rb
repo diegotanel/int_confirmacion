@@ -15,6 +15,13 @@ class Formulario < ActiveRecord::Base
 	ESTADOS = {:enviado => 1, :borrador => 2 }
 	validates :estado, :presence => true, :inclusion => { :in => self::ESTADOS.values }
 
+	def self.to_csv(options = {})
+  	CSV.generate(options) do |csv|
+    	csv << column_names
+    	csv << formulario.attributes.values_at(*column_names)
+  	end
+	end
+
 	private
 		after_initialize do
 			self.estado ||= Formulario::ESTADOS[:borrador]

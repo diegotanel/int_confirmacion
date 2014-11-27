@@ -14,6 +14,10 @@ class ElencosEnGiraController < ApplicationController
     @formulario = Formulario.find_by_id(params[:formulario_id])
   end
 
+  def errores
+    @formulario = Formulario.find_by_id(params[:formulario_id])
+  end
+
   private
 
 end

@@ -42,6 +42,11 @@
     end
   end
 
+  def errores
+    @formulario = Formulario.find_by_id(params[:formulario_id])
+    @datos_tec = DatosTec.find(params[:id])
+  end
+
   private
 
   def datos_tec_params

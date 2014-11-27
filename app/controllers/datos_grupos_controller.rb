@@ -40,6 +40,11 @@ class DatosGruposController < ApplicationController
     end
   end
 
+  def errores
+    @formulario = Formulario.find_by_id(params[:formulario_id])
+    @datos_grupo = DatosGrupo.find(params[:id])
+  end
+
   private
 
   def datos_grupo_params

@@ -41,4 +41,9 @@ class ResponsablesController < ApplicationController
       redirect_to edit_formulario_path(@formulario)
     end
   end
+
+  def errores
+    @formulario = Formulario.find_by_id(params[:formulario_id])
+    @responsable = Responsable.find(params[:id])
+  end
 end

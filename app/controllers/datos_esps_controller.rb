@@ -42,6 +42,11 @@ class DatosEspsController < ApplicationController
     end
   end
 
+  def errores
+    @formulario = Formulario.find_by_id(params[:formulario_id])
+    @datos_esp = DatosEsp.find(params[:id])
+  end
+  
   private
 
 	 def datos_esp_params

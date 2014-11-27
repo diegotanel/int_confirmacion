@@ -58,6 +58,11 @@ class PrincipalsController < ApplicationController
     end
   end
 
+  def errores
+    @formulario = Formulario.find_by_id(params[:formulario_id])
+    @principal = Principal.find(params[:id])
+  end
+
   private
 
   def principal_params

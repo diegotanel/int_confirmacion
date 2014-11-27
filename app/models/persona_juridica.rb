@@ -17,7 +17,7 @@ class PersonaJuridica < ActiveRecord::Base
   validates :nombre_per_juridica, presence: true, unless: :saltear_validaciones_de_presencia
   validates :nombre_per_juridica, length: {maximum: 100}
   validates :num_cuit, presence: true, unless: :saltear_validaciones_de_presencia
-  validates :num_cuit, length: {maximum: 11, minimum: 11}, numericality: { only_integer: true }, uniqueness: { case_sensitive: false }
+  validates :num_cuit, length: {maximum: 11, minimum: 11}, numericality: { only_integer: true }
   validates :num_per_juridica, presence: true, unless: :saltear_validaciones_de_presencia
   validates :num_per_juridica, numericality: { only_integer: true }
   validates :calle, presence: true, unless: :saltear_validaciones_de_presencia

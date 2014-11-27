@@ -8,18 +8,42 @@ Int::Application.routes.draw do
   resources :formularios, only: [:new, :create, :edit, :update, :index, :destroy] do
     member do
       get :imprimir_remito
-      get :imprimir_interno
+      get :imprimir_formulario_interno
     end
-    resources :principals, only: [:new, :create, :show, :edit, :update]
-    resources :elencos_en_gira, only: [:index, :show]
+    resources :principals, only: [:new, :create, :show, :edit, :update] do
+      member do
+        get :errores
+      end
+    end
+    resources :elencos_en_gira, only: [:index, :show] do
+      member do
+        get :errores
+      end
+    end
     resources :integrantes_de_elenco_en_gira, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :actores, controller: 'integrantes_de_elenco_en_gira', type: 'Actor'
     resources :directores, controller: 'integrantes_de_elenco_en_gira', type: 'Director'
     resources :tecnicos, controller: 'integrantes_de_elenco_en_gira', type: 'Tecnico'
-    resources :datos_grupos, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :datos_esps, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :datos_tecs, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :responsables, only: [:new, :create, :show, :edit, :update, :destroy, :index]
+    resources :datos_grupos, only: [:new, :create, :show, :edit, :update, :destroy] do
+      member do
+        get :errores
+      end
+    end
+    resources :datos_esps, only: [:new, :create, :show, :edit, :update, :destroy] do
+      member do
+        get :errores
+      end
+    end
+    resources :datos_tecs, only: [:new, :create, :show, :edit, :update, :destroy] do
+      member do
+        get :errores
+      end
+    end
+    resources :responsables, only: [:new, :create, :show, :edit, :update, :destroy, :index] do
+      member do
+        get :errores
+      end
+    end
     resources :personas_juridicas, only: [:new, :create, :show, :edit, :update, :index]
     resources :integrantes_comision_directiva, only: [:new, :create, :show, :edit, :update, :index, :destroy]
     resources :personas_fisicas_n, only: [:new, :create, :show, :edit, :update]
@@ -27,6 +51,7 @@ Int::Application.routes.draw do
     resources :ficha_artisticas, only: [:new, :create, :show, :edit, :update, :index, :destroy]
     resources :super_vistas, only: [:index]
     resources :formularios_terminados, only: [:index]
+    resources :excel_formularios, only: [:index]
     resources :personas_fisicas_e, only: [:new, :show, :index] do
       member do
         post :buscar_integrante_por_cuil_cuit
