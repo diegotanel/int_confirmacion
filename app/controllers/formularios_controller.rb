@@ -51,7 +51,7 @@ class FormulariosController < ApplicationController
     send_file ( file )
   end
 
-  def imprimir_interno
+  def imprimir_formulario_interno
     @formulario = Formulario.find(params[:id])
     gen_form_interno = GeneradorDeFormularioInterno.new()
     gen_form_interno.generar_pdf(@formulario)
