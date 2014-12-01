@@ -2,7 +2,7 @@ Int::Application.routes.draw do
   
   post "formularios/:formulario_id/personas_fisicas_e/:id" => "personas_fisicas_e#create", as: :formulario_personas_fisicas_e
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :destroy]
   resources :password_recovers, only: [:new, :create]
   resources :ver_formularios, only: [:index]
   resources :formularios, only: [:index] do
