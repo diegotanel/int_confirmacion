@@ -29,9 +29,9 @@
 
 	<div class="field">
 	  <%= f.label :datos_esp_fecha_de_estreno_gteq, "Fecha de estreno entre" %>
-	  <%= f.date_select :datos_esp_fecha_de_estreno_gteq, start_year: 1950, end_year: 2014 ,order: [:day, :month, :year] %>
+	  <%= f.date_select :datos_esp_fecha_de_estreno_gteq, start_year: 1950, end_year: 2014 ,order: [:day, :month, :year], include_blank: true %>
 	  <%= f.label :datos_esp_fecha_de_estreno_lteq, "y" %>
-	  <%= f.date_select :datos_esp_fecha_de_estreno_lteq, start_year: 1950, end_year: 2014 ,order: [:day, :month, :year] %>
+	  <%= f.date_select :datos_esp_fecha_de_estreno_lteq, start_year: 1950, end_year: 2014 ,order: [:day, :month, :year], include_blank: true %>
 	</div>
 
   <%= f.label :datos_esp_nacionalidad_autor_eq, "Nacionalidad del autor"%>

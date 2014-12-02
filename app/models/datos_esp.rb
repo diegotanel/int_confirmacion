@@ -43,6 +43,17 @@ class DatosEsp < ActiveRecord::Base
                                 :size => { :less_than => 1.megabyte }
   validates_attachment :autorizacion_del_autor, presence: true, unless: :saltear_validaciones_de_presencia
 
+	#ransacker :duracion_espectaculo, formatter: proc { |v| v.to_i } do |parent|
+  #	parent.table[:duracion_espectaculo]
+
+	#, validator: proc { |v| v.present? } do |p|
+	#	puts p.class
+	#formatter: proc { |v| v.to_i },
+
+  
+  		#Arel.sql("to_number(duracion_espectaculo, '99999')")
+	#end
+
 	def validacion_fecha_de_estreno_debe_ser_inferior_al_dia_actual
 		errors[:fecha_de_estreno] << "no puede ser superior al día actual" unless fecha_de_estreno_debe_ser_inferior_al_dia_actual
 	end
