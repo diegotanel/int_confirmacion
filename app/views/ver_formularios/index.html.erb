@@ -34,6 +34,9 @@
 	  <%= f.date_select :datos_esp_fecha_de_estreno_lteq, start_year: 1950, end_year: 2014 ,order: [:day, :month, :year] %>
 	</div>
 
+  <%= f.label :datos_esp_nacionalidad_autor_eq, "Nacionalidad del autor"%>
+  <%= f.select :datos_esp_nacionalidad_autor_eq, Formulario.where(estado: 1).map {|n| n.datos_esp.nacionalidad_autor.strip }.uniq.sort, include_blank: true %>
+
   <div class="actions">
   	<%= f.submit "Buscar"%>
   </div>
@@ -46,6 +49,7 @@
 	    <th>Nombre del espectáculo</th>
 	    <th>Región</th>
 	    <th>Provincia</th>
+      <th>Nacionalidad del autor</th>
       <th>Grupo o Espectáculo concertado</th>
 	    <th>Cantidad de integrantes de elenco en gira</th>
       <th><%= sort_link @q, :datos_esp_duracion_espectaculo, "Duración del espectáculo" %></th>
@@ -63,6 +67,7 @@
 	    	<td><%= formulario.principal.nombre %></td>
 	    	<td><%= formulario.principal.region.detalle %></td>
 	    	<td><%= formulario.principal.provincia.detalle %></td>
+        <td><%= formulario.datos_esp.nacionalidad_autor %></td>
 	    	<td><%= formulario.principal.grupo.detalle %></td>
 	    	<td><%= formulario.elenco_en_gira.integrantes_de_elenco_en_gira.count %></td>
 	    	<td><%= formulario.datos_esp.duracion_espectaculo.to_i %></td>
