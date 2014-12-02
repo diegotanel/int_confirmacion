@@ -11,6 +11,9 @@
   	<%= f.label :principal_localidad_provincia_id_eq, "Provincia"%>
   	<%= f.grouped_collection_select("principal_localidad_provincia_id_eq", Region.all, "provincias", "detalle", "id", "detalle",include_blank: true) %>
 
+  <%= f.label :datos_esp_nacionalidad_autor_eq, "Nacionalidad del autor"%>
+  <%= f.select :datos_esp_nacionalidad_autor_eq, Formulario.where(estado: 1).map {|n| n.datos_esp.nacionalidad_autor.strip }.uniq.sort, include_blank: true %>
+
   <div class="actions">
   	<%= f.submit "Buscar"%>
   </div>
@@ -23,6 +26,7 @@
 	    <th>Nombre del espectáculo</th>
 	    <th>Región</th>
 	    <th>Provincia</th>
+      <th>Nacionalidad del autor</th>
       <th></th>
 	    <th></th>
       <th></th>
@@ -34,6 +38,7 @@
 	    	<td><%= formulario.principal.nombre %></td>
 	    	<td><%= formulario.principal.region.detalle %></td>
 	    	<td><%= formulario.principal.provincia.detalle %></td>
+        <td><%= formulario.datos_esp.nacionalidad_autor %></td>
 	    	<td><%= link_to "Vista previa", formulario_super_vistas_path(formulario) %></td>
         <td><%= link_to "Imprimir formulario interno", imprimir_formulario_interno_formulario_path(formulario) %></td>
         <td><%= link_to "Excel", formulario_excel_formularios_path(formulario, format: 'xls') %></td>
