@@ -5,14 +5,34 @@
 
 <%= search_form_for @q, url: { :action=>"index" } do |f| %>
 
-	<%= f.label :principal_localidad_provincia_region_id_eq, "Region"%>
-  <%= f.collection_select :principal_localidad_provincia_region_id_eq, Region.all, :id, :detalle, include_blank: true %>
+	<div class="field">
+		<%= f.label :principal_localidad_provincia_region_id_eq, "Region"%>
+	  <%= f.collection_select :principal_localidad_provincia_region_id_eq, Region.all, :id, :detalle, include_blank: true %>
+  </div>
 
-  <%= f.label :principal_localidad_provincia_id_eq, "Provincia"%>
-  <%= f.grouped_collection_select("principal_localidad_provincia_id_eq", Region.all, "provincias", "detalle", "id", "detalle",include_blank: true) %>
+  <div class="field">
+	  <%= f.label :principal_localidad_provincia_id_eq, "Provincia"%>
+	  <%= f.grouped_collection_select("principal_localidad_provincia_id_eq", Region.all, "provincias", "detalle", "id", "detalle",include_blank: true) %>
+  </div>
 
-  <%= f.label :principal_grupo_id_eq, "Grupo o Espectáculo concertado"%>
-  <%= f.collection_select :principal_grupo_id_eq, Grupo.all, :id, :detalle, include_blank: true %>
+  <div class="field">
+	  <%= f.label :principal_grupo_id_eq, "Grupo o Espectáculo concertado"%>
+	  <%= f.collection_select :principal_grupo_id_eq, Grupo.all, :id, :detalle, include_blank: true %>
+  </div>
+
+  <div class="field">
+	  <%= f.label :datos_esp_duracion_espectaculo_gteq, "Duración del espectáculo entre" %>
+	  <%= f.number_field :datos_esp_duracion_espectaculo_gteq %>
+	  <%= f.label :datos_esp_duracion_espectaculo_lteq, "y" %>
+	  <%= f.number_field :datos_esp_duracion_espectaculo_lteq %>
+	</div>
+
+	<div class="field">
+	  <%= f.label :datos_esp_fecha_de_estreno_gteq, "Fecha de estreno entre" %>
+	  <%= f.date_select :datos_esp_fecha_de_estreno_gteq, start_year: 1950, end_year: 2014 ,order: [:day, :month, :year] %>
+	  <%= f.label :datos_esp_fecha_de_estreno_lteq, "y" %>
+	  <%= f.date_select :datos_esp_fecha_de_estreno_lteq, start_year: 1950, end_year: 2014 ,order: [:day, :month, :year] %>
+	</div>
 
   <div class="actions">
   	<%= f.submit "Buscar"%>
@@ -28,7 +48,7 @@
 	    <th>Provincia</th>
       <th>Grupo o Espectáculo concertado</th>
 	    <th>Cantidad de integrantes de elenco en gira</th>
-      <th>Duración del espectáculo</th>
+      <th><%= sort_link @q, :datos_esp_duracion_espectaculo, "Duración del espectáculo" %></th>
       <th>Nacionalidad del autor</th>
       <th>Fecha de estreno</th>
       <th></th>
@@ -44,8 +64,8 @@
 	    	<td><%= formulario.principal.region.detalle %></td>
 	    	<td><%= formulario.principal.provincia.detalle %></td>
 	    	<td><%= formulario.principal.grupo.detalle %></td>
-	    	<td><%= cantidad_integrantes %></td>
-	    	<td><%= formulario.datos_esp.duracion_espectaculo %></td>
+	    	<td><%= formulario.elenco_en_gira.integrantes_de_elenco_en_gira.count %></td>
+	    	<td><%= formulario.datos_esp.duracion_espectaculo.to_i %></td>
 	    	<td><%= formulario.datos_esp.nacionalidad_autor %></td>
 	    	<td><%= I18n.l(formulario.datos_esp.fecha_de_estreno) %></td>
 	    	<td><%= link_to "Vista previa", formulario_super_vistas_path(formulario) %></td>

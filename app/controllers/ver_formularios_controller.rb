@@ -5,7 +5,7 @@ class VerFormulariosController < ApplicationController
 
   def index
     @q = Formulario.where(estado: 1).search(params[:q])
-    @formularios = @q.result.includes(:formularios, :principals, :provincias, :regiones, :datos_grupos, :datos_esps, :elencos_en_gira)
+    @formularios = @q.result.includes(:formularios, :principals, :provincias, :regiones, :datos_grupos, :datos_esps, :elencos_en_gira, :integrantes_de_elenco_en_gira)
   end
 
   private
