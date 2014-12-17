@@ -148,7 +148,7 @@
   <% if (@formulario.elenco_en_gira) %>
     <td><%= link_to t("scaffoldi18n.ver"), formulario_elenco_en_gira_path(@formulario, @formulario.elenco_en_gira)  %></td>
     <td><%= link_to t("scaffoldi18n.edit"), formulario_elencos_en_gira_path(@formulario) %></td>
-  	</tr>
+  	<td></td>
   <% else %>
   	<td><%= link_to t("scaffoldi18n.new"), formulario_elencos_en_gira_path(@formulario, @formulario.elenco_en_gira)  %></td>
   	<td></td>
@@ -178,6 +178,7 @@
 
         	<td><%= link_to t("scaffoldi18n.ver"), formulario_datos_grupo_path(@formulario, @formulario.datos_grupo)  %></td>
           <td><%= link_to t("scaffoldi18n.edit"), edit_formulario_datos_grupo_path(@formulario, @formulario.datos_grupo)  %></td>
+          <td></td>
         <% else %>
           <td><%= link_to t("scaffoldi18n.new"), new_formulario_datos_grupo_path(@formulario) %></td>
         	<td></td>
@@ -258,6 +259,7 @@
     <% else %>
       <td><%= link_to t("scaffoldi18n.new"), formulario_responsables_path(@formulario) %></td>
       <td></td>
+      <td></td>
     <% end %>
   </tr>
 
@@ -305,5 +307,6 @@
   <% if @completo %>
    <%= link_to "Enviar Formulario", formulario_formularios_terminados_path(@formulario), :data => {confirm: t("scaffoldi18n.are_you_sure?")}, class: "btn btn-medium btn-primary" %>
   <% end %></br>
+  </br>
 
 <%= link_to "Volver a los formularios", formularios_path %>

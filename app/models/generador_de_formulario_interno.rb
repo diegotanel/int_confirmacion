@@ -25,9 +25,9 @@ class GeneradorDeFormularioInterno
 		end
 
 		if formulario.responsable.persona_fisica_e || formulario.responsable.persona_fisica_n
-			@ruta_plantilla = Rails.root.join("app/plantillas/FORMULARIO_INTERNO_INT_PRESENTA_PF.odt")
+			@ruta_plantilla = Rails.root.join("app/plantillas/FORMULARIO_INTERNO_INT_PRESENTA_PF_CONFIRMACION.odt")
 		else
-			@ruta_plantilla = Rails.root.join("app/plantillas/FORMULARIO_INTERNO_INT_PRESENTA_PJ.odt")
+			@ruta_plantilla = Rails.root.join("app/plantillas/FORMULARIO_INTERNO_INT_PRESENTA_PJ_CONFIRMACION.odt")
 		end
 
 		report = ODFReport::Report.new(@ruta_plantilla) do |r|

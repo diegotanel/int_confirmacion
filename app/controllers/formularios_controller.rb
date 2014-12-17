@@ -1,6 +1,6 @@
 #encoding: utf-8
 class FormulariosController < ApplicationController
-  before_action :signed_in_user, only: [:new, :create, :index, :edit, :update, :destroy, :imprimir_remito, :imprimir_interno]
+  before_action :signed_in_user, only: [:new, :create, :index, :edit, :update, :destroy, :imprimir_remito, :imprimir_formulario_interno]
 
   def new
     @formulario = Formulario.new

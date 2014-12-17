@@ -324,8 +324,6 @@
 		</p>
 	<% end %>
 	<% if (@formulario.responsable.persona_fisica_n) %>
-		<h3>Datos persona física </h3>
-		</br>
 		<p>
 		  <b>Nombre:</b>
 		  <%= @formulario.responsable.persona_fisica_n.nombre %>
@@ -397,8 +395,7 @@
 		</p>
 		<% end %>
 		<% if (@formulario.responsable.persona_juridica) %>
-			<h3>Datos persona juridica</h3>
-			</br>
+			<h4>Datos persona juridica</h4>
 			<p>
 			  <b>Nombre:</b>
 			  <%= @formulario.responsable.persona_juridica.nombre_per_juridica %>
