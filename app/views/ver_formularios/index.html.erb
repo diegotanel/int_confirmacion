@@ -45,7 +45,7 @@
 <% if @q.result %>
 	<table class="table table-striped">
 	  <tr>
-	    <th>Fecha</th>
+	    <th><%= sort_link @q, :updated_at, "Fecha de finalización" %></th>
 	    <th>Nombre del espectáculo</th>
 	    <th>Región</th>
 	    <th>Provincia</th>

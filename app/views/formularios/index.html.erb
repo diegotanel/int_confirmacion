@@ -27,11 +27,13 @@
     <% end %>
   <% end %>
 </table>
-<%= link_to t('Nuevo formulario'), new_formulario_path, class: "btn btn-large btn-small" %>
+<% if not current_user.jurado? %>
+  <%= link_to t('Nuevo formulario'), new_formulario_path, class: "btn btn-large btn-small" %>
+<%end%>
 </br>
 </br>
 
-  <% if current_user.admin? %>
+  <% if current_user.admin? or current_user.jurado?%>
     <%= link_to t('Ver formularios terminados'), ver_formularios_path, class: "btn btn-large btn-primary" %>
   <% end %>
 <br />

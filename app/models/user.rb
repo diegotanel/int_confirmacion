@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     ["fomento@inteatro.gov.ar", "coordinacion@inteatro.gov.ar", "dtanel@gmail.com"].include?(self.email)
   end
 
+  def jurado?
+    ["galiakohan@hotmail.com", "gracielastrappa@hotmail.com", "sandramonteagudo@smandes.com.ar", "arianagomez@yahoo.com.ar", "claudiop@artesescenicas.org.ar"].include?(self.email)
+  end
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end

@@ -67,6 +67,16 @@
 	</p>
 
 	<p>
+	  <b>Imagen:</b>
+	  <%= link_to "Download", @formulario.datos_esp.imagen.url(:original, false), :target => "_blank" %>
+	</p>
+
+	<p>
+	  <b>Autorización del autor:</b>
+	  <%= link_to "Download", @formulario.datos_esp.autorizacion_del_autor.url(:original, false), :target => "_blank" %>
+	</p>
+
+	<p>
 	  <b>Formatos:</b>
 	  <%= @formulario.datos_esp.formatos.map { |e| e.detalle }.join(", ") %>
 	</p>
@@ -157,6 +167,12 @@
 	  <b>Otras necesidades:</b>
 	  <%= @formulario.datos_tec.otras_necesidades %>
 	</p>
+
+	<p>
+	  <b>Imagen:</b>
+	  <%= link_to "Download", @formulario.datos_tec.imagen.url(:original, false), :target => "_blank" %>
+	</p>
+
 <% end %>
 <% if (@formulario.elenco_en_gira) %>
 	<h3>Datos del elenco en gira</h3>
