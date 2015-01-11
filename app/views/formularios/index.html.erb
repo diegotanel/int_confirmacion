@@ -13,13 +13,13 @@
   </tr>
 
   <%= content_tag_for(:tr, @formularios) do |formulario| %>
+    <% if formulario.estado == 1 %>
     <td><%= I18n.l(formulario.created_at) %></td>
     <td><%= formulario.principal.nombre if formulario.principal%></td>
     <td><%= Formulario::ESTADOS.key(formulario.estado) %></td>
 
     <td><%= link_to t("Vista previa"), formulario_super_vistas_path(formulario) %></td>
-    <% if formulario.estado == 1 %>
-      <td><%= link_to "Imprimir remito", imprimir_remito_formulario_path(formulario) %></td>
+    <td><%= link_to "Imprimir remito", imprimir_remito_formulario_path(formulario) %></td>
     <% end %>
   <% end %>
 </table>
