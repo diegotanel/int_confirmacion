@@ -5,7 +5,7 @@ Int::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_recovers, only: [:new, :create]
   resources :ver_formularios, only: [:index]
-  resources :formularios, only: [:index] do
+  resources :formularios, only: [:new, :create, :edit, :update, :index, :destroy] do
     member do
       get :imprimir_remito
       get :imprimir_formulario_interno
@@ -63,9 +63,11 @@ Int::Application.routes.draw do
   
 
 
-  root 'sessions#new'
-  match '/signin', to: 'sessions#new', via: 'get'
-  match '/signout', to: 'sessions#destroy', via: 'delete'
+  root  'static_pages#home2'
+  match '/home2', to: 'static_pages#home', via: 'get'
+  match '/signup',  to: 'users#new',            via: 'get'
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
