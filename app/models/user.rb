@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def jurado?
-    ["galiakohan@hotmail.com", "gracielastrappa@hotmail.com", "sandramonteagudo@smandes.com.ar", "arianagomez@yahoo.com.ar", "claudiop@artesescenicas.org.ar", "mariacristina711@yahoo.com.ar", "miguelangelpalma@hotmail.com"].include?(self.email)
+    ["galiakohan@hotmail.com", "gracielastrappa@hotmail.com", "sandramonteagudo@smandes.com.ar", "arianagomez@yahoo.com.ar", "claudiop@artesescenicas.org.ar", "mariacristina711@yahoo.com.ar", "miguelangelpalma@hotmail.com", "prensa@inteatro.gov.ar", "qtnconte@inteatro.gov.ar"].include?(self.email)
   end
 
   def User.new_remember_token
